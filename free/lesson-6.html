@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 06: Rate Negotiation & Broker Scripts - Truck Dispatch Masterclass</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 32px;
+            color: #ffffff;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .spec-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .spec-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+        .spec-card-body {
+            padding: 24px;
+        }
+        .spec-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .spec-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: left;
+        }
+        .spec-table th {
+            color: #64748b;
+            font-weight: 600;
+            background: #f8fafc;
+        }
+        .spec-table td {
+            color: #334155;
+            font-weight: 500;
+        }
+        .callout-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+        .callout-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .callout-desc {
+            font-size: 14px;
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .content-card h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .content-card p, .content-card li {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px 28px;
+            border-radius: 16px;
+            margin-top: 40px;
+        }
+        .btn-quiz {
+            background: #2563eb;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: background 0.2s ease;
+        }
+        .btn-quiz:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../choose-plan.html">Plans & Pricing</a>
+            <a href="dashboard.html" class="active">Free Course Hub</a>
+            <a href="../certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- LESSON MAIN CONTENT -->
+    <div class="lesson-container">
+        
+        <!-- HERO BANNER -->
+        <div class="hero-section">
+            <span class="hero-badge">MODULE 06 • RATE NEGOTIATION</span>
+            <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 12px 0;">Rate Negotiation & Broker Phone Scripts 📞</h1>
+            <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; max-width: 800px; margin: 0;">
+                Master professional phone etiquette, counter-offer psychology, market leverage identification, and proven scripts to maximize rate-per-mile (RPM) when dealing with freight brokers.
+            </p>
+        </div>
+
+        <!-- OVERVIEW CARD -->
+        <div class="content-card">
+            <h2>1. The Psychology of Broker Negotiations</h2>
+            <p>
+                Brokers aim to secure the lowest possible cost for their shipper clients, while dispatchers fight for the highest profit for their truck drivers. Successful negotiation relies on data, timing, and project confidence—never on emotion or arguing.
+            </p>
+            
+            <table class="spec-table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Negotiation Factor</th>
+                        <th>Broker's Objective</th>
+                        <th>Dispatcher's Counter Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Initial Posted Rate</strong></td>
+                        <td>Leave room for downward pressure or quick baseline bookings.</td>
+                        <td>Treat the posted rate as an opening offer, not a final ceiling.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Market Urgency</strong></td>
+                        <td>Cover loads quickly before shipping deadlines expire.</td>
+                        <td>Leverage tight truck-to-load ratios in high-demand outbound markets.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Driver Quality</strong></td>
+                        <td>Ensure safe, reliable, on-time delivery without claims.</td>
+                        <td>Highlight elite carrier safety scores, clean history, and immediate availability.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CORE NEGOTIATION STRATEGY GRID -->
+        <h2 style="font-size: 24px; font-weight: 700; color: #0f172a; margin: 40px 0 20px 0;">2. Core Negotiation Pillars</h2>
+        
+        <div class="spec-grid">
+            
+            <!-- MARKET DATA -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="Data and analytics" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Spot Rate Intelligence</span>
+                        <span class="spec-tag">Market Data</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Checking 7-day and 15-day lane averages on DAT or Truckstop before placing your call.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Data Point</th>
+                            <td>Target Lane Average</td>
+                        </tr>
+                        <tr>
+                            <th>Advantage</th>
+                            <td>Never negotiate blindly without facts.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- THE PHONE CALL SCRIPT -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80" alt="Professional communication" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Professional Scripting</span>
+                        <span class="spec-tag" style="background: #e0f2fe; color: #0284c7;">Execution</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Using assertive, polite phrasing to establish authority and justify higher counter-offers.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Tone</th>
+                            <td>Calm, confident, and professional</td>
+                        </tr>
+                        <tr>
+                            <th>Focus</th>
+                            <td>Value and service reliability</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- LEVERAGE & TIMING -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Business strategy" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Leverage & Timing</span>
+                        <span class="spec-tag" style="background: #fef3c7; color: #b45309;">Closing</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Recognizing late-day panic loads or urgent facility pickups where brokers raise rates automatically.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Sweet Spot</th>
+                            <td>Late afternoon load urgency</td>
+                        </tr>
+                        <tr>
+                            <th>Result</th>
+                            <td>Higher rate per mile secured</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OPERATIONAL DISPATCH TIPS -->
+        <div class="callout-box">
+            <div class="callout-title">💡 Pro Dispatcher Rule: The Counter-Offer Formula</div>
+            <p class="callout-desc">
+                Never ask: <em>"Is that the best rate you can do?"</em> Instead, use data-backed positioning: <em>"Based on current outbound capacity in this market and lane averages, our truck needs $X,XXX to make this work. Can we get that approved?"</em>
+            </p>
+        </div>
+
+        <!-- ADDITIONAL DETAILS SECTION -->
+        <div class="content-card">
+            <h2>3. Handling Common Broker Objections</h2>
+            <ul style="padding-left: 20px;">
+                <li style="margin-bottom: 12px;">
+                    <strong>"That's all the shipper is paying us":</strong> Politely remind the broker that your job is to secure fair market value for your carrier's operating expenses and fuel costs. Offer to look at alternative loads if the margin doesn't align.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>"We have other trucks willing to take it for less":</strong> If true, hold your ground or move to the next load. Often, this is a bluff to force a lower price. Stand firm on your lane analysis.
+                </li>
+            </ul>
+        </div>
+
+        <!-- BOTTOM ACTION BAR: LESSON 02 (EXAMPLE) -->
+<div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <!-- LEFT: Previous Lesson -->
+    <a href="lesson-5.html" class="btn-secondary" style="background: #334155; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        ← Previous Lesson
+    </a>
+
+    <!-- MIDDLE: Back to Dashboard -->
+    <a href="dashboard.html" class="btn-secondary" style="background: #475569; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+       Back to Dashboard
+    </a>
+
+    <!-- RIGHT: Take Quiz -->
+    <a href="quiz.html?lesson=6" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+        Take Lesson 06 Quiz →
+    </a>
+</div>
+
+
+</body>
+</html>

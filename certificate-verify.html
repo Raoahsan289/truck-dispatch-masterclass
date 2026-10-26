@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification Portal - Truck Dispatch Master Class</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="verify-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="index.html" class="logo-area">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="choose-plan.html">Plans & Pricing</a>
+            <a href="free/dashboard.html">Free Course</a>
+            <a href="certificate-verify.html" class="active">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- VERIFICATION MAIN SECTION -->
+    <main class="verify-main">
+        <div class="verify-container">
+            <div class="verify-eyebrow">
+                <span>🔒 ROUTECRAFT SECURE CREDENTIAL SYSTEM</span>
+            </div>
+            
+            <h1 class="verify-title">Verify Student Dispatcher Credentials</h1>
+            
+            <p class="verify-subtitle">
+                Enter the unique Certificate ID issued by RouteCraft Logistics Corp. to verify training completion and mastery status.
+            </p>
+
+            <!-- SEARCH INPUT CARD -->
+            <div class="search-card">
+                <div class="search-input-group">
+                    <input type="text" id="certInput" placeholder="Enter Certificate ID (e.g., RC-TDMC-PRO-8842)" autocomplete="off">
+                    <button type="button" id="verifyBtn" onclick="verifyCertificate()">Verify Certificate</button>
+                </div>
+                <div class="sample-hints">
+                    <span>Try sample IDs:</span> 
+                    <button type="button" onclick="loadSample('RC-TDMC-PRO-8842')">RC-TDMC-PRO-8842</button>
+                    <button type="button" onclick="loadSample('RC-TDMC-FREE-1024')">RC-TDMC-FREE-1024</button>
+                </div>
+            </div>
+
+            <!-- DYNAMIC RESULT DISPLAY AREA -->
+            <div id="resultArea" class="result-area hidden">
+                <!-- SUCCESS STATE (Injected via JS) -->
+            </div>
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT FOR MOCK VERIFICATION -->
+    <script>
+        function loadSample(sampleId) {
+            document.getElementById('certInput').value = sampleId;
+            verifyCertificate();
+        }
+
+        function verifyCertificate() {
+            const inputVal = document.getElementById('certInput').value.trim().toUpperCase();
+            const resultArea = document.getElementById('resultArea');
+            
+            resultArea.classList.remove('hidden');
+
+            if (inputVal === 'RC-TDMC-PRO-8842' || inputVal === 'PRO') {
+                resultArea.innerHTML = `
+                    <div class="credential-card success-card">
+                        <div class="cred-header">
+                            <span class="status-badge verified">✓ VERIFIED CREDENTIAL</span>
+                            <span class="issuer-tag">RouteCraft Logistics Corp.</span>
+                        </div>
+                        <h2 class="student-name">Muhammad Ahsan</h2>
+                        <p class="program-tier">Pro Dispatcher Agency Masterclass</p>
+                        
+                        <div class="cred-grid">
+                            <div><strong>Certificate ID:</strong> RC-TDMC-PRO-8842</div>
+                            <div><strong>Issue Date:</strong> October 2026</div>
+                            <div><strong>Credential Type:</strong> Private Professional Completion</div>
+                            <div><strong>Status:</strong> Active & Valid in Good Standing</div>
+                        </div>
+
+                        <div class="skills-box">
+                            <strong>Verified Core Competencies:</strong>
+                            <span>DAT One Load Boards</span> • 
+                            <span>Rate-Per-Mile (RPM) Math</span> • 
+                            <span>Broker Phone Negotiation</span> • 
+                            <span>Carrier Onboarding Packets</span>
+                        </div>
+                    </div>
+                `;
+            } else if (inputVal === 'RC-TDMC-FREE-1024' || inputVal === 'FREE') {
+                resultArea.innerHTML = `
+                    <div class="credential-card success-card">
+                        <div class="cred-header">
+                            <span class="status-badge verified">✓ VERIFIED CREDENTIAL</span>
+                            <span class="issuer-tag">RouteCraft Logistics Corp.</span>
+                        </div>
+                        <h2 class="student-name">Muhammad Ahsan</h2>
+                        <p class="program-tier">Dispatch Basics 101 (Free Tier)</p>
+                        
+                        <div class="cred-grid">
+                            <div><strong>Certificate ID:</strong> RC-TDMC-FREE-1024</div>
+                            <div><strong>Issue Date:</strong> October 2026</div>
+                            <div><strong>Credential Type:</strong> Fundamental Training Completion</div>
+                            <div><strong>Status:</strong> Active & Valid</div>
+                        </div>
+
+                        <div class="skills-box">
+                            <strong>Verified Core Competencies:</strong>
+                            <span>US Freight Ecosystem</span> • 
+                            <span>FMCSA & MC Authority Basics</span> • 
+                            <span>Trailer Specs & Load Board Intro</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultArea.innerHTML = `
+                    <div class="credential-card error-card">
+                        <div class="cred-header">
+                            <span class="status-badge unverified">✕ INVALID OR EXPIRED ID</span>
+                        </div>
+                        <h3>Certificate Not Found</h3>
+                        <p>No active record matches ID: <strong>${inputVal || '[Empty]'}</strong>. Please check the code and try again or contact RouteCraft support.</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>

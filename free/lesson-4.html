@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 04: Intro to Load Boards (DAT & Truckstop) - Truck Dispatch Masterclass</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 32px;
+            color: #ffffff;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .spec-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .spec-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+        .spec-card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .spec-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .spec-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: left;
+        }
+        .spec-table th {
+            color: #64748b;
+            font-weight: 600;
+            background: #f8fafc;
+        }
+        .spec-table td {
+            color: #334155;
+            font-weight: 500;
+        }
+        .callout-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+        .callout-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .callout-desc {
+            font-size: 14px;
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .content-card h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .content-card p, .content-card li {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px 28px;
+            border-radius: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .btn-quiz {
+            background: #2563eb;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .btn-quiz:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../choose-plan.html">Plans & Pricing</a>
+            <a href="dashboard.html" class="active">Free Course Hub</a>
+            <a href="../certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- LESSON MAIN CONTENT -->
+    <div class="lesson-container">
+        
+        <!-- HERO BANNER -->
+        <div class="hero-section">
+            <span class="hero-badge">MODULE 04 • LOAD BOARD OPERATIONS</span>
+            <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 12px 0;">Introduction to Load Boards (DAT & Truckstop) 💻</h1>
+            <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; max-width: 800px; margin: 0;">
+                Learn how professional freight dispatchers navigate primary load boards like DAT One and Truckstop.com, filter active freight searches, understand headhauls versus backhauls, and identify profitable lanes.
+            </p>
+        </div>
+
+        <!-- OVERVIEW CARD (RESTYLED POINT 1) -->
+        <div class="content-card" style="box-shadow: 0 4px 12px rgba(0,0,0,0.03); overflow: hidden; padding: 0;">
+            <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 24px 32px; color: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <span style="background: #2563eb; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">Marketplace Core</span>
+                    <h2 style="font-size: 22px; font-weight: 700; color: #fff; margin: 8px 0 0 0; border: none; padding: 0;">1. The Big Two: DAT One vs. Truckstop.com</h2>
+                </div>
+                <span style="font-size: 24px;">📊</span>
+            </div>
+            <div style="padding: 32px;">
+                <p style="margin-top: 0; margin-bottom: 24px; font-size: 15px; color: #475569; line-height: 1.7;">
+                    Load boards are online marketplaces where freight brokers post available loads for carriers, and carriers or dispatchers search for matching equipment. Mastering these platforms is the core daily duty of a freight dispatcher.
+                </p>
+                
+                <table class="spec-table" style="margin-top: 0; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                    <thead>
+                        <tr style="background: #f8fafc;">
+                            <th style="padding: 14px 16px; border-bottom: 2px solid #e2e8f0; color: #0f172a; font-weight: 700;">Load Board Platform</th>
+                            <th style="padding: 14px 16px; border-bottom: 2px solid #e2e8f0; color: #0f172a; font-weight: 700;">Key Strengths</th>
+                            <th style="padding: 14px 16px; border-bottom: 2px solid #e2e8f0; color: #0f172a; font-weight: 700;">Dispatcher Operational Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 14px 16px;"><strong style="color: #0f172a;">DAT One (Dial-A-Truck)</strong></td>
+                            <td style="padding: 14px 16px; color: #475569;">Largest freight network, spot market rate history tools, and quick credit scores.</td>
+                            <td style="padding: 14px 16px; color: #475569;">Best for checking historical lane rates and finding nationwide dry van/reefer loads.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 14px 16px;"><strong style="color: #0f172a;">Truckstop.com</strong></td>
+                            <td style="padding: 14px 16px; color: #475569;">Load alerts, rate per mile insights (RateMate), and integrated factoring checks.</td>
+                            <td style="padding: 14px 16px; color: #475569;">Great for flatbed freight, specialized lanes, and fast broker contact access.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CORE STRATEGY GRID -->
+        <h2 style="font-size: 24px; font-weight: 700; color: #0f172a; margin: 40px 0 20px 0;">2. Core Load Board Navigation & Filters</h2>
+        
+        <div class="spec-grid">
+            
+            <!-- CARD 1: ORIGIN & DEADHEAD -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80" alt="Truck dispatch logistics" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span style="font-size: 18px;">Origin & Deadhead Radius</span>
+                        <span class="spec-tag">Search Filters</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; flex-grow: 1;">
+                        Setting your truck's exact city/state and acceptable empty driving radius (deadhead miles) before pickup.
+                    </p>
+                    <table class="spec-table" style="margin-bottom: 0;">
+                        <tr>
+                            <th>Ideal Deadhead</th>
+                            <td style="text-align: right;">Under 50 Miles</td>
+                        </tr>
+                        <tr>
+                            <th>Max Tolerable</th>
+                            <td style="text-align: right;">100–150 Miles</td>
+                        </tr>
+                        <tr>
+                            <th>Impact</th>
+                            <td style="text-align: right; font-size: 12.5px;">Lowers trip profit.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CARD 2: EQUIPMENT & WEIGHT MATCHING (FIXED IMAGE) -->
+            <div class="spec-card">
+                <img src=https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80 alt="Warehouse shipping dock" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span style="font-size: 18px;">Equipment & Weight</span>
+                        <span class="spec-tag" style="background: #e0f2fe; color: #0284c7;">Precision</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; flex-grow: 1;">
+                        Filtering strictly by trailer type (V, R, F) and verifying cargo weight against max legal payload limits.
+                    </p>
+                    <table class="spec-table" style="margin-bottom: 0;">
+                        <tr>
+                            <th>Dry Van Filter</th>
+                            <td style="text-align: right;">V, V53, VDR</td>
+                        </tr>
+                        <tr>
+                            <th>Reefer Filter</th>
+                            <td style="text-align: right;">R, R53</td>
+                        </tr>
+                        <tr>
+                            <th>Weight Check</th>
+                            <td style="text-align: right; color: #ef4444; font-weight: 600;">Never exceed limit.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CARD 3: HEADHAUL VS BACKHAUL -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Highway freight transport" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span style="font-size: 18px;">Headhaul vs. Backhaul</span>
+                        <span class="spec-tag" style="background: #fef3c7; color: #b45309;">Market Flow</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; flex-grow: 1;">
+                        Recognizing outbound high-demand industrial lanes (Headhauls) versus low-demand return lanes (Backhauls).
+                    </p>
+                    <table class="spec-table" style="margin-bottom: 0;">
+                        <tr>
+                            <th>Headhaul Lanes</th>
+                            <td style="text-align: right;">High rates, volume.</td>
+                        </tr>
+                        <tr>
+                            <th>Backhaul Lanes</th>
+                            <td style="text-align: right;">Lower return rates.</td>
+                        </tr>
+                        <tr>
+                            <th>Strategy</th>
+                            <td style="text-align: right; font-size: 12.5px;">Balance round trips.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OPERATIONAL DISPATCH TIPS -->
+        <div class="callout-box">
+            <div class="callout-title">💡 Pro Dispatcher Rule: Speed Wins the Load</div>
+            <p class="callout-desc">
+                Good loads on DAT One or Truckstop are booked within minutes of posting. Keep your dispatcher call script ready, check broker credit scores instantly, and call the broker immediately instead of just emailing when you find a lucrative lane!
+            </p>
+        </div>
+
+        <!-- ADDITIONAL DETAILS SECTION -->
+        <div class="content-card">
+            <h2>3. Evaluating Broker Credit & Days to Pay</h2>
+            <ul style="padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 12px;">
+                    <strong>DAT Score / Ansonia Credit:</strong> Always check the broker's credit score and average Days-to-Pay (DTP). Avoid dispatching for brokers with scores under 90 or DTP exceeding 45+ days unless using a factoring company.
+                </li>
+                <li style="margin-bottom: 0;">
+                    <strong>Posted Rate vs. Negotiable Rate:</strong> Most load board rates are initial offers. Professional dispatchers use spot rate tools to evaluate the true lane average before calling the broker to negotiate a higher rate.
+                </li>
+            </ul>
+        </div>
+
+        <!-- NAVIGATION & QUIZ ACTION BAR -->
+        <div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <!-- LEFT: Previous Lesson -->
+            <a href="lesson-3.html" class="btn-secondary" style="background: #334155; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                ← Previous Lesson
+            </a>
+
+            <!-- MIDDLE: Back to Dashboard -->
+            <a href="dashboard.html" class="btn-secondary" style="background: #475569; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                Back to Dashboard
+            </a>
+
+            <!-- RIGHT: Take Quiz -->
+            <a href="quiz.html?lesson=4" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+                Take Lesson 04 Quiz →
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SUPABASE SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- PROGRESS SAVING SCRIPT -->
+    <script>
+        async function handleLesson4Complete() {
+            console.log("Lesson 4 Complete clicked!");
+
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            
+            if (!session) {
+                alert("Please log in to save your progress.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+            const currentLessonId = "lesson-4";
+
+            let { data: currentData, error: fetchError } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .single();
+
+            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+            // Ensure previous lessons up to lesson-4 are recorded
+            ["lesson-1", "lesson-2", "lesson-3", currentLessonId].forEach(id => {
+                if (!lessons.includes(id)) lessons.push(id);
+            });
+
+            const { error: upsertError } = await supabaseClient
+                .from('user_progress')
+                .upsert(
+                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                    { onConflict: 'user_id' }
+                );
+
+            if (upsertError) {
+                console.error("Error saving progress:", upsertError.message);
+                alert("Error saving progress: " + upsertError.message);
+            } else {
+                alert("Lesson 04 completed successfully!");
+                window.location.href = "dashboard.html"; 
+            }
+        }
+    </script>
+</body>
+</html>

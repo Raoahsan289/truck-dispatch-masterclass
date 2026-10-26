@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 01: US Freight Ecosystem Overview - Truck Dispatch Master Class</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-container {
+            max-width: 1000px;
+            margin: 40px auto 80px auto;
+            padding: 0 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .lesson-header-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+        }
+
+        .lesson-pill {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .lesson-main-title {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .lesson-meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .meta-item svg {
+            width: 15px;
+            height: 15px;
+            color: #38bdf8;
+            flex-shrink: 0;
+        }
+
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .content-card h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon-box {
+            width: 36px;
+            height: 36px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            flex-shrink: 0;
+        }
+
+        .section-icon-box svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .content-card p {
+            font-size: 15.5px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .workflow-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .workflow-step {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .workflow-step-num {
+            font-size: 12px;
+            font-weight: 800;
+            color: #2563eb;
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 999px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .workflow-step-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .workflow-step-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .btn-action {
+            background: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+            transition: background 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../choose-plan.html">Plans & Pricing</a>
+            <a href="dashboard.html" class="active">Free Course</a>
+            <a href="../certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- LESSON CONTENT CONTAINER -->
+    <main class="lesson-container">
+        
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+            <a href="dashboard.html">Curriculum Hub</a>
+            <span>/</span>
+            <span>Lesson 01</span>
+        </div>
+
+        <!-- HERO LESSON BANNER -->
+        <div class="lesson-header-card">
+            <span class="lesson-pill">MODULE 01 US Freight Ecosystem Overview</span>
+            <h1 class="lesson-main-title">US Freight Ecosystem Overview</h1>
+            <p style="color: #cbd5e1; font-size: 16px; margin: 0;">
+                Learn how Shippers, Freight Brokers, Motor Carriers, and Independent Dispatchers connect to move $800B+ of freight annually across North America.
+            </p>
+            
+            <div class="lesson-meta-bar">
+                <div class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Estimated Time: 15 Mins</span>
+                </div>
+
+                <div class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span>Type: Core Foundations</span>
+                </div>
+
+                <div class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    <span>Level: Beginner</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: THE 4 PILLARS -->
+        <div class="content-card">
+            <h2>
+                <span class="section-icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V11m0 0h4" />
+                    </svg>
+                </span>
+                The 4 Key Players in US Freight Logistics
+            </h2>
+            <p>
+                To succeed as an independent truck dispatcher, you must first understand the four core pillars that make up the commercial road transportation industry in the United States:
+            </p>
+
+            <ul style="padding-left: 20px; color: #334155; line-height: 1.8; margin-bottom: 20px;">
+                <li><strong>1. The Shipper / Receiver:</strong> The company that manufactures or owns the goods (e.g., Walmart, Tyson Foods, local farms) and needs them transported.</li>
+                <li><strong>2. The Freight Broker:</strong> A licensed intermediary who contracts with shippers to find available truck capacity in exchange for a profit margin.</li>
+                <li><strong>3. The Motor Carrier:</strong> The trucking company or Independent Owner-Operator owning Class 8 trucks and holding an active MC/DOT authority.</li>
+                <li><strong>4. The Independent Freight Dispatcher:</strong> You—the strategic representative hired directly by the motor carrier to find loads, negotiate rates, manage paperwork, and plan routes.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2: WORKFLOW DIAGRAM -->
+        <div class="content-card">
+            <h2>
+                <span class="section-icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </span>
+                The Lifecycle of a Freight Load
+            </h2>
+            <p>
+                Here is the step-by-step physical and financial flow of a single shipment moving through the US freight network:
+            </p>
+
+            <!-- DIAGRAM GRID -->
+            <div class="workflow-box">
+                <div class="workflow-step">
+                    <span class="workflow-step-num">STEP 1</span>
+                    <div class="workflow-step-title">Shipper Posts Load</div>
+                    <p class="workflow-step-desc">Shipper gives cargo details to Freight Broker.</p>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-step-num">STEP 2</span>
+                    <div class="workflow-step-title">Broker Posts to Board</div>
+                    <p class="workflow-step-desc">Broker lists load on DAT One / Truckstop board.</p>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-step-num">STEP 3</span>
+                    <div class="workflow-step-title">Dispatcher Negotiates</div>
+                    <p class="workflow-step-desc">Dispatcher calls broker to lock top Rate-Per-Mile.</p>
+                </div>
+                <div class="workflow-step">
+                    <span class="workflow-step-num">STEP 4</span>
+                    <div class="workflow-step-title">Carrier Delivers</div>
+                    <p class="workflow-step-desc">Truck driver picks up, transports, and delivers cargo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: BROKER VS DISPATCHER -->
+        <div class="content-card">
+            <h2>
+                <span class="section-icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                    </svg>
+                </span>
+                Freight Broker vs. Truck Dispatcher
+            </h2>
+            <p>
+                A common misconception among beginners is confusing a <strong>Freight Broker</strong> with a <strong>Freight Dispatcher</strong>. Understanding this legal distinction is critical:
+            </p>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14.5px;">
+                <thead>
+                    <tr style="background: #f1f5f9; text-align: left;">
+                        <th style="padding: 12px; border: 1px solid #cbd5e1; color: #0f172a;">Feature</th>
+                        <th style="padding: 12px; border: 1px solid #cbd5e1; color: #0f172a;">Freight Broker</th>
+                        <th style="padding: 12px; border: 1px solid #cbd5e1; color: #0f172a;">Truck Dispatcher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 700;">Represents</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">The Shipper / Goods Owner</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">The Motor Carrier / Trucking Co.</td>
+                    </tr>
+                    <tr style="background: #f8fafc;">
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 700;">Main Goal</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">Get freight moved for lowest price</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">Get highest payout rate per mile for carrier</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 700;">Income Source</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">Brokerage profit margin</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0;">5% - 10% commission per gross load</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 4: DAT ONE LOAD BOARD SIMULATOR -->
+        <div class="content-card">
+            <h2>
+                <span class="section-icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </span>
+                Practical Walkthrough: Reading a DAT One Load Listing
+            </h2>
+            <p>
+                When searching for freight on DAT One or Truckstop, every posted load displays critical operational data. Below is an example of a live spot market posting:
+            </p>
+
+            <!-- SIMULATED DAT ONE BOARD ROW -->
+            <div style="background: #0f172a; border-radius: 14px; padding: 20px; color: #ffffff; font-family: monospace; font-size: 14px; margin: 20px 0; overflow-x: auto;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 12px; font-weight: 700; color: #38bdf8;">
+                    <span>AGE: 2m ago</span>
+                    <span>TYPE: V (Dry Van)</span>
+                    <span>TRIP: 780 mi</span>
+                    <span>RATE: $2,100 ($2.69/mi)</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <span style="color: #94a3b8; display: block; font-size: 11px;">ORIGIN</span>
+                        <strong style="color: #f8fafc; font-size: 15px;">Atlanta, GA</strong>
+                    </div>
+                    <div>
+                        <span style="color: #94a3b8; display: block; font-size: 11px;">DESTINATION</span>
+                        <strong style="color: #f8fafc; font-size: 15px;">Dallas, TX</strong>
+                    </div>
+                    <div>
+                        <span style="color: #94a3b8; display: block; font-size: 11px;">WEIGHT / LTH</span>
+                        <strong style="color: #f8fafc; font-size: 15px;">44,000 lbs | 53ft</strong>
+                    </div>
+                    <div>
+                        <span style="color: #94a3b8; display: block; font-size: 11px;">BROKER / MC#</span>
+                        <strong style="color: #38bdf8; font-size: 15px;">C.H. Robinson (MC# 142381)</strong>
+                    </div>
+                </div>
+
+                <div style="background: #1e293b; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; color: #cbd5e1; display: flex; justify-content: space-between; align-items: center;">
+                    <span>📝 Notes: Clean food-grade trailer required. No driver touch. FCFS pickup.</span>
+                    <span style="background: #16a34a; color: #ffffff; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 11px;">Factorable (96 Credit)</span>
+                </div>
+            </div>
+
+            <!-- DISPATCHER ACTION STEPS -->
+            <div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 16px 20px; border-radius: 8px; margin-top: 16px;">
+                <h4 style="margin: 0 0 6px 0; color: #1e40af; font-size: 15px;">💡 Dispatcher Analysis Checklist:</h4>
+                <ol style="margin: 0; padding-left: 20px; color: #1e3a8a; font-size: 14px; line-height: 1.6;">
+                    <li><strong>Rate Math:</strong> $2,100 total ÷ 780 miles = <strong>$2.69/mile</strong> (Above target market threshold of $2.40/mi).</li>
+                    <li><strong>Broker Credit Check:</strong> Credit Score 96 with Factorability enabled ensures guaranteed carrier payment within 30 days.</li>
+                    <li><strong>Next Step:</strong> Call broker C.H. Robinson referencing MC# 142381 to negotiate the rate up to $2,300 ($2.94/mi).</li>
+                </ol>
+            </div>
+        </div>
+
+       <!-- BOTTOM ACTION BAR: LESSON 01 -->
+<div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <a href="dashboard.html" class="btn-secondary" style="background: #334155; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        ← Back to Dashboard
+    </a>
+    <a href="quiz.html?lesson=1" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+        Take Lesson 01 Quiz →
+    </a>
+</div>
+
+    </main>
+
+    <!-- SUPABASE SDK & CONFIG SCRIPTS (REQUIRED FOR CLOUD PROGRESS SAVE) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- LESSON PROGRESS SCRIPT -->
+    <script>
+        async function handleQuizSuccess() {
+            console.log("Button clicked!");
+
+            // 1. Get active user session
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            
+            if (!session) {
+                alert("Please log in to save your progress.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+            const lessonId = "lesson-1";
+
+            // 2. Fetch current progress
+            let { data: currentData, error: fetchError } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .single();
+
+            let lessons = currentData ? currentData.completed_lessons : [];
+
+            // 3. Add current lesson to completed list
+            if (!lessons.includes(lessonId)) {
+                lessons.push(lessonId);
+            }
+
+            // 4. Upsert (Save) to Supabase cloud database
+            // 4. Upsert (Save) to Supabase cloud database with explicit onConflict
+    const { error: upsertError } = await supabaseClient
+        .from('user_progress')
+        .upsert(
+            { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+            { onConflict: 'user_id' } // <-- This resolves the 409 duplicate key conflict
+        );
+
+    if (upsertError) {
+        console.error("Error saving progress:", upsertError.message);
+        alert("Error saving progress: " + upsertError.message);
+    } else {
+        alert("Lesson 01 completed successfully!");
+        window.location.href = "dashboard.html"; 
+    }
+        }
+        
+    </script>
+    <!-- SUPABASE SDK & CONFIG SCRIPTS -->
+<!-- SUPABASE SDK & CONFIG SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/dashboard.js"></script>
+
+<!-- LESSON PROGRESS SCRIPT -->
+<script>
+    async function handleQuizSuccess() {
+        // 1. Get active user session
+        const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+        
+        if (!session) {
+            alert("Please log in to save your progress.");
+            window.location.href = "../login.html";
+            return;
+        }
+
+        const userId = session.user.id;
+        const lessonId = "lesson-1";
+
+        // 2. Fetch current progress
+        let { data: currentData, error: fetchError } = await supabaseClient
+            .from('user_progress')
+            .select('completed_lessons')
+            .eq('user_id', userId)
+            .maybeSingle();
+
+        let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+        // 3. Add current lesson to completed list
+        if (!lessons.includes(lessonId)) {
+            lessons.push(lessonId);
+        }
+
+        // 4. Save to Supabase
+        const { error: upsertError } = await supabaseClient
+            .from('user_progress')
+            .upsert(
+                { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                { onConflict: 'user_id' }
+            );
+
+        if (upsertError) {
+            console.error("Error saving progress:", upsertError.message);
+            alert("Error saving progress: " + upsertError.message);
+        } else {
+            alert("Lesson 01 completed successfully!");
+            window.location.href = "dashboard.html"; 
+        }
+    }
+</script>
+</body>
+</html>

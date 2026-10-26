@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trucking Cost Per Mile (CPM) Calculator | Truck Dispatch Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+   <!-- Header / Nav -->
+<header class="bg-white border-b border-slate-200 py-4 px-6 shadow-sm">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold text-slate-900 tracking-tight">Truck Dispatch Masterclass</a>
+       <a href="./free/dashboard.html" class="text-sm font-medium text-blue-600 hover:underline">Back to Dashboard</a>
+    </div>
+</header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-10 w-full">
+        <div class="mb-8 text-center">
+            <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Free Dispatch Tool</span>
+            <h1 class="text-3xl font-extrabold text-slate-900 mt-2">Trucking Cost Per Mile (CPM) Calculator</h1>
+            <p class="text-slate-600 mt-1">Calculate your absolute breakeven rate and determine profitable freight rates instantly.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <!-- Input Form -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">Monthly Expenses & Mileage</h2>
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700">Fixed Costs ($ / Month)</label>
+                    <span class="text-xs text-slate-500">Truck payment, insurance, permits, ELD subscription</span>
+                    <input type="number" id="fixedCosts" value="4500" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700">Variable Cost ($ / Mile)</label>
+                    <span class="text-xs text-slate-500">Fuel, maintenance, tires, tolls</span>
+                    <input type="number" step="0.01" id="variableCostPerMile" value="0.75" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700">Estimated Monthly Miles</label>
+                    <span class="text-xs text-slate-500">Total miles driven per month</span>
+                    <input type="number" id="monthlyMiles" value="10000" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700">Target Profit Margin (%)</label>
+                    <span class="text-xs text-slate-500">Desired profit percentage per load</span>
+                    <input type="number" id="profitMargin" value="15" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+
+                <button onclick="calculateCPM()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg transition duration-200 shadow-md">
+                    Calculate Breakeven & Rate
+                </button>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-xl flex flex-col justify-between shadow-inner">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-200 border-b border-slate-700 pb-2">Analysis Results</h2>
+                    
+                    <div class="mt-6 space-y-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-slate-400">Absolute Breakeven CPM</span>
+                            <div class="text-3xl font-extrabold text-amber-400 mt-1" id="breakevenResult">$1.20</div>
+                            <span class="text-xs text-slate-400">Below this rate, you are losing money.</span>
+                        </div>
+
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-slate-400">Recommended Minimum Rate (Per Mile)</span>
+                            <div class="text-4xl font-extrabold text-emerald-400 mt-1" id="targetRateResult">$1.41</div>
+                            <span class="text-xs text-slate-400">Includes your target profit margin.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                    *Tip: Share this calculator link with owner-operators and dispatchers to drive organic search traffic to your platform.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500 mt-12">
+        &copy; 2026 Truck Dispatch Masterclass. All rights reserved.
+    </footer>
+
+    <!-- Calculator Script -->
+    <script>
+        function calculateCPM() {
+            const fixed = parseFloat(document.getElementById('fixedCosts').value) || 0;
+            const varCPM = parseFloat(document.getElementById('variableCostPerMile').value) || 0;
+            const miles = parseFloat(document.getElementById('monthlyMiles').value) || 1;
+            const margin = parseFloat(document.getElementById('profitMargin').value) || 0;
+
+            // Calculations
+            const fixedCPM = fixed / miles;
+            const breakevenCPM = fixedCPM + varCPM;
+            const targetCPM = breakevenCPM * (1 + (margin / 100));
+
+            // Display Results
+            document.getElementById('breakevenResult').innerText = '$' + breakevenCPM.toFixed(2);
+            document.getElementById('targetRateResult').innerText = '$' + targetCPM.toFixed(2);
+        }
+
+        // Run calculation on load
+        window.onload = calculateCPM;
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Assessment - Truck Dispatch Masterclass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #0f172a; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 40px 20px; line-height: 1.6;">
+
+    <div style="max-width: 680px; margin: 0 auto; background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);">
+        <div style="text-align: center; margin-bottom: 28px;">
+            <span id="quiz-badge" style="background: rgba(37, 99, 235, 0.2); color: #60a5fa; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase;">LESSON ASSESSMENT</span>
+            <h1 id="quiz-title" style="font-size: 24px; color: #fff; margin: 12px 0 6px 0;">Lesson Assessment</h1>
+            <p id="quiz-desc" style="color: #94a3b8; font-size: 14px; margin: 0;">Answer all 4 randomized questions correctly to pass this assessment.</p>
+        </div>
+
+        <form id="quiz-form">
+            <div id="questions-container"></div>
+            <button type="button" id="submit-quiz-btn" onclick="submitQuiz()" style="background: #2563eb; color: #fff; border: none; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; width: 100%; margin-top: 10px;">Submit Quiz & Unlock Next Lesson</button>
+        </form>
+
+        <div id="quiz-result" style="margin-top: 20px; display: none; padding: 20px; border-radius: 12px; text-align: center;"></div>
+    </div>
+
+    <!-- SUPABASE SDK & CONFIG -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <script>
+        const quizData = {
+            "1": {
+                title: "US Freight Ecosystem Overview",
+                badge: "LESSON 01 ASSESSMENT",
+                key: "lesson1_completed",
+                questionsPool: [
+                    { q: "Who acts as the vital communication and negotiation representative for independent motor carriers?", options: ["Warehouse Manager", "Freight Shipper", "Truck Dispatcher"], correct: 2 },
+                    { q: "What regulatory body oversees motor carrier operating authority in the US?", options: ["FMCSA", "OSHA", "FAA"], correct: 0 },
+                    { q: "Which entity owns or manufactures the cargo that needs to be shipped?", options: ["Broker", "Shipper", "Carrier"], correct: 1 },
+                    { q: "What unique registration authority allows motor carriers to operate interstate commercial transport?", options: ["MC / USDOT Number", "Tax ID Number", "Driver License"], correct: 0 },
+                    { q: "What primary role does a freight broker serve in the supply chain?", options: ["Driving the truck", "Middleman connecting shippers with authorized carriers", "Manufacturing goods"], correct: 1 },
+                    { q: "Which document grants legal permission to transport property for hire across state lines?", options: ["Operating Authority (MC Number)", "TWIC Card", "Commercial Driver's License"], correct: 0 },
+                    { q: "Who is physically responsible for moving the freight on the road?", options: ["Motor Carrier / Driver", "Freight Forwarder", "Customs Broker"], correct: 0 },
+                    { q: "What does FMCSA stand for?", options: ["Federal Motor Carrier Safety Administration", "Federal Marine Cargo Safety Association", "Freight Management & Shipping Logistics Authority"], correct: 0 },
+                    { q: "Why do independent owner-operators hire freight dispatchers?", options: ["To handle load booking, broker negotiation, and paperwork", "To perform mechanical repairs on trucks", "To issue state driver licenses"], correct: 0 },
+                    { q: "An intrastate carrier operates strictly within...", options: ["A single state's borders", "Multiple neighboring states", "International borders"], correct: 0 },
+                    { q: "An interstate carrier operates across...", options: ["State lines or international borders", "Only a single city", "Only sea ports"], correct: 0 },
+                    { q: "What key piece of information identifies a trucking company in FMCSA safety databases?", options: ["USDOT Number", "ZIP Code", "Vehicle Title Number"], correct: 0 }
+                ]
+            },
+            "2": {
+                title: "Load Boards, Equipment & RPM Math",
+                badge: "LESSON 02 ASSESSMENT",
+                key: "lesson2_completed",
+                questionsPool: [
+                    { q: "What is the standard maximum legal gross weight for a Class 8 commercial truck without special permits?", options: ["44,000 lbs", "80,000 lbs", "100,000 lbs"], correct: 1 },
+                    { q: "How do you calculate the Rate-Per-Mile (RPM) on a load offer?", options: ["Total Distance ÷ Gross Payout", "Gross Payout ÷ Total Trip Miles", "Gross Payout × Fuel Surcharge"], correct: 1 },
+                    { q: "Which equipment type is temperature-controlled for transporting refrigerated or frozen cargo?", options: ["Dry Van (V)", "Flatbed (F)", "Reefer (R)"], correct: 2 },
+                    { q: "If a broker offers $2,100 for a 780-mile load, what is the calculated Rate-Per-Mile?", options: ["$2.69 / mile", "$3.10 / mile", "$2.15 / mile"], correct: 0 },
+                    { q: "What is 'deadhead' distance in RPM calculations?", options: ["Unloaded miles driven to pick up a cargo load", "Miles driven while sleeping", "Toll miles on turnpikes"], correct: 0 },
+                    { q: "If total trip distance is 500 miles (including 50 deadhead miles) and gross pay is $1,500, what is true RPM?", options: ["$3.00 / mile", "$3.33 / mile", "$2.50 / mile"], correct: 0 },
+                    { q: "Which trailer type is used for general dry packaged goods?", options: ["Dry Van", "Reefer", "Step Deck"], correct: 0 },
+                    { q: "Maximum legal cargo weight capacity for a standard 53ft dry van is roughly...", options: ["42,000 to 45,000 lbs", "60,000 to 70,000 lbs", "20,000 to 25,000 lbs"], correct: 0 },
+                    { q: "What factor directly lowers net profit per mile for a truck?", options: ["High fuel prices and long deadhead miles", "High rate per mile", "Light cargo weight"], correct: 0 },
+                    { q: "What is gross payout if a 1,200-mile load pays an RPM of $2.50?", options: ["$3,000", "$2,500", "$3,500"], correct: 0 },
+                    { q: "Why must deadhead miles always be included when evaluating a load's profitability?", options: ["Fuel and maintenance costs are still incurred while driving empty", "Brokers pay double for deadhead miles", "Deadhead miles are tax-exempt"], correct: 0 },
+                    { q: "Which trailer uses an engine-powered reefer unit mounted on the front?", options: ["Refrigerated Trailer (Reefer)", "Flatbed", "Container Chassis"], correct: 0 }
+                ]
+            },
+            "3": {
+                title: "Trailer Specifications & Types",
+                badge: "LESSON 03 ASSESSMENT",
+                key: "lesson3_completed",
+                questionsPool: [
+                    { q: "What is the standard length of a dry van or reefer trailer on US highways?", options: ["40 feet", "48 feet", "53 feet"], correct: 2 },
+                    { q: "Why do reefer trailers typically have a slightly lower weight capacity than dry vans?", options: ["The cooling unit and fuel tank add extra equipment weight", "Reefers are structurally weaker", "State laws restrict reefer weight"], correct: 0 },
+                    { q: "Which trailer type is best suited for hauling steel coils, lumber, and construction machinery?", options: ["Dry Van", "Flatbed", "Reefer"], correct: 1 },
+                    { q: "What type of cargo typically requires a temperature-controlled reefer trailer?", options: ["Non-perishable retail boxes", "Fresh produce and pharmaceuticals", "Lumber and pipes"], correct: 1 },
+                    { q: "Flatbeds require specialized cargo security equipment, including...", options: ["Straps, chains, and tarps", "Refrigeration gauges", "Vacuum seals"], correct: 0 },
+                    { q: "What is the primary advantage of a Dry Van trailer?", options: ["Protecting non-perishable general freight from weather and theft", "Carrying oversized machinery", "Transporting frozen meat"], correct: 0 },
+                    { q: "What is the standard width of a 53ft box trailer?", options: ["102 inches (8.5 feet)", "80 inches", "120 inches"], correct: 0 },
+                    { q: "Step deck (drop deck) trailers are primarily used when...", options: ["Cargo is too tall for a standard flatbed", "Cargo needs freezing temperatures", "Cargo is under 1,000 lbs"], correct: 0 },
+                    { q: "Why is tarping required on certain flatbed loads?", options: ["To protect open cargo from moisture, road debris, and weather", "To reduce fuel burn", "To hide the cargo brand name"], correct: 0 },
+                    { q: "What temperature range can a multi-temp reefer trailer maintain?", options: ["Both frozen and chilled zones simultaneously", "Only boiling temperatures", "Only ambient room temperature"], correct: 0 },
+                    { q: "Which trailer allows loading from both sides and top using a crane?", options: ["Flatbed", "Dry Van", "Tanker"], correct: 0 },
+                    { q: "Conestoga trailers feature a rolling tarp system primarily to...", options: ["Protect flatbed cargo without manually handling heavy tarps", "Keep frozen produce cold", "Increase fuel efficiency by 50%"], correct: 0 }
+                ]
+            },
+            "4": {
+                title: "Introduction to Load Boards",
+                badge: "LESSON 04 ASSESSMENT",
+                key: "lesson4_completed",
+                questionsPool: [
+                    { q: "What are digital freight matching marketplaces where shippers and brokers post loads called?", options: ["Factoring networks", "Load boards", "Clearinghouses"], correct: 1 },
+                    { q: "Which of the following is noted as the largest and most widely used load board network in North America?", options: ["DAT One", "Amazon Freight", "Uber Freight Logistics"], correct: 0 },
+                    { q: "What is a key purpose of filtering loads by origin and destination lanes?", options: ["To collect fuel tax refunds", "To avoid getting stuck in low-paying freight areas", "To meet mandatory state driver rest rules"], correct: 1 },
+                    { q: "What do 'deadhead miles' refer to in freight dispatching?", options: ["Miles driven with an empty trailer between drops and pickups", "Miles driven over the legal speed limit", "Extra long-haul trips across state lines"], correct: 0 },
+                    { q: "Truckstop.com is especially well known in the industry for providing...", options: ["Broker credit scores and rate inspection tools", "Free diesel fuel vouchers", "Automated truck driving AI"], correct: 0 },
+                    { q: "On a load board, what does 'Outbound Ratio' indicate?", options: ["The balance between available loads and available trucks in a market", "The truck speed limit in a state", "The ratio of diesel to gasoline"], correct: 0 },
+                    { q: "What is a 'headhaul' market?", options: ["A high-volume area with more outbound loads than incoming trucks", "A market with no available loads", "An area with cheap diesel fuel"], correct: 0 },
+                    { q: "What is a 'backhaul' market?", options: ["An area with more incoming trucks than outbound loads, lowering rates", "A route back to the driver's hometown", "A mountain pass"], correct: 0 },
+                    { q: "Why should dispatchers check broker credit scores on load boards before booking?", options: ["To ensure the broker pays invoices reliably and within terms", "To verify driver safety scores", "To calculate state sales taxes"], correct: 0 },
+                    { q: "What feature on DAT One allows dispatchers to post empty trucks?", options: ["Post a Truck", "Search Loads", "Rate View"], correct: 0 },
+                    { q: "What metric shows historical average payouts for a specific lane over the past 15 or 30 days?", options: ["Lane Rate Averages", "Fuel Surcharge Chart", "Toll Calculator"], correct: 0 },
+                    { q: "When setting up load board alerts, dispatchers aim to receive notifications when...", options: ["New matching loads are posted in real-time", "Diesel prices drop by 1 cent", "Brokers update their logos"], correct: 0 }
+                ]
+            },
+            "5": {
+                title: "Carrier Setup & Onboarding",
+                badge: "LESSON 05 ASSESSMENT",
+                key: "lesson5_completed",
+                questionsPool: [
+                    { q: "What document serves as proof of a motor carrier's active operating authority?", options: ["MC/USDOT Authority Letter", "Driver's Medical Card", "State Business License"], correct: 0 },
+                    { q: "What is the standard minimum general liability and cargo insurance coverage expected by most brokers?", options: ["$100k liability / $10k cargo", "$1M liability / $100k cargo", "$5M liability / $500k cargo"], correct: 1 },
+                    { q: "Which tax identification form signed by the carrier is always required in a broker setup packet?", options: ["W-9 Form", "1099-NEC Form", "I-9 Form"], correct: 0 },
+                    { q: "What document is required in a carrier profile if they use a factoring company to receive fast payments?", options: ["Notice of Assignment (NOA)", "Bill of Lading", "Rate Confirmation"], correct: 0 },
+                    { q: "A Certificate of Insurance (COI) must list the broker as...", options: ["Certificate Holder", "Primary Insured Owner", "Power of Attorney"], correct: 0 },
+                    { q: "What happens if a carrier's insurance policy expires or lapses?", options: ["FMCSA revokes active operating authority", "Brokers automatically double load rates", "Nothing, insurance is optional"], correct: 0 },
+                    { q: "What is a Dispatcher-Carrier Agreement?", options: ["A contract defining commission fees, duties, and power of attorney to book loads", "A driver speed agreement", "A lease for truck parking"], correct: 0 },
+                    { q: "Why do brokers perform safety background checks through services like RMIS or MyCarrierPacket?", options: ["To verify active authority, safety ratings, and insurance compliance", "To check the driver's personal credit score", "To inspect truck tire tread"], correct: 0 },
+                    { q: "What is an NOA (Notice of Assignment)?", options: ["A legal notice directing the broker to pay the factoring company instead of the carrier", "A notice of traffic violation", "An assignment of new route directions"], correct: 0 },
+                    { q: "What tax form is generated annually for independent dispatchers earning commissions?", options: ["1099-NEC", "W-2", "Schedule C"], correct: 0 },
+                    { q: "How long does completing a standard digital broker setup packet usually take?", options: ["5 to 15 minutes", "2 to 3 weeks", "48 hours minimum"], correct: 0 },
+                    { q: "Why should a dispatcher keep organized digital copies of the carrier packet?", options: ["To quickly email or submit packets to brokers and book loads without delays", "To print and mail paper copies", "To submit to local police"], correct: 0 }
+                ]
+            },
+            "6": {
+                title: "Rate Negotiation Strategies",
+                badge: "LESSON 06 ASSESSMENT",
+                key: "lesson6_completed",
+                questionsPool: [
+                    { q: "What vital details should you state immediately when calling a broker about a posted load?", options: ["Your personal credit score and banking info", "MC number, truck location, and trailer type", "Your company profit margins and tax ID"], correct: 1 },
+                    { q: "What should you always check before accepting or negotiating a broker's initial posted rate?", options: ["Lane rate averages on load boards like DAT or Truckstop", "The broker's office address", "The local weather forecast"], correct: 0 },
+                    { q: "Which of the following is a valid leverage point when negotiating a higher rate?", options: ["Your truck being empty nearby with a fresh inspection", "Asking for pity because fuel is expensive", "Threatening to report the broker to the FMCSA"], correct: 0 },
+                    { q: "If a load pays $2,000 and the market average is $2,400, what is a sound initial counter-offer strategy?", options: ["Accept the $2,000 immediately", "Counter higher (e.g., $2,500) to settle around market value", "Demand double the posted rate ($4,000)"], correct: 1 },
+                    { q: "What does 'DNU' mean in broker-carrier relationships?", options: ["Do Not Use (blacklisted carrier or broker)", "Deliver Next Utilization", "Direct Network Unit"], correct: 0 },
+                    { q: "When a broker asks 'What is your rate on this lane?', what is the best dispatcher response?", options: ["Give a confident, well-researched counter-rate based on market averages", "Ask 'What is the absolute most you can pay?'", "Say 'I don't know, whatever you want'"], correct: 0 },
+                    { q: "How can tight pickup windows or urgent delivery times help in negotiation?", options: ["Brokers pay higher rates for reliable, immediate coverage", "It reduces the rate per mile", "It requires fewer fuel stops"], correct: 0 },
+                    { q: "What is 'detention pay'?", options: ["Compensation paid by the broker when a driver is delayed at a facility over 2 hours", "A penalty for late delivery", "Driver safety bonus"], correct: 0 },
+                    { q: "What is a 'tonu' (Truck Ordered Not Used)?", options: ["A fee paid to a carrier when a booked load is canceled after the truck dispatched", "A heavy load fee", "A state weight permit"], correct: 0 },
+                    { q: "What is the primary rule of phone negotiation with freight brokers?", options: ["Remain professional, calm, and firm on your target rate numbers", "Argue loudly to show strength", "Accept whatever is offered first"], correct: 0 },
+                    { q: "Why is knowing your carrier's minimum cost-per-mile essential during negotiation?", options: ["It prevents booking loads that lose money after fuel and operating expenses", "It is required by FMCSA law", "It helps calculate driver income tax"], correct: 0 },
+                    { q: "If a broker refuses to budge on a rate below your carrier's cost-per-mile, you should...", options: ["Politely decline and move on to the next load", "Accept the loss", "Argue with the broker for an hour"], correct: 0 }
+                ]
+            },
+            "7": {
+                title: "Dispatch Workflow & Rate Confirmations",
+                badge: "LESSON 07 ASSESSMENT",
+                key: "lesson7_completed",
+                questionsPool: [
+                    { q: "What is a Rate Confirmation (Rate Con)?", options: ["A casual text message confirming driver availability", "A legally binding agreement between broker and carrier outlining load terms", "An invoice issued after cargo is delivered"], correct: 1 },
+                    { q: "Which of the following must you audit carefully before signing a Rate Confirmation?", options: ["The agreed line-haul rate, pickup/delivery times, and special instructions", "The broker's company history from 10 years ago", "The driver's personal home address"], correct: 0 },
+                    { q: "What document should you send directly to your driver once the Rate Con is signed?", options: ["A dispatch sheet with facility addresses, reference numbers, and contact info", "A blank W-9 tax form", "A copy of the broker's credit report"], correct: 0 },
+                    { q: "Why is verifying special instructions (like tarping or lumper fees) on a Rate Con critical?", options: ["To ensure the driver is fully prepared and unexpected costs are covered", "To speed up the truck on the highway", "To avoid paying state road tolls"], correct: 0 },
+                    { q: "Who signs the Rate Confirmation contract first?", options: ["The carrier/dispatcher reviews and signs before returning it to the broker", "The receiver at delivery", "The FMCSA inspector"], correct: 0 },
+                    { q: "What is a 'lumper fee'?", options: ["A third-party fee paid for loading or unloading cargo at a warehouse facility", "A driver penalty fee", "A toll road tax"], correct: 0 },
+                    { q: "When should check-in calls with driver and broker occur during a load movement?", options: ["At pickup, during transit daily, and upon final delivery drop-off", "Only when a truck breaks down", "Once a month"], correct: 0 },
+                    { q: "If the pickup address on the Rate Con differs from what the broker told you verbally, what should you do?", options: ["Request a revised Rate Con from the broker before dispatching the truck", "Ignore it and drive anywhere", "Cancel the carrier authority"], correct: 0 },
+                    { q: "What critical reference number must drivers present at shipping facilities to pick up cargo?", options: ["Pickup / PU Number or PO Number", "MC Authority Number", "Driver SSN"], correct: 0 },
+                    { q: "What should a dispatcher do immediately upon learning a driver will be late to an appointment?", options: ["Proactively notify the broker to reschedule or update the ETA", "Hide the delay and hope nobody notices", "Cancel the load contract"], correct: 0 },
+                    { q: "What does 'BOL' stand for in freight dispatching?", options: ["Bill of Lading", "Balance of Load", "Broker Operating License"], correct: 0 },
+                    { q: "Why must detention time be logged on the driver's BOL at facility gates?", options: ["To serve as proof when requesting detention pay from the broker", "To pay state highway taxes", "To check tire pressure"], correct: 0 }
+                ]
+            },
+            "8": {
+                title: "Invoicing, Factoring & Payment Collection",
+                badge: "LESSON 08 ASSESSMENT",
+                key: "lesson8_completed",
+                questionsPool: [
+                    { q: "What signed document confirms that cargo arrived safely at its destination without damage?", options: ["Bill of Lading (BOL) or Proof of Delivery (POD)", "Rate Confirmation", "MC Authority Letter"], correct: 0 },
+                    { q: "How do factoring companies operate for motor carriers?", options: ["They buy invoices and pay carriers instantly minus a small fee, collecting from the broker later", "They provide free fuel cards and truck repairs", "They act as freight brokers matching loads"], correct: 0 },
+                    { q: "What is the typical independent dispatcher commission percentage based on gross revenue?", options: ["1% to 2%", "5% to 10%", "40% to 50%"], correct: 1 },
+                    { q: "When do standard brokers usually pay carriers directly if they are not using a factoring service?", options: ["Instantly upon pickup", "Net 30 days after invoice submission", "At the end of the calendar year"], correct: 1 },
+                    { q: "What constitutes a complete invoice packet submitted for payment collection?", options: ["Carrier Invoice, Signed BOL/POD, and Signed Rate Confirmation", "Only a verbal phone call", "Driver's License copy only"], correct: 0 },
+                    { q: "What is 'recourse' factoring?", options: ["Factoring where the carrier must buy back the invoice if the broker fails to pay", "Factoring with zero fees", "Government subsidized factoring"], correct: 0 },
+                    { q: "What is 'non-recourse' factoring?", options: ["Factoring where the factoring company absorbs credit loss if broker goes bankrupt", "Factoring for illegal loads", "Factoring paid in cash"], correct: 0 },
+                    { q: "Why do carriers prefer factoring over waiting for Net 30 payment terms?", options: ["To maintain immediate cash flow for fuel, payroll, and maintenance costs", "To avoid paying taxes", "Brokers require it by law"], correct: 0 },
+                    { q: "How does an independent dispatcher bill their carrier for completed work?", options: ["Invoicing weekly or bi-weekly based on calculated percentage of booked gross loads", "Charging $100 per mile", "Taking ownership of the truck"], correct: 0 },
+                    { q: "What should be done if a customer reports damaged cargo on the POD?", options: ["Notify insurance immediately and submit cargo claims documentation", "Ignore the signature and request payment", "Delete the Rate Con"], correct: 0 },
+                    { q: "What is a 'Quick Pay' option offered by some freight brokers?", options: ["Early invoice payout (usually 1-3 days) in exchange for a 2%-5% fee", "Paying in physical cash at delivery", "Paying before cargo is picked up"], correct: 0 },
+                    { q: "What is the final step in the complete dispatch workflow lifecycle?", options: ["Collecting dispatcher commission fee and closing out load record", "Posting the truck on DAT", "Signing the initial carrier packet"], correct: 0 }
+                ]
+            }
+        };
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            let shuffled = array.slice();
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Parse query parameter for current lesson
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('lesson') || "1";
+        const currentQuiz = quizData[lessonId] || quizData["1"];
+        const numericLessonNum = parseInt(lessonId);
+
+        let selectedQuestions = [];
+
+        // Load Quiz Content
+        document.addEventListener("DOMContentLoaded", () => {
+            if(document.getElementById('quiz-badge')) document.getElementById('quiz-badge').innerText = currentQuiz.badge;
+            if(document.getElementById('quiz-title')) document.getElementById('quiz-title').innerText = currentQuiz.title;
+
+            selectedQuestions = shuffleArray(currentQuiz.questionsPool).slice(0, 4);
+
+            const container = document.getElementById('questions-container');
+            if(container) {
+                let html = "";
+                selectedQuestions.forEach((item, index) => {
+                    html += `<div style="margin-bottom: 20px; background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155;">`;
+                    html += `<p style="color: #fff; font-weight: 600; margin-top: 0;">${index + 1}. ${item.q}</p>`;
+                    item.options.forEach((opt, optIndex) => {
+                        html += `<label style="display: block; color: #cbd5e1; margin: 8px 0; cursor: pointer;"><input type="radio" name="q${index}" value="${optIndex}"> ${opt}</label>`;
+                    });
+                    html += `</div>`;
+                });
+                container.innerHTML = html;
+            }
+        });
+
+        // Submit Handler
+        window.submitQuiz = async function() {
+            let score = 0;
+            selectedQuestions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / selectedQuestions.length) * 100);
+            const isPassed = score >= 3; // Passing threshold: 3 or 4 correct out of 4
+
+            // Lock all radio inputs and hide submit button
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+            const submitBtn = document.getElementById("submit-quiz-btn");
+            if (submitBtn) submitBtn.style.display = "none";
+
+            const resultDiv = document.getElementById('quiz-result');
+            if (!resultDiv) return;
+            resultDiv.style.display = 'block';
+
+            if (isPassed) {
+                localStorage.setItem(currentQuiz.key, 'true');
+
+                resultDiv.style.background = 'rgba(16, 185, 129, 0.15)';
+                resultDiv.style.border = '1px solid #10b981';
+                resultDiv.style.color = '#6ee7b7';
+                resultDiv.style.padding = '24px';
+                resultDiv.style.borderRadius = '16px';
+                resultDiv.style.textAlign = 'center';
+
+                resultDiv.innerHTML = `
+                    <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
+                    <h3 style="color: #34d399; font-size: 22px; font-weight: 800; margin-bottom: 8px;">Quiz Completed Successfully!</h3>
+                    <p style="color: #e2e8f0; font-size: 16px; margin-bottom: 4px;">Your Score: <strong>${score} / ${selectedQuestions.length} (${percentage}%)</strong></p>
+                    <p style="color: #38bdf8; font-size: 16px; font-weight: 700; margin-bottom: 24px;">✨ Lesson 0${numericLessonNum} Completed & Lesson 0${numericLessonNum + 1} Unlocked!</p>
+                    
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="dashboard.html" style="background: #334155; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                            ← Back to Dashboard
+                        </a>
+                        ${numericLessonNum >= 8 ? `
+                            <a href="dashboard.html" style="background: #16a34a; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700;">
+                                View Dashboard & Certificate 🎉
+                            </a>
+                        ` : `
+                            <a href="lesson-${numericLessonNum + 1}.html" style="background: #2563eb; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700;">
+                                Proceed to Lesson 0${numericLessonNum + 1} →
+                            </a>
+                        `}
+                    </div>
+                `;
+
+                await saveProgressToSupabase(numericLessonNum);
+
+            } else {
+                resultDiv.style.background = 'rgba(239, 68, 68, 0.15)';
+                resultDiv.style.border = '1px solid #ef4444';
+                resultDiv.style.color = '#fca5a5';
+                resultDiv.style.padding = '24px';
+                resultDiv.style.borderRadius = '16px';
+                resultDiv.style.textAlign = 'center';
+
+                resultDiv.innerHTML = `
+                    <div style="font-size: 36px; margin-bottom: 8px;">⚠️</div>
+                    <h3 style="color: #f87171; font-size: 20px; font-weight: 800; margin-bottom: 8px;">Assessment Not Passed</h3>
+                    <p style="color: #e2e8f0; font-size: 16px; margin-bottom: 20px;">You scored ${score} / ${selectedQuestions.length}. You need at least 3 correct answers to unlock the next lesson.</p>
+                    <button type="button" onclick="resetQuizSession()" style="background: #dc2626; color: #fff; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 700;">
+                        🔄 Retake Quiz
+                    </button>
+                `;
+            }
+        };
+
+        // Supabase Cloud Saver using .maybeSingle()
+        async function saveProgressToSupabase(lessonNum) {
+            if (typeof supabaseClient === 'undefined') return;
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                alert("Please log in so your progress can be saved.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+
+            let { data: currentData } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .maybeSingle();
+
+            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+            for (let i = 1; i <= lessonNum; i++) {
+                let lId = `lesson-${i}`;
+                if (!lessons.includes(lId)) {
+                    lessons.push(lId);
+                }
+            }
+
+            const { error } = await supabaseClient
+                .from('user_progress')
+                .upsert(
+                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                    { onConflict: 'user_id' }
+                );
+
+            if (error) {
+                console.error("Cloud Save Error:", error.message);
+            } else {
+                console.log("Progress successfully synced to Supabase!");
+            }
+        }
+
+        // Reset Quiz Session for Retry
+        window.resetQuizSession = function() {
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+                input.disabled = false;
+            });
+
+            const resultDiv = document.getElementById('quiz-result');
+            if (resultDiv) resultDiv.style.display = 'none';
+
+            const submitBtn = document.getElementById("submit-quiz-btn");
+            if (submitBtn) submitBtn.style.display = 'inline-block';
+
+            selectedQuestions = shuffleArray(currentQuiz.questionsPool).slice(0, 4);
+            const container = document.getElementById('questions-container');
+            if(container) {
+                let html = "";
+                selectedQuestions.forEach((item, index) => {
+                    html += `<div style="margin-bottom: 20px; background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155;">`;
+                    html += `<p style="color: #fff; font-weight: 600; margin-top: 0;">${index + 1}. ${item.q}</p>`;
+                    item.options.forEach((opt, optIndex) => {
+                        html += `<label style="display: block; color: #cbd5e1; margin: 8px 0; cursor: pointer;"><input type="radio" name="q${index}" value="${optIndex}"> ${opt}</label>`;
+                    });
+                    html += `</div>`;
+                });
+                container.innerHTML = html;
+            }
+        };
+    </script>
+</body>
+</html>

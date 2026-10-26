@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal Sign Up - Truck Dispatch Master Class</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-input {
+            width: 100%;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 48px 14px 18px;
+            font-size: 15px;
+            color: #0f172a;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .password-input:focus {
+            border-color: #2563eb;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .toggle-password-btn:hover {
+            color: #0f172a;
+        }
+
+        .toggle-password-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="choose-plan.html">Plans & Pricing</a>
+            <a href="certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- AUTH MAIN CONTAINER -->
+    <main class="plan-main">
+        <div class="verify-container" style="max-width: 520px;">
+            
+            <div class="verify-eyebrow">
+                🔐 ROUTECRAFT SECURE ACCESS
+            </div>
+            
+            <h1 class="verify-title" style="font-size: 32px; margin-bottom: 10px;">Create Your Dispatch Portal Account</h1>
+            <p class="verify-subtitle" style="margin-bottom: 28px;">
+                Enter your details below to unlock the Free Course Hub and track your curriculum progress.
+            </p>
+
+            <!-- SIGNUP FORM CARD -->
+            <div class="search-card" style="text-align: left; padding: 32px;">
+                <form id="signup-form">
+                    
+                    <!-- Full Name Field -->
+                    <div style="margin-bottom: 18px;">
+                        <label for="fullname" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Full Name</label>
+                        <input type="text" id="fullname" placeholder="e.g., Ahsan Dispatcher" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+                        <small id="fullname-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
+                    </div>
+
+                    <!-- Username Field -->
+                    <div style="margin-bottom: 18px;">
+                        <label for="username" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Username</label>
+                        <input type="text" id="username" placeholder="Enter username" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+                        <small id="username-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div style="margin-bottom: 18px;">
+                        <label for="email" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter email address" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+                        <small id="email-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div style="margin-bottom: 18px;">
+                        <label for="password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="password" placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 45px 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+                            
+                            <!-- Toggle Button -->
+                            <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                        <small style="color: #64748b; font-size: 12px; display: block; margin-top: 4px;">Must be 8–64 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special character.</small>
+                        <small id="password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 2px;"></small>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div style="margin-bottom: 24px;">
+                        <label for="confirm-password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm password" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+                        <small id="confirm-password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="signup-btn" style="width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;">
+                        Access Free Course Hub →
+                    </button>
+
+                </form>
+
+                <div style="text-align: center; margin-top: 20px; font-size: 13.5px; color: #64748b;">
+                    Already have an account? <a href="login.html" style="color: #2563eb; font-weight: 700; text-decoration: none;">Log in</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- REQUIRED SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+
+    <!-- MAIN FORM LOGIC SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            // Automatically sign out any lingering user session when visiting signup
+            if (typeof supabaseClient !== 'undefined') {
+                await supabaseClient.auth.signOut();
+            }
+
+            const form = document.getElementById("signup-form");
+
+            if (form) {
+                form.addEventListener("submit", async function (event) {
+                    event.preventDefault(); 
+
+                    const fullname = document.getElementById("fullname").value.trim();
+                    const username = document.getElementById("username").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const password = document.getElementById("password").value;
+                    const confirmPassword = document.getElementById("confirm-password").value;
+
+                    const nameErr = document.getElementById("fullname-error");
+                    const userErr = document.getElementById("username-error");
+                    const emailErr = document.getElementById("email-error");
+                    const passErr = document.getElementById("password-error");
+                    const confirmErr = document.getElementById("confirm-password-error");
+
+                    const nameInput = document.getElementById("fullname");
+                    const userInput = document.getElementById("username");
+                    const emailInput = document.getElementById("email");
+                    const passInput = document.getElementById("password");
+                    const confirmInput = document.getElementById("confirm-password");
+
+                    let isValid = true;
+
+                    if (fullname === "") {
+                        nameErr.textContent = "Full name is required.";
+                        nameErr.style.display = "block";
+                        nameInput.style.borderColor = "#ef4444";
+                        isValid = false;
+                    } else {
+                        nameErr.style.display = "none";
+                        nameInput.style.borderColor = "#cbd5e1";
+                    }
+
+                    const usernameRegex = /^[a-zA-Z0-9_-]{3,20}$/;
+                    if (!usernameRegex.test(username)) {
+                        userErr.textContent = "Username must be 3–20 chars (letters, numbers, _, -).";
+                        userErr.style.display = "block";
+                        userInput.style.borderColor = "#ef4444";
+                        isValid = false;
+                    } else {
+                        userErr.style.display = "none";
+                        userInput.style.borderColor = "#cbd5e1";
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        emailErr.textContent = "Please enter a valid email address.";
+                        emailErr.style.display = "block";
+                        emailInput.style.borderColor = "#ef4444";
+                        isValid = false;
+                    } else {
+                        emailErr.style.display = "none";
+                        emailInput.style.borderColor = "#cbd5e1";
+                    }
+
+                    let passMessage = "";
+                    if (password.length < 8 || password.length > 64) {
+                        passMessage = "Must be 8–64 characters. ";
+                    } else if (!/[A-Z]/.test(password)) {
+                        passMessage = "Needs an uppercase letter. ";
+                    } else if (!/[a-z]/.test(password)) {
+                        passMessage = "Needs a lowercase letter. ";
+                    } else if (!/[0-9]/.test(password)) {
+                        passMessage = "Needs a number. ";
+                    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                        passMessage = "Needs a special character (!@#$%^&*).";
+                    }
+
+                    if (passMessage !== "") {
+                        passErr.textContent = passMessage;
+                        passErr.style.display = "block";
+                        passInput.style.borderColor = "#ef4444";
+                        isValid = false;
+                    } else {
+                        passErr.style.display = "none";
+                        passInput.style.borderColor = "#cbd5e1";
+                    }
+
+                    if (password !== confirmPassword || confirmPassword === "") {
+                        confirmErr.textContent = "Passwords do not match.";
+                        confirmErr.style.display = "block";
+                        confirmInput.style.borderColor = "#ef4444";
+                        isValid = false;
+                    } else {
+                        confirmErr.style.display = "none";
+                        confirmInput.style.borderColor = "#cbd5e1";
+                    }
+
+                    if (isValid) {
+                        const { data, error } = await supabaseClient.auth.signUp({
+                            email: email,
+                            password: password,
+                            options: {
+                                data: {
+                                    full_name: fullname,
+                                    username: username
+                                }
+                            }
+                        });
+
+                        if (error) {
+                            if (error.message.includes("already registered")) {
+                                alert("This email is already registered. Redirecting to login...");
+                                window.location.href = "login.html";
+                            } else {
+                                alert("Supabase Error: " + error.message);
+                            }
+                            return; 
+                        }
+
+                        // Initialize user_progress BEFORE navigating to dashboard
+                        if (data && data.user) {
+                            await supabaseClient.from('user_progress').insert([
+                                { user_id: data.user.id, completed_lessons: [] }
+                            ]);
+                        }
+                        
+                        // Final single redirect to dashboard
+                        window.location.href = "free/dashboard.html";
+                    }
+                });
+            }
+        });
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            if (passwordInput) {
+                passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+            }
+        }
+    </script>
+</body>
+</html>

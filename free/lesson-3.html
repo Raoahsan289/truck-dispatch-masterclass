@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 03: Trailer Specifications & Types - Truck Dispatch Masterclass</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 32px;
+            color: #ffffff;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .spec-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .spec-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+        .spec-card-body {
+            padding: 24px;
+        }
+        .spec-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .spec-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: left;
+        }
+        .spec-table th {
+            color: #64748b;
+            font-weight: 600;
+            background: #f8fafc;
+        }
+        .spec-table td {
+            color: #334155;
+            font-weight: 500;
+        }
+        .callout-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+        .callout-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .callout-desc {
+            font-size: 14px;
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .content-card h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .content-card p, .content-card li {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px 28px;
+            border-radius: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .btn-quiz {
+            background: #2563eb;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .btn-quiz:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../choose-plan.html">Plans & Pricing</a>
+            <a href="dashboard.html" class="active">Free Course Hub</a>
+            <a href="../certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- LESSON MAIN CONTENT -->
+    <div class="lesson-container">
+        
+        <!-- HERO BANNER -->
+        <div class="hero-section">
+            <span class="hero-badge">MODULE 03 • EQUIPMENT GUIDES</span>
+            <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 12px 0;">Trailer Specifications & Equipment Types 🚛</h1>
+            <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; max-width: 800px; margin: 0;">
+                Master standard trailer dimensions, legal weight limits, temperature requirements, and specialized equipment categories. Knowing these precise specifications is critical to avoid illegal overload fines and dispatching errors.
+            </p>
+        </div>
+
+        <!-- OVERVIEW CARD -->
+        <div class="content-card">
+            <h2>1. Legal Gross Weight & Federal Regulations (FMCSA / DOT)</h2>
+            <p>
+                In the United States, the federal gross vehicle weight limit for an 18-wheeler without special permits is <strong>80,000 lbs</strong>. As a dispatcher, you must calculate the total weight including the tractor, empty trailer, fuel, and payload.
+            </p>
+            
+            <table class="spec-table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Weight Category</th>
+                        <th>Maximum Legal Allowance</th>
+                        <th>Dispatcher Operational Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gross Vehicle Weight (GVW)</strong></td>
+                        <td>80,000 lbs</td>
+                        <td>Combined weight of truck, trailer, driver, fuel, and cargo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Steer Axle Limit</strong></td>
+                        <td>12,000 lbs</td>
+                        <td>Front tires of the tractor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Drive Axles Limit</strong></td>
+                        <td>34,000 lbs</td>
+                        <td>Tandem axles directly behind truck cab.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trailer Axles Limit</strong></td>
+                        <td>34,000 lbs</td>
+                        <td>Tandem axles at the rear of the trailer.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CORE EQUIPMENT TYPES GRID -->
+        <h2 style="font-size: 24px; font-weight: 700; color: #0f172a; margin: 40px 0 20px 0;">2. Core Trailer Categories</h2>
+        
+        <div class="spec-grid">
+            
+            <!-- DRY VAN -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80" alt="Dry Van Trailer" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Dry Van (DV)</span>
+                        <span class="spec-tag">Most Common</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Enclosed box trailer used to transport non-perishable palletized goods, electronics, clothing, and dry food products.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Standard Length</th>
+                            <td>53 Feet</td>
+                        </tr>
+                        <tr>
+                            <th>Dimensions (W x H)</th>
+                            <td>102 in x 110 in</td>
+                        </tr>
+                        <tr>
+                            <th>Max Freight Weight</th>
+                            <td>42,000 – 45,000 lbs</td>
+                        </tr>
+                        <tr>
+                            <th>Pallet Capacity</th>
+                            <td>26 Standard Pallets (48x40)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- REEFER -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Refrigerated Reefer Trailer" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Refrigerated (Reefer)</span>
+                        <span class="spec-tag" style="background: #e0f2fe; color: #0284c7;">Temp-Controlled</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Insulated box trailer with a heavy-duty cooling unit (Reefer Unit) attached to transport fresh produce, pharmaceuticals, and frozen foods.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Standard Length</th>
+                            <td>53 Feet</td>
+                        </tr>
+                        <tr>
+                            <th>Temperature Range</th>
+                            <td>-20°F to +70°F</td>
+                        </tr>
+                        <tr>
+                            <th>Max Freight Weight</th>
+                            <td>42,000 – 44,000 lbs (Heavier)</td>
+                        </tr>
+                        <tr>
+                            <th>Pallet Capacity</th>
+                            <td>26 Standard Pallets</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FLATBED -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?auto=format&fit=crop&w=800&q=80" alt="Flatbed Trailer" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Flatbed (FB)</span>
+                        <span class="spec-tag" style="background: #fef3c7; color: #b45309;">Open Deck</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Open platform trailer without sides or roof. Loaded from the top, sides, or rear using forklifts or cranes for construction material and steel.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Standard Length</th>
+                            <td>48 Ft or 53 Ft</td>
+                        </tr>
+                        <tr>
+                            <th>Max Legal Height</th>
+                            <td>8 Ft 6 in Cargo Height</td>
+                        </tr>
+                        <tr>
+                            <th>Max Freight Weight</th>
+                            <td>48,000 lbs</td>
+                        </tr>
+                        <tr>
+                            <th>Securment</th>
+                            <td>Straps, Chains, Tarps</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OPERATIONAL DISPATCH TIPS -->
+        <div class="callout-box">
+            <div class="callout-title">💡 Pro Dispatcher Rule: Weight & Reefer Unit Mechanics</div>
+            <p class="callout-desc">
+                Reefer trailers carry a refrigeration unit (e.g., Thermo King / Carrier) and an extra fuel tank beneath the floor. This extra gear adds approximately <strong>1,500 to 2,000 lbs</strong> of empty dead weight compared to a standard Dry Van. Always confirm the carrier's exact empty scale weight before booking 45,000 lb heavy loads!
+            </p>
+        </div>
+
+        <!-- SPECIALIZED TRAILERS SECTION -->
+        <div class="content-card">
+            <h2>3. Specialized Open Deck Equipment</h2>
+            <ul style="padding-left: 20px;">
+                <li style="margin-bottom: 12px;">
+                    <strong>Step Deck (Single Drop):</strong> Designed with a lower deck floor to transport tall equipment (up to 10 feet high) without requiring special oversize permits.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>RGN (Removable Gooseneck):</strong> The front of the trailer detaches, allowing heavy wheeled machinery (excavators, bulldozers) to drive directly onto the trailer deck.
+                </li>
+                <li style="margin-bottom: 12px;">
+                    <strong>Conestoga:</strong> A flatbed trailer equipped with a retractable tarping system on a rolling frame. Protects sensitive machinery while allowing side loading.
+                </li>
+            </ul>
+        </div>
+
+<!-- BOTTOM ACTION BAR: LESSON 03 (EXAMPLE) -->
+<div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <!-- LEFT: Previous Lesson -->
+    <a href="lesson-2.html" class="btn-secondary" style="background: #334155; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        ← Previous Lesson
+    </a>
+
+    <!-- MIDDLE: Back to Dashboard -->
+    <a href="dashboard.html" class="btn-secondary" style="background: #475569; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        Back to Dashboard
+    </a>
+
+    <!-- RIGHT: Take Quiz -->
+    <a href="quiz.html?lesson=3" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+        Take Lesson 03 Quiz →
+    </a>
+</div>
+    <!-- SUPABASE SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- PROGRESS SAVING SCRIPT -->
+    <script>
+    async function handleLesson3Complete() {
+        console.log("Lesson 3 Complete clicked!");
+
+        const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+        
+        if (!session) {
+            alert("Please log in to save your progress.");
+            window.location.href = "../login.html";
+            return;
+        }
+
+        const userId = session.user.id;
+        const currentLessonId = "lesson-3";
+
+        // FIX: Use .maybeSingle() to prevent errors for new students
+        let { data: currentData, error: fetchError } = await supabaseClient
+            .from('user_progress')
+            .select('completed_lessons')
+            .eq('user_id', userId)
+            .maybeSingle();
+
+        let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+        // Ensure previous lessons and current lesson are recorded
+        if (!lessons.includes("lesson-1")) lessons.push("lesson-1");
+        if (!lessons.includes("lesson-2")) lessons.push("lesson-2");
+        if (!lessons.includes(currentLessonId)) lessons.push(currentLessonId);
+
+        const { error: upsertError } = await supabaseClient
+            .from('user_progress')
+            .upsert(
+                { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                { onConflict: 'user_id' }
+            );
+
+        if (upsertError) {
+            console.error("Error saving progress:", upsertError.message);
+            alert("Error saving progress: " + upsertError.message);
+        } else {
+            // SUCCESS UI UPDATE: Display Lesson 4 Unlocked banner instead of forcing dashboard redirect
+            const container = document.querySelector('.lesson-container') || document.body;
+            container.innerHTML = `
+                <div style="max-width: 600px; margin: 80px auto; background: #ffffff; border: 1px solid #cbd5e1; padding: 40px; border-radius: 16px; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🎉</div>
+                    <h1 style="color: #0f172a; font-size: 24px; font-weight: 800; margin-bottom: 12px;">Lesson 03 Completed & Lesson 04 Unlocked!</h1>
+                    <p style="color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 32px;">
+                        Great job passing the quiz! Your progress has been securely saved to the cloud, and Lesson 04 is now available.
+                    </p>
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="dashboard.html" style="background: #334155; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                            ← Back to Dashboard
+                        </a>
+                        <a href="lesson-4.html" style="background: #2563eb; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700;">
+                            Proceed to Lesson 04 →
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+    }
+</script>
+</body>
+</html>

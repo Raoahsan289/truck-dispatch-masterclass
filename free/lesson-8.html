@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 08: Invoicing, Factoring & Billing - Truck Dispatch Masterclass</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 32px;
+            color: #ffffff;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .spec-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .spec-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+        .spec-card-body {
+            padding: 24px;
+        }
+        .spec-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .spec-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: left;
+        }
+        .spec-table th {
+            color: #64748b;
+            font-weight: 600;
+            background: #f8fafc;
+        }
+        .spec-table td {
+            color: #334155;
+            font-weight: 500;
+        }
+        .callout-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+        .callout-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .callout-desc {
+            font-size: 14px;
+            color: #1e3a8a;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .content-card h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        .content-card p, .content-card li {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px 28px;
+            border-radius: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .btn-quiz {
+            background: #16a34a;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .btn-quiz:hover {
+            background: #15803d;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../choose-plan.html">Plans & Pricing</a>
+            <a href="dashboard.html" class="active">Free Course Hub</a>
+            <a href="../certificate-verify.html">Verify ID</a>
+        </nav>
+    </header>
+
+    <!-- LESSON MAIN CONTENT -->
+    <div class="lesson-container">
+        
+        <!-- HERO BANNER -->
+        <div class="hero-section">
+            <span class="hero-badge">MODULE 08 • FINANCIALS & BILLING</span>
+            <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 12px 0;">Invoicing, Factoring & Billing Management 💳</h1>
+            <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; max-width: 800px; margin: 0;">
+                Master the post-delivery billing workflow. Learn how to prepare clean invoice packets, submit documents to factoring companies, collect dispatcher service fees, and manage carrier cash flow.
+            </p>
+        </div>
+
+        <!-- OVERVIEW CARD -->
+        <div class="content-card">
+            <h2>1. The Post-Delivery Billing Package</h2>
+            <p>
+                Once a load is successfully delivered, a dispatcher must quickly assemble the complete <strong>Billing Packet</strong> to get the carrier paid. Any missing document or blurry delivery signature delays payment processing.
+            </p>
+            
+            <table class="spec-table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Required Document</th>
+                        <th>Source / Purpose</th>
+                        <th>Dispatcher Billing Audit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Clean Bill of Lading (BOL/POD)</strong></td>
+                        <td>Signed by receiver at unloading dock</td>
+                        <td>Must show clear receiver signature, date, and zero damage notes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Signed Rate Confirmation</strong></td>
+                        <td>Agreed broker contract</td>
+                        <td>Verify linehaul rate and any approved lumper/detention fees match.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carrier Invoice</strong></td>
+                        <td>Issued by carrier or dispatcher software</td>
+                        <td>Itemized breakdown of base rate, fuel surcharge, and accessorials.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lumper / Fuel Receipts</strong></td>
+                        <td>Out-of-pocket delivery expenses</td>
+                        <td>Attach original legible receipts for full broker reimbursement.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CORE BILLING GRID -->
+        <h2 style="font-size: 24px; font-weight: 700; color: #0f172a; margin: 40px 0 20px 0;">2. Payment Methods & Factoring Mechanics</h2>
+        
+        <div class="spec-grid">
+            
+            <!-- FACTORING COMPANY -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="Banking cash flow" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Freight Factoring</span>
+                        <span class="spec-tag">Same-Day Cash</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Factoring companies buy carrier invoices at a small discount (1%–3%) to pay the carrier within 24 hours instead of waiting 30–60 days.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Payout Window</th>
+                            <td>Same-day or 24 hours</td>
+                        </tr>
+                        <tr>
+                            <th>Factoring Fee</th>
+                            <td>1.5% – 3.5% of gross invoice</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- DIRECT BROKER BILLING -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Accounting paperwork" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Direct Broker Billing</span>
+                        <span class="spec-tag" style="background: #e0f2fe; color: #0284c7;">Standard Terms</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Submitting billing directly to broker accounting. Payment is processed according to broker payment terms (Net 30).
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Standard Terms</th>
+                            <td>Net 21 to Net 30 Days</td>
+                        </tr>
+                        <tr>
+                            <th>Quick Pay Option</th>
+                            <td>1–3 Days (Broker charges 2%–5%)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- DISPATCH SERVICE FEE -->
+            <div class="spec-card">
+                <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80" alt="Invoicing and payment" class="spec-card-img">
+                <div class="spec-card-body">
+                    <div class="spec-card-title">
+                        <span>Dispatcher Commission</span>
+                        <span class="spec-tag" style="background: #fef3c7; color: #b45309;">Your Revenue</span>
+                    </div>
+                    <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 16px;">
+                        Collecting your dispatch service percentage (typically 5%–10% of gross load revenue) weekly from your carrier clients.
+                    </p>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Standard Rate</th>
+                            <td>5% – 10% of gross gross revenue</td>
+                        </tr>
+                        <tr>
+                            <th>Invoicing Cycle</th>
+                            <td>Weekly or bi-weekly billing</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OPERATIONAL DISPATCH TIPS -->
+        <div class="callout-box">
+            <div class="callout-title">💡 Pro Dispatcher Rule: Immediate Invoicing Yields Fast Pay</div>
+            <p class="callout-desc">
+                Train your drivers to snap high-resolution, flat photos of signed BOLs at the receiver dock before pulling away. Uploading PODs into the factoring portal or emailing brokers within 1 hour of delivery keeps carrier cash flow healthy!
+            </p>
+        </div>
+
+        <!-- SUMMARY CARD -->
+        <div class="content-card">
+            <h2>3. Congratulations on Completing the Masterclass!</h2>
+            <p>
+                You have covered all 8 foundational pillars of truck dispatching: Industry Setup, Hours of Service, Trailer Specifications, Load Boards, Carrier Onboarding, Rate Negotiation, Rate Confirmations, and Billing.
+            </p>
+        </div>
+<!-- BOTTOM ACTION BAR: LESSON 08 (EXAMPLE) -->
+<div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <!-- LEFT: Previous Lesson -->
+    <a href="lesson-7.html" class="btn-secondary" style="background: #334155; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        ← Previous Lesson
+    </a>
+
+    <!-- MIDDLE: Back to Dashboard -->
+    <a href="dashboard.html" class="btn-secondary" style="background: #475569; color: #ffffff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+        Back to Dashboard
+    </a>
+
+    <!-- RIGHT: Take Quiz -->
+    <a href="quiz.html?lesson=8" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+        Take Lesson 08 Quiz →
+    </a>
+</div>
+
+
+    <!-- SUPABASE SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- PROGRESS SAVING SCRIPT -->
+    <script>
+        async function handleLesson8Complete() {
+            console.log("Lesson 8 Complete clicked!");
+
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            
+            if (!session) {
+                alert("Please log in to save your progress.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+            const currentLessonId = "lesson-8";
+
+            let { data: currentData, error: fetchError } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .single();
+
+            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+            // Ensure all 8 lessons are recorded as complete
+            ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5", "lesson-6", "lesson-7", currentLessonId].forEach(id => {
+                if (!lessons.includes(id)) lessons.push(id);
+            });
+
+            const { error: upsertError } = await supabaseClient
+                .from('user_progress')
+                .upsert(
+                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                    { onConflict: 'user_id' }
+                );
+
+            if (upsertError) {
+                console.error("Error saving progress:", upsertError.message);
+                alert("Error saving progress: " + upsertError.message);
+            } else {
+                alert("Congratulations! You have completed all 8 lessons of the Truck Dispatch Masterclass!");
+                window.location.href = "dashboard.html"; 
+            }
+        }
+    </script>
+</body>
+</html>

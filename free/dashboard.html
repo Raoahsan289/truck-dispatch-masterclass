@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Course Hub - Dispatch Basics 101</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="plan-selection-page">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #0f172a; border-bottom: 1px solid #1e293b;">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box" style="background: #2563eb; color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: bold;">TD</div>
+            <div>
+                <div class="brand-name" style="color: #fff; font-weight: 700;">Truck Dispatch</div>
+                <div class="brand-subtitle" style="color: #94a3b8; font-size: 12px;">Master Class</div>
+            </div>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 24px;">
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 20px;">
+    <a href="../index.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Home</a>
+    <a href="../choose-plan.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Plans & Pricing</a>
+    <a href="dashboard.html" style="color: #ffffff; text-decoration: none; font-weight: 600;">Free Course</a>
+    <a href="../certificate-verify.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Verify ID</a>
+</nav>
+
+            <!-- PROFESSIONAL PROFILE DROPDOWN WRAPPER -->
+            <div class="profile-dropdown-container" style="position: relative; display: inline-block;">
+                
+                <!-- Clickable Avatar Trigger Button -->
+                <button id="profile-menu-btn" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; padding: 0;">
+                    <div id="user-avatar" style="width: 38px; height: 38px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px;">
+                        U
+                    </div>
+                </button>
+
+                <!-- Hidden Dropdown Menu Box -->
+                <div id="profile-dropdown-menu" style="display: none; position: absolute; right: 0; top: 48px; width: 240px; background: #1e293b; border: 1px solid #334155; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000; overflow: hidden; color: #ffffff;">
+                    
+                    <!-- User Info Header Section -->
+                    <div style="padding: 16px; border-bottom: 1px solid #334155; background: #0f172a;">
+                        <div id="user-name" style="font-weight: 700; font-size: 14px; color: #ffffff; margin-bottom: 2px;">Loading...</div>
+                        <div id="user-email" style="font-size: 12px; color: #94a3b8; word-break: break-all;">student@email.com</div>
+                    </div>
+
+                    <!-- Menu Links / Actions -->
+                    <div style="padding: 8px;">
+                        <a href="dashboard.html" style="display: block; padding: 10px 12px; font-size: 13.5px; color: #e2e8f0; text-decoration: none; border-radius: 8px; transition: background 0.2s;">
+                            📊 My Dashboard
+                        </a>
+                        <hr style="border: none; border-top: 1px solid #334155; margin: 6px 0;">
+                        <button id="logout-btn" style="width: 100%; text-align: left; background: transparent; border: none; padding: 10px 12px; font-size: 13.5px; color: #ef4444; font-weight: 600; cursor: pointer; border-radius: 8px;">
+                            🚪 Log Out
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- DASHBOARD MAIN CONTAINER -->
+    <main class="plan-main" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        
+        <!-- WELCOME BANNER -->
+        <div class="plan-header-content" style="max-width: 100%; text-align: left; margin-bottom: 32px;">
+            <div class="eyebrow">
+                <span class="dot"></span> ROUTECRAFT STUDENT PORTAL — FREE TIER
+            </div>
+            <h1 style="font-size: 34px;">Dispatch Basics 101: Curriculum Hub 🚀</h1>
+            <p class="plan-subtitle">
+                Complete all lessons below in ascending order. Each lesson card opens a dedicated training module.
+            </p>
+        </div>
+
+        <!-- LESSONS GRID -->
+        <div class="lessons-grid">
+            
+            <!-- Lesson 1 -->
+            <div id="card-lesson-1" class="lesson-card" style="cursor: pointer;" onclick="handleLessonClick(1, 'lesson-1.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 01</span>
+                    <h3 class="lesson-card-title">US Freight Ecosystem</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Roles of Brokers, Shippers, Carriers, Dispatchers, and FMCSA.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-1" style="color: #60a5fa;">Unlocked 🔓</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div id="card-lesson-2" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(2, 'lesson-2.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 02</span>
+                    <h3 class="lesson-card-title">Load Boards & RPM Math</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Weight limits, equipment types, and rate-per-mile math.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-2" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div id="card-lesson-3" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(3, 'lesson-3.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 03</span>
+                    <h3 class="lesson-card-title">Trailer Specifications & Types</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Master dimensions, weight limits for Dry Vans, Reefers, and Flatbeds.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-3" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div id="card-lesson-4" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(4, 'lesson-4.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 04</span>
+                    <h3 class="lesson-card-title">Intro to Load Boards</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Navigating DAT One & Truckstop, headhauls vs backhauls.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-4" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 5 -->
+            <div id="card-lesson-5" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(5, 'lesson-5.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 05</span>
+                    <h3 class="lesson-card-title">Carrier Onboarding</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">MC Authority, COI ($1M/$100k), W-9, and NOA setup.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-5" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 6 -->
+            <div id="card-lesson-6" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(6, 'lesson-6.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 06</span>
+                    <h3 class="lesson-card-title">Rate Negotiation</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Broker phone scripts, counter-offers, and market leverage.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-6" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 7 -->
+            <div id="card-lesson-7" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(7, 'lesson-7.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 07</span>
+                    <h3 class="lesson-card-title">Rate Confirmations</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Auditing Rate Cons, driver dispatch sheets, and tracking.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-7" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson 8 -->
+            <div id="card-lesson-8" class="lesson-card" style="opacity: 0.6; cursor: not-allowed;" onclick="handleLessonClick(8, 'lesson-8.html')">
+                <div class="lesson-card-banner">
+                    <span class="lesson-number-pill">LESSON 08</span>
+                    <h3 class="lesson-card-title">Invoicing & Factoring</h3>
+                </div>
+                <div class="lesson-card-body">
+                    <p class="lesson-card-desc">Submitting BOLs, freight factoring, and commissions.</p>
+                    <div class="lesson-card-footer">
+                        <span id="status-lesson-8" style="color: #64748b;">🔒 Locked</span>
+                        <span style="color: #94a3b8;">15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- REQUIRED SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- UNIFIED PROFESSIONAL SUPABASE CLOUD SYNC & UI SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            // 1. Verify the user has an active cloud session
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            
+            if (!session) {
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const user = session.user;
+            const userId = user.id;
+
+            // Populate Profile Dropdown Details
+            const userEmailEl = document.getElementById("user-email");
+            const userNameEl = document.getElementById("user-name");
+            const userAvatarEl = document.getElementById("user-avatar");
+
+            if (userEmailEl) userEmailEl.innerText = user.email;
+            if (userNameEl) {
+                const displayName = user.user_metadata?.full_name || user.email.split('@')[0];
+                userNameEl.innerText = displayName;
+                if (userAvatarEl) userAvatarEl.innerText = displayName.charAt(0).toUpperCase();
+            }
+
+            // 2. Fetch this specific user's progress from the Supabase cloud database
+            const { data, error } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .single();
+
+            if (error && error.code !== 'PGRST116') {
+                console.error("Error loading progress:", error.message);
+                return;
+            }
+
+            const completedLessons = data ? data.completed_lessons : [];
+
+            // 3. Update the UI dynamically based on cloud data
+            completedLessons.forEach(lessonId => {
+                let num = lessonId;
+                if (typeof lessonId === 'string' && lessonId.includes('lesson-')) {
+                    num = lessonId.replace('lesson-', '');
+                }
+                markCompletedVisual(Number(num));
+            });
+
+            // 4. Dropdown Toggle Logic
+            const menuBtn = document.getElementById("profile-menu-btn");
+            const dropdownMenu = document.getElementById("profile-dropdown-menu");
+
+            if (menuBtn && dropdownMenu) {
+                menuBtn.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    const isVisible = dropdownMenu.style.display === "block";
+                    dropdownMenu.style.display = isVisible ? "none" : "block";
+                });
+
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+            }
+
+            // 5. Logout Logic
+            const logoutBtn = document.getElementById("logout-btn");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", async function () {
+                    const { error: signOutError } = await supabaseClient.auth.signOut();
+                    if (signOutError) {
+                        console.error("Error signing out:", signOutError.message);
+                    } else {
+                        window.location.href = "../login.html"; 
+                    }
+                });
+            }
+        });
+
+        function markCompletedVisual(lessonNum) {
+            const card = document.getElementById(`card-lesson-${lessonNum}`);
+            const status = document.getElementById(`status-lesson-${lessonNum}`);
+            
+            if (card) {
+                card.style.opacity = "1";
+                card.style.cursor = "pointer";
+            }
+            if (status) {
+                status.innerText = "Completed ✅";
+                status.style.color = "#10b981";
+            }
+
+            // Automatically unlock the next lesson card
+            const nextNum = lessonNum + 1;
+            if (nextNum <= 8) {
+                const nextCard = document.getElementById(`card-lesson-${nextNum}`);
+                const nextStatus = document.getElementById(`status-lesson-${nextNum}`);
+                if (nextCard) {
+                    nextCard.style.opacity = "1";
+                    nextCard.style.cursor = "pointer";
+                }
+                if (nextStatus && nextStatus.innerText.includes("Locked")) {
+                    nextStatus.innerText = "Unlocked 🔓";
+                    nextStatus.style.color = "#60a5fa";
+                }
+            }
+        }
+
+        function handleLessonClick(lessonNum, filename) {
+            const status = document.getElementById(`status-lesson-${lessonNum}`);
+            if (lessonNum === 1 || (status && !status.innerText.includes("Locked"))) {
+                window.location.href = filename;
+            } else {
+                alert("Please complete the previous lesson quiz first to unlock this lesson!");
+            }
+        }
+    </script>
+</body>
+</html>

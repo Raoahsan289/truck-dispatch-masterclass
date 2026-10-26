@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 02: Load Boards, Equipment & RPM Math - Truck Dispatch Master Class</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .calc-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .calc-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .calc-input-group label {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .calc-input-group input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+        .calc-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .calc-btn:hover {
+            background: #1d4ed8;
+        }
+        .calc-result {
+            margin-top: 20px;
+            padding: 16px;
+            background: #1e293b;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+            display: none;
+        }
+    </style>
+</head>
+<body style="background-color: #f8fafc; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0;">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #0f172a; border-bottom: 1px solid #1e293b; margin: 0;">
+        <a href="../index.html" class="logo-area" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+            <div class="logo-box" style="background: #2563eb; color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: bold;">TD</div>
+            <div>
+                <div class="brand-name" style="color: #fff; font-weight: 700;">Truck Dispatch</div>
+                <div class="brand-subtitle" style="color: #94a3b8; font-size: 12px;">Master Class</div>
+            </div>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 24px;">
+            <nav class="nav-links" style="display: flex; align-items: center; gap: 20px;">
+                <a href="../index.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Home</a>
+                <a href="../choose-plan.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Plans & Pricing</a>
+                <a href="dashboard.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Free Course</a>
+                <a href="../certificate-verify.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s;">Verify ID</a>
+            </nav>
+
+            <!-- PROFESSIONAL PROFILE DROPDOWN WRAPPER -->
+            <div class="profile-dropdown-container" style="position: relative; display: inline-block;">
+                <button id="profile-menu-btn" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; padding: 0;">
+                    <div id="user-avatar" style="width: 38px; height: 38px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px;">
+                        U
+                    </div>
+                </button>
+
+                <div id="profile-dropdown-menu" style="display: none; position: absolute; right: 0; top: 48px; width: 240px; background: #1e293b; border: 1px solid #334155; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000; overflow: hidden; color: #ffffff;">
+                    <div style="padding: 16px; border-bottom: 1px solid #334155; background: #0f172a;">
+                        <div id="user-name" style="font-weight: 700; font-size: 14px; color: #ffffff; margin-bottom: 2px;">Loading...</div>
+                        <div id="user-email" style="font-size: 12px; color: #94a3b8; word-break: break-all;">student@email.com</div>
+                    </div>
+                    <div style="padding: 8px;">
+                        <a href="dashboard.html" style="display: block; padding: 10px 12px; font-size: 13.5px; color: #e2e8f0; text-decoration: none; border-radius: 8px; transition: background 0.2s;">
+                            📊 My Dashboard
+                        </a>
+                        <hr style="border: none; border-top: 1px solid #334155; margin: 6px 0;">
+                        <button id="logout-btn" style="width: 100%; text-align: left; background: transparent; border: none; padding: 10px 12px; font-size: 13.5px; color: #ef4444; font-weight: 600; cursor: pointer; border-radius: 8px;">
+                            🚪 Log Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN LESSON CONTAINER -->
+    <main style="max-width: 900px; margin: 36px auto 80px auto; padding: 0 20px;">
+        
+        <!-- ROUNDED HERO BANNER CARD -->
+        <div style="background: #0f172a; color: #ffffff; padding: 40px; border-radius: 20px; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left;">
+            <div style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">
+                <a href="dashboard.html" style="color: #60a5fa; text-decoration: none;">Curriculum Hub</a> / Lesson 02
+            </div>
+            <div style="display: inline-block; background: #2563eb; color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 14px; letter-spacing: 0.5px;">
+                MODULE 02 Load Boards, Trailer Specs & Rate-Per-Mile Math•
+            </div>
+            <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 12px 0; color: #fff;">Load Boards, Trailer Specs & Rate-Per-Mile Math 🚚</h1>
+            <p style="color: #94a3b8; font-size: 15px; margin: 0; line-height: 1.6;">
+                Master trailer capacities, load board mechanics, and rate calculation formulas to secure profitable freight.
+            </p>
+        </div>
+
+        <!-- SECTION 1: TRAILER SPECIFICATIONS -->
+        <div class="content-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <h2 style="font-size: 22px; color: #1e293b; margin-top: 0; font-weight: 700;">1. Key Trailer Types & Freight Specifications</h2>
+            <p style="color: #475569; line-height: 1.6;">Before booking any load on a load board, you must understand the three primary equipment types in the US trucking industry:</p>
+
+            <div style="overflow-x: auto; width: 100%; margin-top: 16px;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-size: 14px; text-align: left;">
+                    <thead>
+                        <tr style="background: #0f172a; color: #f8fafc;">
+                            <th style="padding: 12px 16px; border: 1px solid #334155;">Equipment Type</th>
+                            <th style="padding: 12px 16px; border: 1px solid #334155;">Standard Length</th>
+                            <th style="padding: 12px 16px; border: 1px solid #334155;">Max Freight Weight</th>
+                            <th style="padding: 12px 16px; border: 1px solid #334155;">Common Cargo</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: #334155;">
+                        <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                            <td style="padding: 12px 16px; font-weight: 700; color: #0f172a;">Dry Van (DV)</td>
+                            <td style="padding: 12px 16px;">53 Feet</td>
+                            <td style="padding: 12px 16px;">42,000 – 45,000 lbs</td>
+                            <td style="padding: 12px 16px;">Boxed goods, electronics, non-perishable food, retail items.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 12px 16px; font-weight: 700; color: #0f172a;">Reefer (Refrigerated)</td>
+                            <td style="padding: 12px 16px;">53 Feet</td>
+                            <td style="padding: 12px 16px;">42,000 – 44,000 lbs</td>
+                            <td style="padding: 12px 16px;">Fresh produce, frozen meats, pharmaceuticals, floral goods.</td>
+                        </tr>
+                        <tr style="background: #f8fafc;">
+                            <td style="padding: 12px 16px; font-weight: 700; color: #0f172a;">Flatbed (FB)</td>
+                            <td style="padding: 12px 16px;">48 – 53 Feet</td>
+                            <td style="padding: 12px 16px;">48,000 lbs</td>
+                            <td style="padding: 12px 16px;">Lumber, steel coils, heavy machinery, building materials.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 2: RATE PER MILE FORMULA -->
+        <div class="content-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <h2 style="font-size: 22px; color: #1e293b; margin-top: 0; font-weight: 700;">2. Rate-Per-Mile (RPM) Math Formula</h2>
+            <p style="color: #475569; line-height: 1.6;">As a dispatcher, your main job is ensuring every trip yields a solid profit margin for your carrier. Use these fundamental formulas:</p>
+
+            <div style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #1e293b; margin-top: 16px;">
+                <p style="margin: 0 0 10px 0; font-family: monospace; font-size: 15px; color: #10b981;"><strong>Formula 1:</strong> Rate Per Mile (RPM) = Total Broker Gross Payout ÷ Total Trip Miles</p>
+                <p style="margin: 0; font-family: monospace; font-size: 15px; color: #38bdf8;"><strong>Formula 2:</strong> Net Carrier Pay = Total Payout - Dispatcher Fee (e.g., 8%) - Estimated Fuel Cost</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3: INTERACTIVE RPM CALCULATOR -->
+        <div class="content-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px; margin-bottom: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <h2 style="font-size: 22px; color: #1e293b; margin-top: 0; font-weight: 700;">3. Live Dispatch Rate-Per-Mile Simulator</h2>
+            <p style="color: #475569; line-height: 1.6;">Use this interactive tool to test trip offers from load boards:</p>
+
+            <div class="calc-box">
+                <div class="calc-input-group">
+                    <label for="payout">Broker Offered Payout ($)</label>
+                    <input type="number" id="payout" placeholder="e.g. 2400" value="2400">
+                </div>
+                <div class="calc-input-group">
+                    <label for="miles">Total Trip Distance (Miles)</label>
+                    <input type="number" id="miles" placeholder="e.g. 800" value="800">
+                </div>
+                <div class="calc-input-group">
+                    <label for="fee">Dispatcher Fee Percentage (%)</label>
+                    <input type="number" id="fee" placeholder="e.g. 8" value="8">
+                </div>
+                <button class="calc-btn" onclick="calculateRPM()">Calculate Rates & Profit</button>
+
+                <div id="calc-result" class="calc-result">
+                    <p style="margin: 0 0 8px 0; color: #fff; font-weight: 700; font-size: 16px;">Trip Calculation Summary:</p>
+                    <p style="margin: 4px 0; color: #cbd5e1;">Rate Per Mile (RPM): <strong id="rpm-val" style="color: #10b981;">$0.00</strong> / mile</p>
+                    <p style="margin: 4px 0; color: #cbd5e1;">Your Dispatcher Fee: <strong id="fee-val" style="color: #60a5fa;">$0.00</strong></p>
+                    <p style="margin: 4px 0; color: #cbd5e1;">Carrier Net Revenue: <strong id="net-val" style="color: #f59e0b;">$0.00</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM ACTION BAR -->
+        <div class="action-bar" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 24px 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <a href="lesson-1.html" class="btn-secondary" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                ← Previous Lesson
+            </a>
+
+            <a href="dashboard.html" class="btn-secondary" style="background: #e2e8f0; color: #1e293b; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600;">
+                Back to Dashboard
+            </a>
+
+            <a href="quiz.html?lesson=2" class="btn-quiz" style="background: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;">
+                Take Lesson 02 Quiz →
+            </a>
+        </div>
+
+    </main>
+
+    <!-- SUPABASE SDK & CONFIG SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+
+    <!-- JAVASCRIPT FOR CALCULATOR, DROPDOWN & PROGRESS SAVING -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            // Fetch session & populate dropdown user details
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                const user = session.user;
+                const userEmailEl = document.getElementById("user-email");
+                const userNameEl = document.getElementById("user-name");
+                const userAvatarEl = document.getElementById("user-avatar");
+
+                if (userEmailEl) userEmailEl.innerText = user.email;
+                if (userNameEl) {
+                    const displayName = user.user_metadata?.full_name || user.email.split('@')[0];
+                    userNameEl.innerText = displayName;
+                    if (userAvatarEl) userAvatarEl.innerText = displayName.charAt(0).toUpperCase();
+                }
+            }
+
+            // Dropdown Menu Toggle Handler
+            const menuBtn = document.getElementById("profile-menu-btn");
+            const dropdownMenu = document.getElementById("profile-dropdown-menu");
+
+            if (menuBtn && dropdownMenu) {
+                menuBtn.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    const isVisible = dropdownMenu.style.display === "block";
+                    dropdownMenu.style.display = isVisible ? "none" : "block";
+                });
+
+                document.addEventListener("click", function () {
+                    dropdownMenu.style.display = "none";
+                });
+            }
+
+            // Logout Button Handler
+            const logoutBtn = document.getElementById("logout-btn");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", async function () {
+                    const { error } = await supabaseClient.auth.signOut();
+                    if (!error) window.location.href = "../login.html";
+                });
+            }
+        });
+
+        function calculateRPM() {
+            const payout = parseFloat(document.getElementById('payout').value) || 0;
+            const miles = parseFloat(document.getElementById('miles').value) || 0;
+            const feePercent = parseFloat(document.getElementById('fee').value) || 0;
+
+            if (miles <= 0) {
+                alert('Please enter valid miles.');
+                return;
+            }
+
+            const rpm = payout / miles;
+            const feeAmount = (payout * feePercent) / 100;
+            const netCarrierPay = payout - feeAmount;
+
+            document.getElementById('rpm-val').innerText = '$' + rpm.toFixed(2);
+            document.getElementById('fee-val').innerText = '$' + feeAmount.toFixed(2);
+            document.getElementById('net-val').innerText = '$' + netCarrierPay.toFixed(2);
+
+            document.getElementById('calc-result').style.display = 'block';
+        }
+
+        async function handleLesson2Complete() {
+            console.log("Lesson 2 Complete clicked!");
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                alert("Please log in to save your progress.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+            const currentLessonId = "lesson-2";
+
+            let { data: currentData } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .single();
+
+            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+            if (!lessons.includes("lesson-1")) lessons.push("lesson-1");
+            if (!lessons.includes(currentLessonId)) lessons.push(currentLessonId);
+
+            const { error: upsertError } = await supabaseClient
+                .from('user_progress')
+                .upsert(
+                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                    { onConflict: 'user_id' }
+                );
+
+            if (upsertError) {
+                console.error("Error saving progress:", upsertError.message);
+                alert("Error saving progress: " + upsertError.message);
+            } else {
+                alert("Lesson 02 completed successfully!");
+                window.location.href = "dashboard.html"; 
+            }
+        }
+    </script>
+</body>
+</html>
