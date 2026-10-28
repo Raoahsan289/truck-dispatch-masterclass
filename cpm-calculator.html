@@ -3,113 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trucking Cost Per Mile (CPM) Calculator | Truck Dispatch Masterclass</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
-
-   <!-- Header / Nav -->
-<header class="bg-white border-b border-slate-200 py-4 px-6 shadow-sm">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-xl font-bold text-slate-900 tracking-tight">Truck Dispatch Masterclass</a>
-       <a href="./free/dashboard.html" class="text-sm font-medium text-blue-600 hover:underline">Back to Dashboard</a>
-    </div>
-</header>
-
-    <!-- Main Container -->
-    <main class="flex-grow max-w-4xl mx-auto px-4 py-10 w-full">
-        <div class="mb-8 text-center">
-            <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Free Dispatch Tool</span>
-            <h1 class="text-3xl font-extrabold text-slate-900 mt-2">Trucking Cost Per Mile (CPM) Calculator</h1>
-            <p class="text-slate-600 mt-1">Calculate your absolute breakeven rate and determine profitable freight rates instantly.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
-            <!-- Input Form -->
-            <div class="space-y-4">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">Monthly Expenses & Mileage</h2>
-                
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Fixed Costs ($ / Month)</label>
-                    <span class="text-xs text-slate-500">Truck payment, insurance, permits, ELD subscription</span>
-                    <input type="number" id="fixedCosts" value="4500" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Variable Cost ($ / Mile)</label>
-                    <span class="text-xs text-slate-500">Fuel, maintenance, tires, tolls</span>
-                    <input type="number" step="0.01" id="variableCostPerMile" value="0.75" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Estimated Monthly Miles</label>
-                    <span class="text-xs text-slate-500">Total miles driven per month</span>
-                    <input type="number" id="monthlyMiles" value="10000" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Target Profit Margin (%)</label>
-                    <span class="text-xs text-slate-500">Desired profit percentage per load</span>
-                    <input type="number" id="profitMargin" value="15" class="mt-1 w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-
-                <button onclick="calculateCPM()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg transition duration-200 shadow-md">
-                    Calculate Breakeven & Rate
-                </button>
-            </div>
-
-            <!-- Results Panel -->
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-xl flex flex-col justify-between shadow-inner">
-                <div>
-                    <h2 class="text-lg font-bold text-slate-200 border-b border-slate-700 pb-2">Analysis Results</h2>
-                    
-                    <div class="mt-6 space-y-6">
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-slate-400">Absolute Breakeven CPM</span>
-                            <div class="text-3xl font-extrabold text-amber-400 mt-1" id="breakevenResult">$1.20</div>
-                            <span class="text-xs text-slate-400">Below this rate, you are losing money.</span>
-                        </div>
-
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-slate-400">Recommended Minimum Rate (Per Mile)</span>
-                            <div class="text-4xl font-extrabold text-emerald-400 mt-1" id="targetRateResult">$1.41</div>
-                            <span class="text-xs text-slate-400">Includes your target profit margin.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400">
-                    *Tip: Share this calculator link with owner-operators and dispatchers to drive organic search traffic to your platform.
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500 mt-12">
-        &copy; 2026 Truck Dispatch Masterclass. All rights reserved.
-    </footer>
-
-    <!-- Calculator Script -->
-    <script>
-        function calculateCPM() {
-            const fixed = parseFloat(document.getElementById('fixedCosts').value) || 0;
-            const varCPM = parseFloat(document.getElementById('variableCostPerMile').value) || 0;
-            const miles = parseFloat(document.getElementById('monthlyMiles').value) || 1;
-            const margin = parseFloat(document.getElementById('profitMargin').value) || 0;
-
-            // Calculations
-            const fixedCPM = fixed / miles;
-            const breakevenCPM = fixedCPM + varCPM;
-            const targetCPM = breakevenCPM * (1 + (margin / 100));
-
-            // Display Results
-            document.getElementById('breakevenResult').innerText = '$' + breakevenCPM.toFixed(2);
-            document.getElementById('targetRateResult').innerText = '$' + targetCPM.toFixed(2);
+    <title>CPM Calculator - Truck Dispatch Masterclass</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --panel-bg: #0f172a;
+            --card-bg: #1e293b;
+            --accent-glow: rgba(37, 99, 235, 0.25);
+            --profit-color: #10b981;
+            --border-glow: #334155;
         }
 
-        // Run calculation on load
-        window.onload = calculateCPM;
-    </script>
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .calculator-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            background: var(--panel-bg);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        /* LEFT PANEL: INTERACTIVE INPUTS */
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .input-group {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.03);
+        }
+
+        .input-group:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .input-label {
+            font-weight: 700;
+            font-size: 15px;
+            color: #e2e8f0;
+        }
+
+        .input-subtext {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* EMBOSSED NUMBER DISPLAY & SLIDER */
+        .value-badge {
+            background: #090d16;
+            color: #60a5fa;
+            font-weight: 800;
+            font-size: 16px;
+            padding: 6px 14px;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.1);
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 8px;
+            background: #090d16;
+            border-radius: 8px;
+            outline: none;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        .number-input {
+            width: 100%;
+            background: #090d16;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .number-input:focus {
+            border-color: #3b82f6;
+        }
+
+        /* EMBOSSED CALCULATE BUTTON */
+        .embossed-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 0 #1e40af, 0 12px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .embossed-btn:hover {
+            background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #1e40af, 0 16px 24px rgba(37, 99, 235, 0.4);
+        }
+
+        .embossed-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af, 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* RIGHT PANEL: DYNAMIC DISPLAY */
+        .analysis-card {
+            background: linear-gradient(145deg, #0f172a, #0b1120);
+            border: 2px solid #1e293b;
+            border-radius: 20px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s ease;
+        }
+
+        /* LIVE WEATHER / PROFIT STATUS INDICATOR */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box {
+            margin-bottom: 28px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 900;
+            margin: 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        .stat-desc {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator-container">
+
+    <!-- LEFT: INTERACTIVE INPUT FORM -->
+    <div class="calculator-inputs">
+        <h2 style="margin: 0 0 10px 0; font-size: 24px;">Monthly Expenses & Mileage</h2>
+
+        <!-- Fixed Costs -->
+        <div class="input-group">
+            <div class="input-header">
+                <span class="input-label">Fixed Costs ($ / Month)</span>
+                <span class="value-badge" id="badge-fixed">$4,500</span>
+            </div>
+            <span class="input-subtext">Truck payment, insurance, permits, ELD</span>
+            <input type="number" id="fixed-cost" class="number-input" value="4500" step="100">
+        </div>
+
+        <!-- Variable Cost Slider -->
+        <div class="input-group">
+            <div class="input-header">
+                <span class="input-label">Variable Cost ($ / Mile)</span>
+                <span class="value-badge" id="badge-variable">$0.75</span>
+            </div>
+            <span class="input-subtext">Fuel, maintenance, tires, tolls</span>
+            <input type="range" id="variable-cost" class="range-slider" min="0.30" max="2.00" step="0.05" value="0.75">
+        </div>
+
+        <!-- Monthly Miles Slider -->
+        <div class="input-group">
+            <div class="input-header">
+                <span class="input-label">Estimated Monthly Miles</span>
+                <span class="value-badge" id="badge-miles">10,000 mi</span>
+            </div>
+            <span class="input-subtext">Total miles driven per month</span>
+            <input type="range" id="monthly-miles" class="range-slider" min="2000" max="20000" step="500" value="10000">
+        </div>
+
+        <!-- Target Margin Slider -->
+        <div class="input-group">
+            <div class="input-header">
+                <span class="input-label">Target Profit Margin (%)</span>
+                <span class="value-badge" id="badge-margin">15%</span>
+            </div>
+            <span class="input-subtext">Desired profit percentage per load</span>
+            <input type="range" id="target-margin" class="range-slider" min="5" max="40" step="1" value="15">
+        </div>
+
+        <!-- Tactile Embossed Action Button -->
+        <button class="embossed-btn" id="calc-btn" onclick="calculateCPM()">
+            <span>Calculate Breakeven & Rate</span> ⚡
+        </button>
+    </div>
+
+    <!-- RIGHT: DYNAMIC ANALYSIS DISPLAY -->
+    <div class="analysis-card" id="analysis-card">
+        <div>
+            <!-- Weather / Dynamic Status Pill -->
+            <div class="status-pill" id="status-pill">
+                <span id="status-icon">☀️</span> <span id="status-text">Optimal Margin Climate</span>
+            </div>
+
+            <h3 style="margin: 0 0 24px 0; font-size: 22px; color: #f8fafc;">Analysis Results</h3>
+
+            <!-- Absolute Breakeven -->
+            <div class="stat-box">
+                <div class="stat-label">Absolute Breakeven CPM</div>
+                <div class="stat-value" id="res-breakeven" style="color: #f59e0b;">$1.20</div>
+                <div class="stat-desc">Below this rate, you are losing money on every mile.</div>
+            </div>
+
+            <!-- Recommended Rate -->
+            <div class="stat-box">
+                <div class="stat-label">Recommended Minimum Rate</div>
+                <div class="stat-value" id="res-recommended" style="color: #10b981;">$1.38</div>
+                <div class="stat-desc">Includes your target profit margin.</div>
+            </div>
+        </div>
+
+        <p style="font-size: 11.5px; color: #64748b; line-height: 1.5; margin-top: 20px;">
+            *Tip: Share this interactive tool with owner-operators and dispatchers to drive organic platform traffic.
+        </p>
+    </div>
+
+</div>
+
+<script>
+    function calculateCPM() {
+        // Read input values
+        const fixedCost = parseFloat(document.getElementById('fixed-cost').value) || 0;
+        const variableCost = parseFloat(document.getElementById('variable-cost').value) || 0;
+        const miles = parseFloat(document.getElementById('monthly-miles').value) || 1;
+        const marginPct = parseFloat(document.getElementById('target-margin').value) || 0;
+
+        // Update badge text overlays live
+        document.getElementById('badge-fixed').innerText = `$${fixedCost.toLocaleString()}`;
+        document.getElementById('badge-variable').innerText = `$${variableCost.toFixed(2)}`;
+        document.getElementById('badge-miles').innerText = `${miles.toLocaleString()} mi`;
+        document.getElementById('badge-margin').innerText = `${marginPct}%`;
+
+        // Calculations
+        const fixedPerMile = fixedCost / miles;
+        const breakevenCPM = fixedPerMile + variableCost;
+        const recommendedRate = breakevenCPM * (1 + (marginPct / 100));
+
+        // UI Updates with smoothly formatted numbers
+        document.getElementById('res-breakeven').innerText = `$${breakevenCPM.toFixed(2)}`;
+        document.getElementById('res-recommended').innerText = `$${recommendedRate.toFixed(2)}`;
+
+        // Dynamic Weather / Status Theme Shift
+        const statusPill = document.getElementById('status-pill');
+        const statusIcon = document.getElementById('status-icon');
+        const statusText = document.getElementById('status-text');
+        const card = document.getElementById('analysis-card');
+
+        if (marginPct >= 20) {
+            statusPill.style.background = 'rgba(16, 185, 129, 0.15)';
+            statusPill.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+            statusPill.style.color = '#10b981';
+            statusIcon.innerText = '⚡';
+            statusText.innerText = 'High Profitability Zone';
+            card.style.borderColor = '#10b981';
+        } else if (marginPct >= 10) {
+            statusPill.style.background = 'rgba(59, 130, 246, 0.15)';
+            statusPill.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+            statusPill.style.color = '#60a5fa';
+            statusIcon.innerText = '🌤️';
+            statusText.innerText = 'Balanced Industry Climate';
+            card.style.borderColor = '#3b82f6';
+        } else {
+            statusPill.style.background = 'rgba(239, 68, 68, 0.15)';
+            statusPill.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+            statusPill.style.color = '#ef4444';
+            statusIcon.innerText = '🌧️';
+            statusText.innerText = 'Low Margin Risk Area';
+            card.style.borderColor = '#ef4444';
+        }
+    }
+
+    // Attach real-time listener updates on input changes
+    ['fixed-cost', 'variable-cost', 'monthly-miles', 'target-margin'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculateCPM);
+    });
+
+    // Initial calculation on load
+    calculateCPM();
+</script>
+
 </body>
 </html>
+<footer class="bg-white border-b border-slate-200 py-4 px-6 shadow-sm">
+  <div class="action-bar" style="background: #1e293b; border: 1px solid #334155; padding: 28px; border-radius: 16px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <a href="index.html" style="color: #ffffff; font-size: 28px; font-weight: 800; text-decoration: none; letter-spacing: -0.025em;">Truck Dispatch Masterclass</a>
+        
+        <!-- Separate Standalone Dashboard Button -->
+        <a href="./free/dashboard.html" style="background: #2563eb; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s ease;">
+            Back to Dashboard →
+        </a>
+    </div>
+</footer>

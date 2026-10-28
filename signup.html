@@ -107,43 +107,44 @@
                         <input type="email" id="email" placeholder="Enter email address" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
                         <small id="email-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
                     </div>
+<!-- Password Field -->
+<div style="margin-bottom: 18px;">
+    <label for="password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Password</label>
+    <div style="position: relative;">
+        <input type="password" id="password" placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 45px 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+        
+        <!-- Toggle Button for Main Password -->
+        <button type="button" id="toggle-btn-1" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; z-index: 10;">
+            <svg id="eye-icon-1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block; pointer-events: none;">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+        </button>
+    </div>
+    <small style="color: #64748b; font-size: 12px; display: block; margin-top: 4px;">Must be 8–64 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special character.</small>
+    <small id="password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 2px;"></small>
+</div>
+    <!-- Confirm Password Field -->
+<div style="margin-bottom: 24px;">
+    <label for="confirm-password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Confirm Password</label>
+    <div style="position: relative;">
+        <input type="password" id="confirm-password" placeholder="Confirm password" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 45px 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
+        
+        <!-- Button without onclick -->
+        <button type="button" id="toggle-btn-2" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; z-index: 10;">
+            <svg id="eye-icon-2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block; pointer-events: none;">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+        </button>
+    </div>
+    <small id="confirm-password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
+</div>
 
-                    <!-- Password Field -->
-                    <div style="margin-bottom: 18px;">
-                        <label for="password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Password</label>
-                        <div style="position: relative;">
-                            <input type="password" id="password" placeholder="••••••••••••" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 45px 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
-                            
-                            <!-- Toggle Button -->
-                            <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block;">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
-                        </div>
-                        <small style="color: #64748b; font-size: 12px; display: block; margin-top: 4px;">Must be 8–64 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special character.</small>
-                        <small id="password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 2px;"></small>
-                    </div>
-
-                    <!-- Confirm Password Field -->
-                    <div style="margin-bottom: 24px;">
-                        <label for="confirm-password" style="display: block; font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Confirm Password</label>
-                        <input type="password" id="confirm-password" placeholder="Confirm password" style="width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; font-size: 15px; color: #0f172a; outline: none;">
-                        <small id="confirm-password-error" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;"></small>
-                    </div>
-                                      <!-- Toggle Button -->
-                            <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block;">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                            </button>
-                        </div>
-                    <!-- Submit Button -->
-                    <button type="submit" id="signup-btn" style="width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;">
-                        Access Free Course Hub →
-                    </button>
+    <!-- Submit Button -->
+    <button type="submit" id="signup-btn" style="width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;">
+        Access Free Course Hub →
+    </button>
 
                 </form>
 
@@ -301,5 +302,49 @@
             }
         }
     </script>
+ <script>
+function toggleConfirmPasswordVisibility() {
+    const input = document.getElementById('confirm-password');
+    const icon = document.getElementById('eye-icon-2');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        // Eye-slash (visible) icon
+        icon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>`;
+    } else {
+        input.type = 'password';
+        // Standard eye (hidden) icon
+        icon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>`;
+    }
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Helper function to handle toggles
+    function setupPasswordToggle(btnId, inputId, iconId) {
+        const toggleBtn = document.getElementById(btnId);
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        if (toggleBtn && input && icon) {
+            toggleBtn.addEventListener('click', function() {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    // Eye-slash (visible) icon
+                    icon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>`;
+                } else {
+                    input.type = 'password';
+                    // Standard eye (hidden) icon
+                    icon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>`;
+                }
+            });
+        }
+    }
+
+    // Initialize both toggles
+    setupPasswordToggle('toggle-btn-1', 'password', 'eye-icon-1');
+    setupPasswordToggle('toggle-btn-2', 'confirm-password', 'eye-icon-2');
+});
+</script>
 </body>
 </html>
