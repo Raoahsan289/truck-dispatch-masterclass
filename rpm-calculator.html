@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freight RPM Calculator | Truck Dispatch Masterclass</title>
+    <style>
+        body { 
+            background-color: #0f172a; 
+            color: #f8fafc; 
+            font-family: system-ui, -apple-system, sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 40px auto; 
+            background: #1e293b; 
+            border: 1px solid #334155; 
+            border-radius: 16px; 
+            padding: 32px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+        }
+        h2 { 
+            color: #38bdf8; 
+            margin-top: 0; 
+            font-size: 24px; 
+            margin-bottom: 8px; 
+        }
+        p.subtitle { 
+            color: #94a3b8; 
+            font-size: 14px; 
+            margin-bottom: 24px; 
+            line-height: 1.5; 
+        }
+        .input-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            font-size: 14px; 
+            font-weight: 600; 
+            color: #cbd5e1; 
+            margin-bottom: 8px; 
+        }
+        input { 
+            width: 100%; 
+            padding: 12px 16px; 
+            background: #0f172a; 
+            border: 1px solid #475569; 
+            border-radius: 8px; 
+            color: #fff; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #38bdf8; 
+        }
+        .btn { 
+            background: #2563eb; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            width: 100%; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background 0.2s; 
+            margin-top: 10px; 
+        }
+        .btn:hover { 
+            background: #1d4ed8; 
+        }
+        .results-card { 
+            margin-top: 30px; 
+            background: #0f172a; 
+            border: 1px solid #334155; 
+            border-radius: 12px; 
+            padding: 20px; 
+        }
+        .result-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 12px; 
+            font-size: 15px; 
+        }
+        .result-row span:first-child { 
+            color: #94a3b8; 
+        }
+        .result-row span:last-child { 
+            font-weight: 700; 
+            color: #34d399; 
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 16px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .badge.profit { background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid #34d399; }
+        .badge.loss { background: rgba(248, 113, 113, 0.2); color: #f87171; border: 1px solid #f87171; }
+        .back-link { 
+            display: inline-block; 
+            margin-top: 24px; 
+            color: #94a3b8; 
+            text-decoration: none; 
+            font-size: 14px; 
+        }
+        .back-link:hover { 
+            color: #38bdf8; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Freight RPM (Revenue Per Mile) Calculator 📈</h2>
+        <p class="subtitle">Calculate your Revenue Per Mile (RPM), compare it against your target cost, and determine load profitability instantly.</p>
+        
+        <div class="input-group">
+            <label>Total Loaded Miles</label>
+            <input type="number" id="miles" placeholder="e.g. 1200" value="1200">
+        </div>
+        
+        <div class="input-group">
+            <label>Total Gross Freight Rate ($)</label>
+            <input type="number" id="gross" placeholder="e.g. 3600" value="3600">
+        </div>
+        
+        <div class="input-group">
+            <label>Target / Breakeven Cost Per Mile (CPM) ($)</label>
+            <input type="number" id="targetCpm" placeholder="e.g. 2.10" value="2.10" step="0.01">
+        </div>
+        
+        <button class="btn" onclick="calculateRPM()">Calculate RPM & Margins 🚀</button>
+        
+        <div class="results-card" id="results" style="display:none;">
+            <div class="result-row">
+                <span>Revenue Per Mile (RPM):</span>
+                <span id="res-rpm">$0.00</span>
+            </div>
+            <div class="result-row">
+                <span>Total Gross Revenue:</span>
+                <span id="res-gross">$0.00</span>
+            </div>
+            <div class="result-row">
+                <span>Estimated Total Cost (at Target CPM):</span>
+                <span id="res-total-cost">$0.00</span>
+            </div>
+            <div class="result-row">
+                <span>Net Estimated Profit:</span>
+                <span id="res-profit">$0.00</span>
+            </div>
+            
+            <div id="status-badge" class="badge"></div>
+        </div>
+
+        <a href="quiz.html" class="back-link">← Back to Course Quiz</a>
+    </div>
+
+    <script>
+        function calculateRPM() {
+            const miles = parseFloat(document.getElementById('miles').value) || 0;
+            const gross = parseFloat(document.getElementById('gross').value) || 0;
+            const targetCpm = parseFloat(document.getElementById('targetCpm').value) || 0;
+
+            const rpm = miles > 0 ? (gross / miles) : 0;
+            const totalCost = miles * targetCpm;
+            const netProfit = gross - totalCost;
+
+            document.getElementById('res-rpm').innerText = '$' + rpm.toFixed(2);
+            document.getElementById('res-gross').innerText = '$' + gross.toFixed(2);
+            document.getElementById('res-total-cost').innerText = '$' + totalCost.toFixed(2);
+            document.getElementById('res-profit').innerText = '$' + netProfit.toFixed(2);
+
+            const badge = document.getElementById('status-badge');
+            if (rpm >= targetCpm) {
+                badge.className = 'badge profit';
+                badge.innerText = `✅ Profitable Load! RPM ($${rpm.toFixed(2)}) exceeds target CPM.`;
+            } else {
+                badge.className = 'badge loss';
+                badge.innerText = `⚠️ Warning: RPM ($${rpm.toFixed(2)}) is below your target CPM!`;
+            }
+
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
