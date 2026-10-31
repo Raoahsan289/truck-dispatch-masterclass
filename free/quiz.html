@@ -14,13 +14,33 @@
             <h1 id="quiz-title" style="font-size: 24px; color: #fff; margin: 12px 0 6px 0;">Lesson Assessment</h1>
             <p id="quiz-desc" style="color: #94a3b8; font-size: 14px; margin: 0;">Answer all 4 randomized questions correctly to pass this assessment.</p>
         </div>
-
+        
         <form id="quiz-form">
             <div id="questions-container"></div>
             <button type="button" id="submit-quiz-btn" onclick="submitQuiz()" style="background: #2563eb; color: #fff; border: none; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; width: 100%; margin-top: 10px;">Submit Quiz & Unlock Next Lesson</button>
         </form>
 
-        <div id="quiz-result" style="margin-top: 20px; display: none; padding: 20px; border-radius: 12px; text-align: center;"></div>
+        <!-- Quiz Result Target Container -->
+        <div id="quiz-result" style="display: none; margin-top: 20px;"></div>
+
+        <!-- ALWAYS VISIBLE UTILITY & NAVIGATION BAR -->
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #334155;">
+            <!-- Persistent Calculators (Stacked Vertically) -->
+            <div style="background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left;">
+                <div style="font-weight: 700; color: #38bdf8; margin-bottom: 6px; font-size: 14px;">⚡ Dispatch Math & Tools</div>
+                <p style="color: #94a3b8; font-size: 13px; margin-bottom: 12px;">Use our interactive tools anytime during your quiz or review.</p>
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: stretch;">
+                    <a href="./rpm-calculator.html" style="background: #0284c7; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 13px; text-align: center;">Open RPM Calculator 🚀</a>
+                    <a href="./cpm-calculator.html" style="background: #2563eb; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 13px; text-align: center;">Open Rate & Profit Calculator 🚀</a>
+                </div>
+            </div>
+
+            <!-- Persistent Navigation Actions -->
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+              <a id="persistent-retake-lesson" href="lesson-1.html" style="background: #475569; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 14px;">📖 Retake Lesson</a>
+                <a href="dashboard.html" style="background: #334155; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 14px;">🏠 Back to Dashboard</a>
+            </div>
+        </div>
     </div>
 
     <!-- SUPABASE SDK & CONFIG -->
@@ -28,6 +48,135 @@
     <script src="../js/supabase-config.js"></script>
 
     <script>
+        // Supabase Cloud Saver using .maybeSingle()
+        async function saveProgressToSupabase(lessonNum) {
+            if (typeof supabaseClient === 'undefined') return;
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                alert("Please log in so your progress can be saved.");
+                window.location.href = "../login.html";
+                return;
+            }
+
+            const userId = session.user.id;
+
+            let { data: currentData } = await supabaseClient
+                .from('user_progress')
+                .select('completed_lessons')
+                .eq('user_id', userId)
+                .maybeSingle();
+
+            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
+
+            for (let i = 1; i <= lessonNum; i++) {
+                let lId = `lesson-${i}`;
+                if (!lessons.includes(lId)) {
+                    lessons.push(lId);
+                }
+            }
+
+            const { error } = await supabaseClient
+                .from('user_progress')
+                .upsert(
+                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
+                    { onConflict: 'user_id' }
+                );
+
+            if (error) {
+                console.error("Cloud Save Error:", error.message);
+            } else {
+                console.log("Progress successfully synced to Supabase!");
+            }
+        }
+
+        // Reset Quiz Session for Retry
+        window.resetQuizSession = function() {
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+                input.disabled = false;
+            });
+
+            const resultDiv = document.getElementById('quiz-result');
+            if (resultDiv) resultDiv.style.display = 'none';
+
+            const submitBtn = document.getElementById("submit-quiz-btn");
+            if (submitBtn) submitBtn.style.display = 'inline-block';
+
+            selectedQuestions = shuffleArray(currentQuiz.questionsPool).slice(0, 4);
+            const container = document.getElementById('questions-container');
+            if(container) {
+                let html = "";
+                selectedQuestions.forEach((item, index) => {
+                    html += `<div style="margin-bottom: 20px; background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155;">`;
+                    html += `<p style="color: #fff; font-weight: 600; margin-top: 0;">${index + 1}. ${item.q}</p>`;
+                    item.options.forEach((opt, optIndex) => {
+                        html += `<label style="display: block; color: #cbd5e1; margin: 8px 0; cursor: pointer;"><input type="radio" name="q${index}" value="${optIndex}"> ${opt}</label>`;
+                    });
+                    html += `</div>`;
+                });
+                container.innerHTML = html;
+            }
+        };
+
+        // Quiz Submission & Conditional Pass/Fail Handler
+        function submitQuiz() {
+            const total = selectedQuestions.length;
+            let score = 0;
+
+            selectedQuestions.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selectedOption && parseInt(selectedOption.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / total) * 100);
+            const isPassed = score >= 3;
+
+            const resultDiv = document.getElementById('quiz-result');
+            if (resultDiv) {
+                resultDiv.style.display = 'block';
+                
+                const submitBtn = document.getElementById("submit-quiz-btn");
+                if (submitBtn) submitBtn.style.display = 'none';
+
+                if (isPassed) {
+                    saveProgressToSupabase(numericLessonNum);
+
+                    const nextLessonNum = numericLessonNum + 1;
+                    const hasNextLesson = numericLessonNum < 8;
+
+                   resultDiv.innerHTML = `
+                        <div style="background: #0f172a; border: 1px solid #334155; border-radius: 16px; padding: 24px; text-align: center;">
+                            <h3 style="color: #34d399; margin-top: 0; font-size: 22px;">Quiz Completed Successfully! 🎉</h3>
+                            <p style="color: #94a3b8; font-size: 15px; margin-bottom: 8px;">Your Score: <b>${score} / ${total} (${percentage}%)</b></p>
+                            <p style="color: #38bdf8; font-size: 14px; margin-bottom: 20px;">✨ Great job on passing Lesson ${numericLessonNum}!</p>
+                            
+                            <!-- Shuffled Button Order: Dashboard First, Proceed Second -->
+                            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                                ${hasNextLesson ? `
+                                    <a href="dashboard.html" style="background: #334155; color: #fff; padding: 12px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 15px; display: inline-block;">🏠 Back to Dashboard</a>
+                                    <a href="lesson-${nextLessonNum}.html" style="background: #16a34a; color: #fff; padding: 12px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 15px; display: inline-block;">🚀 Proceed to Lesson ${nextLessonNum}</a>
+                                ` : `
+                                    <p style="color: #34d399; font-weight: 700; font-size: 15px;">🏆 You have completed all masterclass lessons!</p>
+                                    <a href="dashboard.html" style="background: #334155; color: #fff; padding: 12px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 15px; display: inline-block;">🏠 Back to Dashboard</a>
+                                `}
+                            </div>
+                        </div>
+                    `;        
+                        } else {
+                    resultDiv.innerHTML = `
+                        <div style="background: #0f172a; border: 1px solid #334155; border-radius: 16px; padding: 24px; text-align: center;">
+                            <h3 style="color: #f87171; margin-top: 0; font-size: 22px;">Quiz Not Passed ⚠️</h3>
+                            <p style="color: #94a3b8; font-size: 15px; margin-bottom: 16px;">Your Score: <b>${score} / ${total} (${percentage}%)</b>. Review the material or try again!</p>
+                            <button onclick="resetQuizSession()" style="background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; font-size: 14px;">🔄 Retake Quiz</button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
         const quizData = {
             "1": {
                 title: "US Freight Ecosystem Overview",
@@ -201,10 +350,16 @@
 
         let selectedQuestions = [];
 
-        // Load Quiz Content
+        // Load Quiz Content & Dynamic Retake Lesson Link
         document.addEventListener("DOMContentLoaded", () => {
             if(document.getElementById('quiz-badge')) document.getElementById('quiz-badge').innerText = currentQuiz.badge;
             if(document.getElementById('quiz-title')) document.getElementById('quiz-title').innerText = currentQuiz.title;
+
+            // Dynamically point the persistent Retake Lesson button to the current lesson ID
+         const retakeLessonBtn = document.getElementById('persistent-retake-lesson');
+            if(retakeLessonBtn) {
+                retakeLessonBtn.href = `lesson-${numericLessonNum}.html`;
+            }
 
             selectedQuestions = shuffleArray(currentQuiz.questionsPool).slice(0, 4);
 
@@ -222,163 +377,6 @@
                 container.innerHTML = html;
             }
         });
-
-        // Submit Handler
-        window.submitQuiz = async function() {
-            let score = 0;
-            selectedQuestions.forEach((item, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === item.correct) {
-                    score++;
-                }
-            });
-
-            const percentage = Math.round((score / selectedQuestions.length) * 100);
-            const isPassed = score >= 3; // Passing threshold: 3 or 4 correct out of 4
-
-            // Lock all radio inputs and hide submit button
-            document.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
-            const submitBtn = document.getElementById("submit-quiz-btn");
-            if (submitBtn) submitBtn.style.display = "none";
-
-            const resultDiv = document.getElementById('quiz-result');
-            if (!resultDiv) return;
-            resultDiv.style.display = 'block';
-
-            if (isPassed) {
-                localStorage.setItem(currentQuiz.key, 'true');
-
-                resultDiv.style.background = 'rgba(16, 185, 129, 0.15)';
-                resultDiv.style.border = '1px solid #10b981';
-                resultDiv.style.color = '#6ee7b7';
-                resultDiv.style.padding = '24px';
-                resultDiv.style.borderRadius = '16px';
-                resultDiv.style.textAlign = 'center';
-
-                resultDiv.innerHTML = `
-                    <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
-                    <h3 style="color: #34d399; font-size: 22px; font-weight: 800; margin-bottom: 8px;">Quiz Completed Successfully!</h3>
-                    <p style="color: #e2e8f0; font-size: 16px; margin-bottom: 4px;">Your Score: <strong>${score} / ${selectedQuestions.length} (${percentage}%)</strong></p>
-<p style="color: #38bdf8; font-size: 16px; font-weight: 700; margin-bottom: 24px;">✨ Congratulations, you have completed all 08 lessons.</p>
-                    
-                   
-                        ${numericLessonNum >= 8 ? `
-                            <a href="dashboard.html" style="background: #16a34a; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700;">
-                                View Dashboard🎉
-                            </a>
-                        ` : `
-                            <a href="lesson-${numericLessonNum + 1}.html" style="background: #2563eb; color: #fff; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 700;">
-                                Proceed to Lesson 0${numericLessonNum + 1} →
-                            </a>
-                        `}
-                    </div>
-                `;
-
-                await saveProgressToSupabase(numericLessonNum);
-
-            } else {
-                resultDiv.style.background = 'rgba(239, 68, 68, 0.15)';
-                resultDiv.style.border = '1px solid #ef4444';
-                resultDiv.style.color = '#fca5a5';
-                resultDiv.style.padding = '24px';
-                resultDiv.style.borderRadius = '16px';
-                resultDiv.style.textAlign = 'center';
-
-                resultDiv.innerHTML = `
-                    <div style="font-size: 36px; margin-bottom: 8px;">⚠️</div>
-                    <h3 style="color: #f87171; font-size: 20px; font-weight: 800; margin-bottom: 8px;">Assessment Not Passed</h3>
-                    <p style="color: #e2e8f0; font-size: 16px; margin-bottom: 20px;">You scored ${score} / ${selectedQuestions.length}. You need at least 3 correct answers to unlock the next lesson.</p>
-                    <button type="button" onclick="resetQuizSession()" style="background: #dc2626; color: #fff; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 700;">
-                        🔄 Retake Quiz
-                    </button>
-                `;
-            }
-        };
-
-        // Supabase Cloud Saver using .maybeSingle()
-        async function saveProgressToSupabase(lessonNum) {
-            if (typeof supabaseClient === 'undefined') return;
-
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (!session) {
-                alert("Please log in so your progress can be saved.");
-                window.location.href = "../login.html";
-                return;
-            }
-
-            const userId = session.user.id;
-
-            let { data: currentData } = await supabaseClient
-                .from('user_progress')
-                .select('completed_lessons')
-                .eq('user_id', userId)
-                .maybeSingle();
-
-            let lessons = currentData && currentData.completed_lessons ? currentData.completed_lessons : [];
-
-            for (let i = 1; i <= lessonNum; i++) {
-                let lId = `lesson-${i}`;
-                if (!lessons.includes(lId)) {
-                    lessons.push(lId);
-                }
-            }
-
-            const { error } = await supabaseClient
-                .from('user_progress')
-                .upsert(
-                    { user_id: userId, completed_lessons: lessons, updated_at: new Date() },
-                    { onConflict: 'user_id' }
-                );
-
-            if (error) {
-                console.error("Cloud Save Error:", error.message);
-            } else {
-                console.log("Progress successfully synced to Supabase!");
-            }
-        }
-
-        // Reset Quiz Session for Retry
-        window.resetQuizSession = function() {
-            document.querySelectorAll('input[type="radio"]').forEach(input => {
-                input.checked = false;
-                input.disabled = false;
-            });
-
-            const resultDiv = document.getElementById('quiz-result');
-            if (resultDiv) resultDiv.style.display = 'none';
-
-            const submitBtn = document.getElementById("submit-quiz-btn");
-            if (submitBtn) submitBtn.style.display = 'inline-block';
-
-            selectedQuestions = shuffleArray(currentQuiz.questionsPool).slice(0, 4);
-            const container = document.getElementById('questions-container');
-            if(container) {
-                let html = "";
-                selectedQuestions.forEach((item, index) => {
-                    html += `<div style="margin-bottom: 20px; background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155;">`;
-                    html += `<p style="color: #fff; font-weight: 600; margin-top: 0;">${index + 1}. ${item.q}</p>`;
-                    item.options.forEach((opt, optIndex) => {
-                        html += `<label style="display: block; color: #cbd5e1; margin: 8px 0; cursor: pointer;"><input type="radio" name="q${index}" value="${optIndex}"> ${opt}</label>`;
-                    });
-                    html += `</div>`;
-                });
-                container.innerHTML = html;
-            }
-        };
     </script>
 </body>
 </html>
-
-    <div style="background: #0f172a; border: 1px solid #334155; border-radius: 16px; padding: 24px; margin-top: 20px; text-align: left;">
-        <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #38bdf8; margin-bottom: 8px; font-size: 15px;">
-            ⚡ Next Step: Test Your Dispatch Math
-        </div>
-        <p style="color: #94a3b8; font-size: 14px; line-height: 1.5; margin-bottom: 16px;">
-            Put your new foundation skills to work immediately. Use our interactive calculator to evaluate real load rates and profit margins.
-        </p>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="../cpm-calculator.html" style="background: #2563eb; color: #ffffff; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 14px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
-                Open Rate & Profit Calculator 🚀
-            </a>
-        </div>
-    </div>
