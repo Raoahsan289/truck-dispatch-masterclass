@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Launchpad | VIP Executive Command Center</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/premium-style.css">
+    <link rel="stylesheet" href="../css/startup-launchpad.css">
+</head>
+<body data-page="startup-launchpad">
+
+    <!-- Sidebar Navigation -->
+     
+    <aside class="sidebar">
+        <div class="brand-header">
+            <i class="fa-solid fa-truck-fast fa-xl" style="color: var(--accent-gold);"></i>
+            <div>
+                <h3 style="font-size: 1.1rem;">DISPATCH VIP</h3>
+                <span class="vip-badge">Masterclass</span>
+            </div>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="premium-dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i> VIP Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="startup-launchpad.html" class="nav-link active">
+                    <i class="fa-solid fa-rocket"></i> Startup Launchpad
+                </a>
+            </li>
+
+            <li class="nav-item" style="margin-top: 15px; padding-left: 15px; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px;">
+                Financial Calculators
+           <!-- Financial Calculators -->
+            <li class="nav-item" style="margin-top: 15px; padding-left: 15px; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px;">
+            </li>
+
+           <li class="nav-item">
+                <a href="../tools/rpm-calculator.html" class="nav-link" onclick="localStorage.setItem('userType', 'vip')">
+                    <i class="fa-solid fa-calculator"></i> RPM Calculator
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../tools/cpm-calculator.html" class="nav-link" onclick="localStorage.setItem('userType', 'vip')">
+                    <i class="fa-solid fa-chart-line"></i> CPM Calculator
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../tools/tool-broker-check.html" class="nav-link">
+                    <i class="fa-solid fa-shield-halved"></i> Broker Credit Check
+                </a>
+            </li>
+
+            <li class="nav-item" style="margin-top: 30px;">
+                <a href="../choose-plan.html" class="nav-link" style="color: #ef4444;">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Exit to Main Site
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-wrapper">
+        <header class="lesson-header">
+            <span class="lesson-subtitle">VIP EXECUTIVE VAULT</span>
+            <h1 class="lesson-title">Independent Agency Startup Launchpad</h1>
+            <p style="color: var(--text-muted);">Download operational contracts, legal agreements, agency setup guides, and carrier onboarding packets.</p>
+        </header>
+        <!-- Inside premium/startup-launchpad.html -->
+<main class="main-content">
+    
+    <!-- 1. Header Section -->
+    <header class="page-header">
+        <h1><i class="fa-solid fa-rocket"></i> Startup Launchpad</h1>
+        <p>Essential operational tools and resources for dispatch setup.</p>
+    </header>
+
+    <!-- 2. EXACT LOCATION: Insert the US Time Zones Widget Here -->
+    <div class="card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--accent-gold); font-size: 1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-clock"></i> US Market & Facility Time Zones
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px;" id="usTimeZonesWidget">
+            <div style="background: var(--bg-dark); padding: 10px; border-radius: 8px; text-align: center;">
+                <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Eastern (ET)</span>
+                <span id="timeET" style="color: var(--text-main); font-weight: 700; font-family: monospace; font-size: 0.95rem;">--:--</span>
+            </div>
+            <div style="background: var(--bg-dark); padding: 10px; border-radius: 8px; text-align: center;">
+                <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Central (CT)</span>
+                <span id="timeCT" style="color: var(--text-main); font-weight: 700; font-family: monospace; font-size: 0.95rem;">--:--</span>
+            </div>
+            <div style="background: var(--bg-dark); padding: 10px; border-radius: 8px; text-align: center;">
+                <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Mountain (MT)</span>
+                <span id="timeMT" style="color: var(--text-main); font-weight: 700; font-family: monospace; font-size: 0.95rem;">--:--</span>
+            </div>
+            <div style="background: var(--bg-dark); padding: 10px; border-radius: 8px; text-align: center;">
+                <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Pacific (PT)</span>
+                <span id="timePT" style="color: var(--text-main); font-weight: 700; font-family: monospace; font-size: 0.95rem;">--:--</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to update live times automatically -->
+    <script>
+        function updateUSTimes() {
+            const options = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            document.getElementById('timeET').textContent = new Intl.DateTimeFormat([], options).format(new Date());
+            
+            options.timeZone = 'America/Chicago';
+            document.getElementById('timeCT').textContent = new Intl.DateTimeFormat([], options).format(new Date());
+
+            options.timeZone = 'America/Denver';
+            document.getElementById('timeMT').textContent = new Intl.DateTimeFormat([], options).format(new Date());
+
+            options.timeZone = 'America/Los_Angeles';
+            document.getElementById('timePT').textContent = new Intl.DateTimeFormat([], options).format(new Date());
+        }
+        setInterval(updateUSTimes, 1000);
+        updateUSTimes();
+    </script>
+
+    <!-- 3. Existing Launchpad Cards & Grid Follows Here -->
+    <div class="launchpad-grid">
+        <!-- Your existing launchpad modules / cards -->
+    </div>
+
+</main>
+
+        <section class="section-card">
+            <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Agency Operational Documents</h2>
+            
+           <div class="launchpad-grid">
+                <!-- Card 1: Contract -->
+                <div class="resource-card">
+                    <div>
+                        <div class="resource-meta">Legal Agreement</div>
+                        <h3><i class="fa-solid fa-file-contract"></i> Dispatcher-Carrier Contract</h3>
+                        <p>Legally binding agreement outlining your 6–10% service commission, billing terms, limited power of attorney, and carrier liabilities.</p>
+                    </div>
+                    <a href="../downloads/dispatcher-agreement.docx" download class="btn-gold" style="padding: 12px; width: 100%; text-align: center; text-decoration: none; display: inline-block; box-sizing: border-box;">
+                        <i class="fa-solid fa-download"></i> Download Contract (.docx)
+                    </a>
+                </div>
+
+                <!-- Card 2: Onboarding Sheet -->
+                <div class="resource-card">
+                    <div>
+                        <div class="resource-meta">Onboarding Packet</div>
+                        <h3><i class="fa-solid fa-id-card"></i> Carrier Profile & LCP Sheet</h3>
+                        <p>Intake questionnaire to collect carrier MC/DOT numbers, insurance certificates, W-9 forms, factoring info, and lane preferences.</p>
+                    </div>
+                    <a href="../downloads/carrier-onboarding-sheet.docx" download class="btn-gold" style="padding: 12px; width: 100%; text-align: center; text-decoration: none; display: inline-block; box-sizing: border-box;">
+                        <i class="fa-solid fa-download"></i> Download Onboarding Sheet (.docx)
+                    </a>
+                </div>
+
+                <!-- Card 3: Checklist -->
+                <div class="resource-card">
+                    <div>
+                        <div class="resource-meta">Business Setup</div>
+                        <h3><i class="fa-solid fa-building-columns"></i> Agency Launch Checklist</h3>
+                        <p>Step-by-step roadmap for setting up your virtual dispatch office, acquiring US business phone lines, and registering your business entity.</p>
+                    </div>
+                    <a href="../downloads/agency-launch-checklist.docx" download class="btn-gold" style="padding: 12px; width: 100%; text-align: center; text-decoration: none; display: inline-block; box-sizing: border-box;">
+                        <i class="fa-solid fa-download"></i> Download Checklist (.docx)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/premium-lesson.js"></script>
+    <script src="../js/startup-launchpad.js"></script>
+</body>
+</html>

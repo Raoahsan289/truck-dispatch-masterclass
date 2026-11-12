@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: US Freight Ecosystem & Market Dynamics | VIP Masterclass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lesson-1.css">
+</head>
+<body>
+
+    
+    <!-- Main Workspace -->
+    <main class="main-wrapper">
+
+        <!-- Module Header -->
+        <header class="module-header">
+            <span class="module-tag">Module 01 • Masterclass Deep Dive</span>
+            <h1 class="lesson-title">Lesson 1: US Freight Ecosystem & Market Dynamics</h1>
+            <p class="lesson-subtitle">Understand how Shippers, Freight Brokers, Motor Carriers, and Independent Dispatchers connect to move $800B+ of freight annually across North America[cite: 8]. Master spot market mechanics, rate math, and financial workflows.</p>
+        </header>
+
+        <!-- Dynamic Navigation Tabs -->
+        <nav class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(event, 'players')"><i class="fa-solid fa-users"></i> 1. Key Players</button>
+            <button class="tab-btn" onclick="switchTab(event, 'macro')"><i class="fa-solid fa-chart-line"></i> 2. Market Economics</button>
+            <button class="tab-btn" onclick="switchTab(event, 'lifecycle')"><i class="fa-solid fa-rotate"></i> 3. Load Lifecycle</button>
+            <button class="tab-btn" onclick="switchTab(event, 'comparison')"><i class="fa-solid fa-scale-balanced"></i> 4. Legal Differences</button>
+            <button class="tab-btn" onclick="switchTab(event, 'dat-walkthrough')"><i class="fa-solid fa-desktop"></i> 5. DAT Analysis</button>
+          
+        </nav>
+
+        <!-- TAB 1: THE 4 KEY PLAYERS -->
+        <div id="players" class="tab-section active-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-building-user"></i> The 4 Core Pillars of US Logistics
+                </div>
+                <p class="card-desc">Every commercial load moved on American highways relies on four main entities[cite: 8]. Understanding who pays whom—and where the liability rests—is essential before booking your first load[cite: 8].</p>
+
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <span class="badge-tag">PILLAR 1</span>
+                        <h4 style="margin-top:8px;">1. The Shipper / Receiver</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">The manufacturer, distributor, or agricultural entity (e.g., Walmart, Tyson, local farms) that owns the raw materials or finished goods[cite: 8]. They issue purchase orders and pay the primary freight invoices.</p>
+                        <div class="spec-item"><span class="spec-label">Primary Role:</span><span class="spec-val">Cargo Owner</span></div>
+                        <div class="spec-item"><span class="spec-label">Financial Target:</span><span class="spec-val">Minimize Freight Spend</span></div>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag">PILLAR 2</span>
+                        <h4 style="margin-top:8px;">2. The Freight Broker</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">A licensed intermediary (holding an active MC authority and $75,000 surety bond) that secures freight contracts from shippers and hires motor carriers to move it[cite: 8].</p>
+                        <div class="spec-item"><span class="spec-label">Primary Role:</span><span class="spec-val">Shipper Representative</span></div>
+                        <div class="spec-item"><span class="spec-label">Financial Revenue:</span><span class="spec-val">Brokerage Profit Spread</span></div>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag">PILLAR 3</span>
+                        <h4 style="margin-top:8px;">3. The Motor Carrier</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">The trucking company or independent owner-operator operating Class 8 semi-trucks, maintaining active FMCSA safety ratings, and hauling physical cargo[cite: 8].</p>
+                        <div class="spec-item"><span class="spec-label">Primary Role:</span><span class="spec-val">Asset & Equipment Owner[cite: 8]</span></div>
+                        <div class="spec-item"><span class="spec-label">Financial Metric:</span><span class="spec-val">Gross Rate Per Mile (RPM)</span></div>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag" style="background:var(--accent-gold); color:#000;">PILLAR 4</span>
+                        <h4 style="margin-top:8px;">4. The Independent Dispatcher</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">You—the outsourced business manager hired under contract directly by the motor carrier to find loads, negotiate high-margin rates, organize compliance, and manage driver logs[cite: 8].</p>
+                        <div class="spec-item"><span class="spec-label">Primary Role:</span><span class="spec-val">Carrier Representative[cite: 8]</span></div>
+                        <div class="spec-item"><span class="spec-label">Income Source:</span><span class="spec-val">5% - 10% Gross Commission</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: MACRO ECONOMICS & MARKET DYNAMICS -->
+        <div id="macro" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-chart-line"></i> Macro Freight Economics & Spot Market Mechanics
+                </div>
+                <p class="card-desc">Spot market rates shift constantly based on supply, demand, and national economic indicators. Top-tier dispatchers don't guess rates; they read market metrics.</p>
+
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-blue);">Load-to-Truck Ratio (LTR)</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">The number of posted loads available divided by the number of active trucks in a specific market region.</p>
+                        <div class="spec-item"><span class="spec-label">High LTR (&gt; 5.0):</span><span class="spec-val" style="color:#22c55e;">Carrier's Market (Rates Spike)</span></div>
+                        <div class="spec-item"><span class="spec-label">Low LTR (&lt; 2.0):</span><span class="spec-val" style="color:#ef4444;">Broker's Market (Rates Soften)</span></div>
+                    </div>
+
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-blue);">Seasonal Freight Cycles</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.5;">Demand shifts throughout the calendar year based on industry production schedules.</p>
+                        <div class="spec-item"><span class="spec-label">Q2 Produce Season:</span><span class="spec-val">Reefer rates surge in South/West</span></div>
+                        <div class="spec-item"><span class="spec-label">Q4 Retail Peak:</span><span class="spec-val">Dry Van rates surge for holiday loads</span></div>
+                    </div>
+                </div>
+
+                <div class="alert-banner">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div class="alert-content">
+                        <strong>PRO DISPATCHER STRATEGY: FACTORING & CREDIT PROTECTION</strong>
+                        <p>Never let a driver haul freight for a broker with a credit score below 85 or non-factorable status. Always verify factorability with funding partners (e.g., Triumph, RTS) before signing a Rate Confirmation to eliminate non-payment risks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: LOAD LIFECYCLE -->
+        <div id="lifecycle" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-arrows-spin"></i> Step-by-Step Freight Load Lifecycle
+                </div>
+                <p class="card-desc">Follow the complete physical, contractual, and financial lifecycle of a single shipment moving through the US freight network.</p>
+
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div class="spec-box" style="border-left:4px solid var(--accent-gold);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <strong style="color:var(--accent-gold); font-size:1rem;">STEP 1: Load Creation & Posting</strong>
+                            <span class="badge-tag">Origin Phase</span>
+                        </div>
+                        <p style="color:#cbd5e1; font-size:0.88rem; margin:0;">The shipper contacts the freight broker with cargo details (origin, destination, weight, commodity, dock schedule). The broker posts the load on DAT One or Truckstop.</p>
+                    </div>
+
+                    <div class="spec-box" style="border-left:4px solid var(--accent-blue);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <strong style="color:var(--accent-blue); font-size:1rem;">STEP 2: Dispatcher Negotiation & Rate Con</strong>
+                            <span class="badge-tag">Contract Phase</span>
+                        </div>
+                        <p style="color:#cbd5e1; font-size:0.88rem; margin:0;">You call the broker desk, run rate math, negotiate the rate per mile, check broker credit scores, and sign a binding Rate Confirmation agreement.</p>
+                    </div>
+
+                    <div class="spec-box" style="border-left:4px solid #a855f7;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <strong style="color:#a855f7; font-size:1rem;">STEP 3: Pickup & In-Transit Tracking</strong>
+                            <span class="badge-tag">Transit Phase</span>
+                        </div>
+                        <p style="color:#cbd5e1; font-size:0.88rem; margin:0;">The driver arrives at the shipper dock, gets loaded, checks weight scales, signs the Bill of Lading (BOL), and provides scheduled check-calls during transit.</p>
+                    </div>
+
+                    <div class="spec-box" style="border-left:4px solid #22c55e;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <strong style="color:#22c55e; font-size:1rem;">STEP 4: Delivery, POD & Payout</strong>
+                            <span class="badge-tag">Financial Closeout</span>
+                        </div>
+                        <p style="color:#cbd5e1; font-size:0.88rem; margin:0;">The driver unloads at the receiver dock and gets a signed Proof of Delivery (POD). You compile the Rate Con, signed BOL/POD, and scale tickets, then submit them to the factoring company for quick payout.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: BROKER VS DISPATCHER COMPARISON -->
+        <div id="comparison" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-scale-balanced"></i> Freight Broker vs. Truck Dispatcher Comparison
+                </div>
+                <p class="card-desc">Understanding the legal boundaries between Freight Brokers and Freight Dispatchers prevents illegal brokering fines and maintains FMCSA compliance.</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Operational Feature</th>
+                                <th>Freight Broker</th>
+                                <th>Independent Freight Dispatcher</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Legal Representation</td>
+                                <td>Represents the Shipper / Cargo Owner</td>
+                                <td>Represents the Motor Carrier / Truck Driver[cite: 8]</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">FMCSA Licensing</td>
+                                <td>Broker Authority ($75k Surety Bond)</td>
+                                <td>Service Provider (Under Carrier's MC Authority)</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Core Mission</td>
+                                <td>Move cargo for the lowest cost</td>
+                                <td>Secure maximum Rate-Per-Mile for carrier</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Earnings Structure</td>
+                                <td>Margin spread between shipper pay & carrier pay</td>
+                                <td>5% - 10% commission on gross load rate</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Financial Risk</td>
+                                <td>Liable for shipper cargo claims & carrier pay</td>
+                                <td>No cargo liability; paid on gross carrier billing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: ADVANCED DAT LOAD CARD WALKTHROUGH -->
+        <div id="dat-walkthrough" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-desktop"></i> Practical Walkthrough: Reading a DAT One Load Listing
+                </div>
+                <p class="card-desc">Inspect real load postings from DAT One or Truckstop, analyze key metrics, run live rate calculations, and plan broker phone calls.</p>
+
+                <!-- Interactive DAT Spot Board Card -->
+                <div style="background:#090d16; border:1px solid var(--border-color); border-radius:10px; padding:22px; margin-bottom:24px;">
+                    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px;">
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">AGE</span> <strong style="color:var(--accent-blue);">2m ago</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">EQUIPMENT</span> <strong style="color:#fff;">V (Dry Van)</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">TOTAL TRIP</span> <strong style="color:#fff;">780 mi</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">POSTED RATE</span> <strong style="color:var(--accent-gold); font-size:1.1rem;">$2,100 ($2.69/mi)</strong></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; margin-bottom:15px;">
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">ORIGIN</span> <strong style="color:#fff;">Atlanta, GA</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">DESTINATION</span> <strong style="color:#fff;">Dallas, TX</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">WEIGHT / LENGTH</span> <strong style="color:#fff;">44,000 lbs | 53ft</strong></div>
+                        <div><span style="color:var(--text-muted); font-size:0.75rem; display:block;">BROKER / MC#</span> <strong style="color:var(--accent-blue);">C.H. Robinson (MC# 142381)</strong></div>
+                    </div>
+                    <div style="background:#1e293b; padding:12px 16px; border-radius:6px; font-size:0.85rem; color:#cbd5e1; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                        <span>📝 <strong>Notes:</strong> Clean food-grade trailer required. No driver touch. FCFS pickup.</span>
+                        <span class="badge-tag" style="background:rgba(34,197,94,0.2); color:#22c55e;">Factorable (Credit Score: 96)</span>
+                    </div>
+                </div>
+
+                <!-- Deep Breakdown & Strategy Accordion -->
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-gold);">1. Rate Math Breakdown</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.6;">
+                            • Posted Line-haul: <strong>$2,100</strong><br>
+                            • Total Distance: <strong>780 miles</strong><br>
+                            • Line-haul RPM: <strong>$2.69 / mile</strong><br>
+                            • Market Threshold Benchmark: $2.40 / mile<br>
+                            <span style="color:#22c55e; font-weight:700;">Verdict: Above Market Benchmark</span>
+                        </p>
+                    </div>
+
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-gold);">2. Broker Credit & Risk Audit</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.6;">
+                            • Broker: C.H. Robinson (MC# 142381)<br>
+                            • Anabuki/Triumph Credit Score: <strong>96 / 100</strong><br>
+                            • Days to Pay: 21 Days Average<br>
+                            • Factoring Status: <strong>Approved for Payout</strong><br>
+                            <span style="color:#22c55e; font-weight:700;">Verdict: Zero Payment Risk</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Plan Call Strategy -->
+                <div class="alert-banner" style="border-left-color:var(--accent-blue); background:rgba(56,189,248,0.08); margin-top:20px;">
+                    <i class="fa-solid fa-phone" style="color:var(--accent-blue);"></i>
+                    <div class="alert-content">
+                        <strong style="color:var(--accent-blue);">PRO DISPATCHER NEGOTIATION SCRIPT</strong>
+                        <p style="margin-top:4px;">"Hi, calling about the Atlanta to Dallas load posted on DAT (MC# 142381). My 53ft Dry Van driver is sitting in Atlanta empty right now with a clean food-grade trailer. If we can put this together at <strong>$2,300 ($2.94/mi)</strong>, I can send over my carrier packet right away!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: KNOWLEDGE CHECK QUIZ WIDGET -->
+        <div id="quiz" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-square-poll-check"></i> Lesson 1 Knowledge Check
+                </div>
+                <p class="card-desc">Verify your understanding of freight mechanics and legal standards before moving to Lesson 2.</p>
+
+                <div id="quizContainer">
+                    <div style="margin-bottom: 22px;">
+                        <h4 style="color:#fff; margin-bottom: 12px; font-size:0.98rem;">Q1: Who does an Independent Freight Dispatcher legally represent?</h4>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q1" value="wrong"> The Shipper who owns the cargo</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q1" value="correct"> The Motor Carrier / Trucking Company[cite: 8]</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q1" value="wrong"> The Freight Brokerage firm</label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 22px;">
+                        <h4 style="color:#fff; margin-bottom: 12px; font-size:0.98rem;">Q2: What is the primary metric indicating a Carrier-favorable market with rising spot rates?</h4>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q2" value="wrong"> A low Load-to-Truck Ratio (below 2.0)</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q2" value="correct"> A high Load-to-Truck Ratio (above 5.0)</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q2" value="wrong"> High diesel fuel prices</label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 22px;">
+                        <h4 style="color:#fff; margin-bottom: 12px; font-size:0.98rem;">Q3: How does an Independent Freight Dispatcher earn their revenue?</h4>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q3" value="correct"> By charging a 5% - 10% commission on the carrier's gross load rate</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q3" value="wrong"> By keeping the price spread between shipper pay and broker pay</label>
+                            <label style="color:#cbd5e1; cursor:pointer; font-size:0.9rem;"><input type="radio" name="q3" value="wrong"> By collecting safety inspection fees from drivers</label>
+                        </div>
+                    </div>
+
+                    <button onclick="submitQuiz()" style="background:var(--accent-gold); color:#0f172a; border:none; padding:12px 26px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.95rem; transition:background 0.2s;">Submit Quiz Answers</button>
+                    <p id="quizResult" style="margin-top:16px; font-weight:700; font-size:0.95rem;"></p>
+                </div>
+            </div>
+        </div>
+
+<!-- Redesigned Bottom Navigation Bar (Uniform Golden Pill Style) -->
+<div class="lesson-footer-nav" style="margin-top: 50px; background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    
+    <!-- Previous Button -->
+    <a href="intro-dispatching.html" style="background: #1e293b; color: #f8fafc; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;" onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1e293b'">
+        <i class="fa-solid fa-arrow-left" style="color: #eab308;"></i> Previous: Intro
+    </a>
+
+    <!-- Masterclass Dashboard Button (Golden Pill with Back Arrow) -->
+    <a href="premium-dashboard.html" style="background: rgba(234, 179, 8, 0.1); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.5px; transition: all 0.2s;" onmouseover="this.style.background='rgba(234, 179, 8, 0.2)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='rgba(234, 179, 8, 0.1)'; this.style.transform='translateY(0)';">
+        <i class="fa-solid fa-arrow-left"></i> Masterclass Dashboard
+    </a>
+
+    <!-- Next Lesson Button -->
+  <a href="premium-quiz/lesson-1-quiz.html" style="background: #eab308; color: #0f172a; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(234,179,8,0.2); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+    Next: Lesson 1 Quiz <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+</div>
+
+    </main>
+
+    <script src="../js/lesson-1.js"></script>
+</body>
+</html>

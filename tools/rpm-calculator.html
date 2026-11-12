@@ -161,8 +161,32 @@
             <div id="status-badge" class="badge"></div>
         </div>
 
-        <a href="quiz.html" class="back-link">← Back to Course Quiz</a>
-    </div>
+    <!-- Bottom Navigation Bar -->
+<div style="max-width: 800px; margin: 30px auto 0 auto; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #f8fafc; font-size: 1.2rem; font-weight: 600; margin: 0;">Truck Dispatch Masterclass</h3>
+    <a href="#" id="backToDashboardBtn" style="background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;">
+        Back to Dashboard <i class="fa-solid fa-arrow-right"></i>
+    </a>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const backBtn = document.getElementById('backToDashboardBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Read the stored user tier
+                const userType = localStorage.getItem('userType');
+                
+                if (userType === 'free') {
+                    window.location.href = '../free-dashboard.html';
+                } else {
+                    window.location.href = '../premium/premium-dashboard.html';
+                }
+            });
+        }
+    });
+</script>
 
     <script>
         function calculateRPM() {

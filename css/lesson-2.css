@@ -1,0 +1,129 @@
+/* Lesson 2 Custom Stylesheet */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 40px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+/* Modern Dark Table Restyling */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background-color: #0f172a;
+}
+
+.data-table th {
+    background-color: #1e293b;
+    color: #eab308; /* Gold header accent */
+    font-weight: 700;
+    padding: 16px 20px;
+    border-bottom: 2px solid #334155;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    padding: 16px 20px;
+    color: #cbd5e1;
+    border-bottom: 1px solid #1e293b;
+    vertical-align: middle;
+}
+
+/* Alternating row colors for better readability */
+.data-table tbody tr:nth-child(even) {
+    background-color: rgba(30, 41, 59, 0.3);
+}
+
+/* Hover effect on table rows */
+.data-table tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.6);
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+/* Fixed Table Layout & Column Sizing */
+.data-table {
+    width: 100%;
+    table-layout: fixed; /* Forces columns to respect specified widths */
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background-color: #0f172a;
+}
+
+/* Set specific widths for each column */
+.data-table th:nth-child(1), 
+.data-table td:nth-child(1) {
+    width: 25%;
+}
+
+.data-table th:nth-child(2), 
+.data-table td:nth-child(2) {
+    width: 35%;
+}
+
+.data-table th:nth-child(3), 
+.data-table td:nth-child(3) {
+    width: 40%;
+}
+
+.data-table th {
+    background-color: #1e293b;
+    color: #eab308;
+    font-weight: 700;
+    padding: 16px 20px;
+    border-bottom: 2px solid #334155;
+    letter-spacing: 0.5px;
+    word-wrap: break-word;
+}
+
+.data-table td {
+    padding: 16px 20px;
+    color: #cbd5e1;
+    border-bottom: 1px solid #1e293b;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: rgba(30, 41, 59, 0.3);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.6);
+}

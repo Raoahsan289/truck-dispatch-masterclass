@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Surcharge (FSC) Calculator</title>
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Correct CSS path from inside the tools/ folder -->
+    <link rel="stylesheet" href="../css/tool-fsc-calculator.css">
+</head>
+<body>
+
+    <div class="calculator-card">
+        <header class="header">
+            <h1><i class="fa-solid fa-gas-pump"></i> Fuel Surcharge (FSC) Calculator</h1>
+            <p>Compute accurate per-mile fuel adjustments and all-in trip rates based on diesel price shifts.</p>
+        </header>
+
+        <div class="calc-grid">
+            <!-- Inputs Section -->
+            <div class="inputs-section">
+                <div class="input-group">
+                    <label for="currentDiesel">Current Diesel Price ($/gal)</label>
+                    <input type="number" id="currentDiesel" value="3.85" step="0.01">
+                </div>
+
+                <div class="input-group">
+                    <label for="baseDiesel">Base / Peg Price ($/gal)</label>
+                    <input type="number" id="baseDiesel" value="1.25" step="0.01">
+                </div>
+
+                <div class="input-group">
+                    <label for="truckMpg">Truck Fuel Economy (MPG)</label>
+                    <input type="number" id="truckMpg" value="6.5" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="tripMiles">Trip Distance (Loaded Miles)</label>
+                    <input type="number" id="tripMiles" value="650" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label for="linehaulRate">Flat Linehaul Rate ($)</label>
+                    <input type="number" id="linehaulRate" value="2100" step="10">
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="results-panel">
+                    <div class="result-item">
+                        <span class="result-label">FSC Per Mile:</span>
+                        <span class="result-value" id="fscPerMile">$0.400</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Load Surcharge:</span>
+                        <span class="result-value" id="totalFsc">$260.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">All-In Total Rate:</span>
+                        <span class="result-value" id="totalRate" style="color: var(--accent-green);">$2,360.00</span>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>Standard Industry Formula:</strong><br>
+                    <code>(Current Diesel - Base Price) ÷ Truck MPG = FSC/Mile</code>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Navigation Bar -->
+<div style="max-width: 800px; margin: 30px auto 0 auto; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #f8fafc; font-size: 1.2rem; font-weight: 600; margin: 0;">Truck Dispatch Masterclass</h3>
+    <a href="../premium/premium-dashboard.html" style="background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;">
+        Back to Dashboard <i class="fa-solid fa-arrow-right"></i>
+    </a>
+</div>
+    </div>
+
+    <!-- Custom JS Link -->
+    <script src="tool-fsc-calculator.js"></script>
+</body>
+</html>

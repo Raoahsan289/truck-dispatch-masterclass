@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Legal Frameworks & Carrier Setup Packets | VIP Masterclass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lesson-1.css">
+    <link rel="stylesheet" href="../css/lesson-2.css">
+</head>
+<body>
+
+    <!-- Main Workspace Container -->
+    <main class="main-wrapper">
+
+        <!-- Lesson Header -->
+        <header class="module-header">
+            <span class="module-tag" style="background: rgba(234, 179, 8, 0.15); color: var(--accent-gold);">Lesson 2 • Module 1</span>
+            <h1 class="lesson-title">Legal Frameworks, Authorities & Carrier Setup Packets</h1>
+            <p class="lesson-subtitle">Master FMCSA regulatory compliance, safety audits, carrier vetting workflows, and the mandatory onboarding documentation required to legally represent motor carriers.</p>
+        </header>
+
+        <!-- Dynamic Navigation Tabs -->
+        <nav class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(event, 'regulatory-compliance')">
+                <i class="fa-solid fa-scale-balanced"></i> 1. Regulatory Compliance
+            </button>
+            <button class="tab-btn" onclick="switchTab(event, 'carrier-packets')">
+                <i class="fa-solid fa-file-contract"></i> 2. Carrier Setup Packets
+            </button>
+            <button class="tab-btn" onclick="switchTab(event, 'onboarding-vetting')">
+                <i class="fa-solid fa-shield-halved"></i> 3. Onboarding & Vetting
+            </button>
+        </nav>
+
+        <!-- TAB 1: REGULATORY COMPLIANCE & AUTHORITIES -->
+        <div id="regulatory-compliance" class="tab-section active-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-scale-balanced"></i> USDOT vs. MC Authorities & Safety Monitoring
+                </div>
+                <p class="card-desc">Every commercial carrier operating in interstate commerce is regulated by the Federal Motor Carrier Safety Administration (FMCSA). Understanding their legal identifiers is your first line of defense.</p>
+
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <span class="badge-tag">SAFETY IDENTIFIER</span>
+                        <h4 style="margin-top:8px;">USDOT Number</h4>
+                        <p>Monitors carrier safety performance, roadside inspection history, crash records, and compliance audits across all commercial motor vehicles.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag">OPERATING AUTHORITY</span>
+                        <h4 style="margin-top:8px;">MC (Motor Carrier) Number</h4>
+                        <p>Grants specific legal authority issued by FMCSA allowing standard for-hire motor carriers to transport regulated commodities across state lines.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag">AUDIT DATABASE</span>
+                        <h4 style="margin-top:8px;">FMCSA SAFER System</h4>
+                        <p>The online snapshot tool used to verify active operating status (Authorized vs. Revoked), safety ratings (Satisfactory/Conditional), and Out-of-Service (OOS) percentages.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <span class="badge-tag">SAFETY SCORING</span>
+                        <h4 style="margin-top:8px;">7 SMS BASICs</h4>
+                        <p>Monitors carrier safety across Unsafe Driving, Crash History, HOS Compliance, Vehicle Maintenance, Drugs/Alcohol, Hazmat, and Driver Fitness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: CARRIER SETUP PACKET DOCUMENTATION -->
+        <div id="carrier-packets" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-file-contract"></i> The Complete Carrier Setup Packet
+                </div>
+                <p class="card-desc">Before booking a load or speaking to brokers on behalf of a carrier, you must compile and verify their official administrative documentation package.</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Document Name</th>
+                                <th>Primary Purpose</th>
+                                <th>Key Items to Inspect</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Dispatcher-Carrier Agreement</td>
+                                <td>Defines your fee structure (5%-10%) and legal working relationship.</td>
+                                <td>Commission rates, payment terms, service scope, termination clauses.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Limited Power of Attorney (POA)</td>
+                                <td>Grants authorization to sign Rate Confirmations on carrier's behalf.</td>
+                                <td>Specific execution limits (load booking only; no financial changes).</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Form W-9</td>
+                                <td>Taxpayer identification number and legal business structure declaration.</td>
+                                <td>Correct legal name/DBA, EIN matching FMCSA records, signed/dated.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Certificate of Insurance (COI)</td>
+                                <td>Proves coverage for accidents, vehicle damage, and cargo liability.</td>
+                                <td>$1M Auto Liability min, $100k Cargo min, Certificate Holder details.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700; color:var(--accent-gold);">Notice of Assignment (NOA)</td>
+                                <td>Instructions from factoring company for freight bill payments.</td>
+                                <td>Remittance address, factoring bank info, assignment status.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: BROKER ONBOARDING & CARRIER VETTING -->
+        <div id="onboarding-vetting" class="tab-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-shield-halved"></i> Vetting Workflows & Fraud Prevention
+                </div>
+                <p class="card-desc">Protect your carrier relationship by recognizing double brokering red flags and utilizing automated onboarding platforms (MyCarrierPortal, RMIS).</p>
+
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-gold);">1. Minimum Operating Age</h4>
+                        <p>Many brokers require carriers to have active MC authority for at least 30 to 90 days (sometimes 6 months) before issuing setup links.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-gold);">2. Double Brokering Prevention</h4>
+                        <p>Never allow unauthorized third parties to re-broker your loads. Verify rate confirmations directly with primary broker dispatchers.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <h4 style="color:var(--accent-gold);">3. Automated Onboarding</h4>
+                        <p>Familiarize yourself with automated carrier onboarding tools like RMIS and MyCarrierPortal used by major freight brokerages.</p>
+                    </div>
+                </div>
+
+                <div class="alert-banner" style="margin-top:20px; border-left: 4px solid var(--accent-gold); background: #1e293b; padding: 16px; border-radius: 8px; display: flex; gap: 15px; align-items: center;">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: var(--accent-gold); font-size: 1.5rem;"></i>
+                    <div>
+                        <strong style="color: #fff;">CRITICAL DISPATCHER WARNING</strong>
+                        <p style="margin: 4px 0 0 0; color: #cbd5e1; font-size: 0.9rem;">Always verify that the legal business name and EIN on the W-9 match the FMCSA SAFER database exactly to avoid carrier identity theft and freight scams.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+   <!-- Redesigned Bottom Navigation Bar -->
+<!-- Redesigned Bottom Navigation Bar -->
+<div class="lesson-footer-nav" style="margin-top: 50px; background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    
+    <!-- Previous Lesson Button -->
+    <a href="lesson-1.html" style="background: #1e293b; color: #f8fafc; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;" onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1e293b'">
+        <i class="fa-solid fa-arrow-left" style="color: var(--accent-gold);"></i> Previous: Lesson 1
+    </a>
+
+    <!-- Dashboard Button with Back Arrow -->
+    <a href="premium-dashboard.html" style="background: rgba(234, 179, 8, 0.1); color: var(--accent-gold); border: 1px solid rgba(234, 179, 8, 0.3); padding: 10px 22px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.5px; transition: all 0.2s;" onmouseover="this.style.background='rgba(234, 179, 8, 0.2)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='rgba(234, 179, 8, 0.1)'; this.style.transform='translateY(0)';">
+        <i class="fa-solid fa-arrow-left"></i> Masterclass Dashboard
+    </a>
+
+    <!-- Next Lesson Button -->
+    <a href="lesson-3.html" style="background: var(--accent-gold); color: #0f172a; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(234,179,8,0.2); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Next: Lesson 3 <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+</div>
+
+    </main>
+
+    <script src="../js/lesson-1.js"></script>
+</body>
+</html>
