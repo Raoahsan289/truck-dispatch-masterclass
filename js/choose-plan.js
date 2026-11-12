@@ -1,3 +1,6 @@
+// Explicitly map the global window instance so it's never undefined
+const supabase = window.supabase;
+
 const ADMIN_TESTERS = [
     "raoahsan289@gmail.com",
     "second-email@gmail.com"
@@ -10,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     masterclassBtn.addEventListener("click", async (event) => {
         event.preventDefault();
 
-        // Safety check: if supabase client failed to load, go straight to coming soon
-        if (typeof supabase === 'undefined' || !supabase.auth) {
+        if (!supabase || !supabase.auth) {
             window.location.href = "coming-soon.html";
             return;
         }
