@@ -1,4 +1,7 @@
-const ADMIN_TESTERS = ["raoahsan289@gmail.com"];
+const ADMIN_TESTERS = [
+    "raoahsan289@gmail.com",
+    "second-email@gmail.com"
+];
 
 document.addEventListener("DOMContentLoaded", () => {
     const masterclassBtn = document.getElementById("masterclass-btn");
@@ -6,11 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     masterclassBtn.addEventListener("click", async (event) => {
         event.preventDefault();
+        const originalText = masterclassBtn.innerText;
+        masterclassBtn.innerText = "Checking access...";
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
+            // Read session directly from mobile storage first
+            const { data: { session } } = await supabase.auth.getSession();
+            const userEmail = session?.user?.email?.toLowerCase().trim();
 
-            if (user && ADMIN_TESTERS.includes(user.email)) {
+            if (userEmail && ADMIN_TESTERS.includes(userEmail)) {
                 window.location.href = "premium/premium-dashboard.html";
                 return;
             }
@@ -18,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Auth check failed:", err);
         }
 
-        // Everyone else goes to the locked Coming Soon page
+        masterclassBtn.innerText = originalText;
         window.location.href = "coming-soon.html";
     });
 });
