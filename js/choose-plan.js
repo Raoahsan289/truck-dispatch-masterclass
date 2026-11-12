@@ -9,11 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     masterclassBtn.addEventListener("click", async (event) => {
         event.preventDefault();
+
+        // Safety check: if supabase client failed to load, go straight to coming soon
+        if (typeof supabase === 'undefined' || !supabase.auth) {
+            window.location.href = "coming-soon.html";
+            return;
+        }
+
         const originalText = masterclassBtn.innerText;
         masterclassBtn.innerText = "Checking access...";
 
         try {
-            // Read session directly from mobile storage first
             const { data: { session } } = await supabase.auth.getSession();
             const userEmail = session?.user?.email?.toLowerCase().trim();
 
