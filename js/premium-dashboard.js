@@ -5,7 +5,6 @@ const ALLOWED_PREMIUM_EMAILS = [
 async function enforcePremiumAccess() {
     const client = window.supabaseClient || window.supabase;
     if (!client || !client.auth) {
-        alert("Dashboard Error: supabase-config.js did not load on this page.");
         window.location.href = "../coming-soon.html";
         return false;
     }
@@ -14,13 +13,12 @@ async function enforcePremiumAccess() {
     const userEmail = session?.user?.email?.toLowerCase().trim();
 
     if (!userEmail) {
-        alert("Dashboard Guard: You are not logged in. Redirecting to login...");
-        window.location.href = "../signup.html";
+        // Redirect logged-out users to login.html from the premium subfolder
+        window.location.href = "../login.html";
         return false;
     }
 
     if (!ALLOWED_PREMIUM_EMAILS.includes(userEmail)) {
-        alert("Dashboard Guard: " + userEmail + " is not in the allowed list.");
         window.location.href = "../coming-soon.html";
         return false;
     }
