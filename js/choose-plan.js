@@ -11,6 +11,7 @@ function initPlanSelection() {
 
         const client = window.supabaseClient || window.supabase;
         if (!client || !client.auth) {
+            alert("System Notice: Authentication client failed to initialize.");
             window.location.href = "coming-soon.html";
             return;
         }
@@ -19,27 +20,28 @@ function initPlanSelection() {
         masterclassBtn.innerText = "Checking access...";
 
         try {
+            // Speed up response by checking local session cache immediately
             const { data: { session } } = await client.auth.getSession();
             const userEmail = session?.user?.email?.toLowerCase().trim();
 
-            // 1. Not logged in -> Send to login page first
             if (!userEmail) {
-                window.location.href = "signup.html";
+                alert("Access Denied: You must be logged in to access the Full Masterclass. Redirecting to login...");
+                window.location.href = "signup.html"; // Change to login.html if your login page differs
                 return;
             }
 
-            // 2. Whitelisted Gmail -> Unlock dashboard
             if (ADMIN_TESTERS.includes(userEmail)) {
                 window.location.href = "premium/premium-dashboard.html";
                 return;
+            } else {
+                alert("Access Restricted: " + userEmail + " is not authorized for the masterclass preview yet.");
             }
-
-            // 3. Any other Gmail -> Send to locked page
-            window.location.href = "coming-soon.html";
         } catch (err) {
-            masterclassBtn.innerText = originalText;
-            window.location.href = "coming-soon.html";
+            console.error("Auth check error:", err);
         }
+
+        masterclassBtn.innerText = originalText;
+        window.location.href = "coming-soon.html";
     });
 }
 
