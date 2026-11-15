@@ -22,28 +22,27 @@
 <body class="home-page">
 
     <!-- UNIFIED NAVIGATION HEADER -->
-    <header class="header">
-        <a href="index.html" class="logo-area">
-            <div class="logo-box">TD</div>
-            <div>
-                <div class="brand-name">Truck Dispatch</div>
-                <div class="brand-subtitle">Master Class</div>
-            </div>
-        </a>
+  <header class="header">
+    <a href="index.html" class="logo-area" style="text-decoration: none;">
+        <div class="logo-box">TD</div>
+        <div>
+            <div class="brand-name">Truck Dispatch</div>
+            <div class="brand-subtitle">Master Class</div>
+        </div>
+    </a>
 
-        <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="choose-plan.html">Plans & Pricing</a>
-            <a href="signup.html" id="free-course-btn">Free Course</a>
-            <a href="certificate-verify.html">Verify ID</a>
-            
-            <!-- Auth & Dashboard Dynamic Buttons -->
-            <a href="premium/premium-dashboard.html" id="dashboard-btn" style="display: none; background: #2563eb; color: white; padding: 6px 14px; border-radius: 6px;">Dashboard</a>
-            <a href="login.html" id="login-btn" class="btn-login" style="background: #2563eb; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none;">Login</a>
-            <button id="logout-btn" style="display: none; background: #ef4444; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Logout</button>
-        </nav>
-    </header>
-
+    <nav class="nav-links" style="display: flex; align-items: center; gap: 20px;">
+        <a href="index.html" class="active">Home</a>
+        <a href="choose-plan.html">Plans & Pricing</a>
+        <a href="signup.html" id="free-course-btn">Free Course</a>
+        <a href="certificate-verify.html">Verify ID</a>
+        
+        <!-- Sleek Auth Buttons -->
+        <a href="login.html" id="login-btn" style="background: #2563eb; color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Login</a>
+        <a href="free/dashboard.html" id="dashboard-btn" style="display: none; background: #2563eb; color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Dashboard</a>
+        <button id="logout-btn" style="display: none; background: transparent; color: #94a3b8; border: 1px solid #334155; padding: 7px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Logout</button>
+    </nav>
+</header>
     <!-- TRUCK BACKGROUND HERO SECTION -->
     <section class="hero">
         <div class="hero-container">
