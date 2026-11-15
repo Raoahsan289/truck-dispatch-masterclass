@@ -67,9 +67,19 @@
     <!-- SUPABASE SDK & CONFIG -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>
+    // Inside login.html script
+const { data: { session } } = await client.auth.getSession();
+if (session) {
+    window.location.href = "premium/premium-dashboard.html";
+}
 
     <!-- SUPABASE LOGIN SCRIPT -->
     <script>
+            // Inside login.html script
+const { data: { session } } = await client.auth.getSession();
+if (session) {
+    window.location.href = "premium/premium-dashboard.html";
+}
         document.addEventListener("DOMContentLoaded", function () {
             const loginForm = document.getElementById("login-form");
 
@@ -105,7 +115,7 @@
         });
     </script>
     <script>
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     const toggleBtn = document.getElementById('toggle-btn-login');
     const input = document.getElementById('password');
     const icon = document.getElementById('eye-icon-login');
