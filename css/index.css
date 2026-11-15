@@ -1,4 +1,23 @@
-/* Logo & Navigation Styling */
+/* =================================================================*********
+   1. GLOBAL VARIABLES & RESET
+   ========================================================================= */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-dark: #0f172a;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --border-color: #e2e8f0;
+    --bg-light: #f8fafc;
+    --radius-sm: 8px;
+    --radius-lg: 16px;
+    --transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   2. LOGO & NAVIGATION STYLING
+   ========================================================================= */
 .logo-area {
     display: flex;
     align-items: center;
@@ -18,7 +37,7 @@
 
 .nav-links a:not(#login-btn):not(#dashboard-btn) {
     text-decoration: none;
-    color: #94a3b8;
+    color: var(--text-light);
     font-weight: 600;
     font-size: 14.5px;
     transition: color 0.2s;
@@ -29,20 +48,24 @@
     color: #ffffff;
 }
 
-/* Modern Auth Buttons Styling */
-#login-btn, #dashboard-btn {
-    background: #2563eb;
-    color: white;
+/* ==========================================================================
+   3. AUTH & DASHBOARD BUTTONS
+   ========================================================================= */
+#login-btn, 
+#dashboard-btn {
+    background: var(--primary);
+    color: #ffffff;
     padding: 8px 18px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
     transition: background 0.2s;
 }
 
-#login-btn:hover, #dashboard-btn:hover {
-    background: #1d4ed8;
+#login-btn:hover, 
+#dashboard-btn:hover {
+    background: var(--primary-hover);
 }
 
 #logout-btn {
@@ -50,19 +73,21 @@
     color: #475569;
     border: 1px solid #cbd5e1;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: var(--transition);
 }
 
 #logout-btn:hover {
     background: #e2e8f0;
-    color: #0f172a;
+    color: var(--text-main);
 }
 
-/* --- UPGRADED FAQ SECTION STYLING --- */
+/* ==========================================================================
+   4. FAQ SECTION STYLING
+   ========================================================================= */
 .faq-section {
     max-width: 900px;
     margin: 80px auto 60px auto;
@@ -78,7 +103,7 @@
 .faq-eyebrow {
     font-size: 13px;
     font-weight: 800;
-    color: #2563eb;
+    color: var(--primary);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -87,7 +112,7 @@
 .faq-header h2 {
     font-size: 32px;
     font-weight: 800;
-    color: #0f172a;
+    color: var(--text-main);
     margin: 0;
 }
 
@@ -99,11 +124,11 @@
 
 .faq-card {
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
     padding: 24px 28px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    transition: all 0.2s ease;
+    transition: var(--transition);
 }
 
 .faq-card:hover {
@@ -114,21 +139,21 @@
 .faq-card h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #0f172a;
+    color: var(--text-main);
     margin-top: 0;
     margin-bottom: 10px;
 }
 
 .faq-card p {
     font-size: 15px;
-    color: #475569;
+    color: var(--text-muted);
     margin: 0;
     line-height: 1.6;
 }
 
 .faq-card code {
-    background: #f1f5f9;
-    color: #0f172a;
+    background: var(--bg-light);
+    color: var(--text-main);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 13.5px;
@@ -136,11 +161,37 @@
 }
 
 .faq-card a {
-    color: #2563eb;
+    color: var(--primary);
     font-weight: 700;
     text-decoration: none;
 }
 
 .faq-card a:hover {
     text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. FOOTER STYLING
+   ========================================================================= */
+footer {
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer span {
+    margin: 0 8px;
 }
