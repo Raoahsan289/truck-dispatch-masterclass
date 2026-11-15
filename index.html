@@ -9,40 +9,32 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <style>
-    /* Removes the underline from the logo link */
-    .logo-area {
-        text-decoration: none !important;
-    }
-    .logo-area:hover {
-        text-decoration: none !important;
-    }
-</style>
 </head>
 <body class="home-page">
 
     <!-- UNIFIED NAVIGATION HEADER -->
-  <header class="header">
-    <a href="index.html" class="logo-area" style="text-decoration: none;">
-        <div class="logo-box">TD</div>
-        <div>
-            <div class="brand-name">Truck Dispatch</div>
-            <div class="brand-subtitle">Master Class</div>
-        </div>
-    </a>
+    <header class="header">
+        <a href="index.html" class="logo-area">
+            <div class="logo-box">TD</div>
+            <div>
+                <div class="brand-name">Truck Dispatch</div>
+                <div class="brand-subtitle">Master Class</div>
+            </div>
+        </a>
 
-    <nav class="nav-links" style="display: flex; align-items: center; gap: 16px;">
+        <nav class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="choose-plan.html">Plans & Pricing</a>
             <a href="signup.html" id="free-course-btn">Free Course</a>
             <a href="certificate-verify.html">Verify ID</a>
             
-            <!-- Auth Buttons Grouped Together -->
-            <a href="login.html" id="login-btn" style="background: #2563eb; color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; text-decoration: none;">Login</a>
-            <a href="free/dashboard.html" id="dashboard-btn" style="display: none; background: #2563eb; color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; text-decoration: none;">Dashboard</a>
-            <button id="logout-btn" style="display: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Logout</button>
+            <!-- Auth & Dashboard Dynamic Buttons -->
+            <a href="login.html" id="login-btn">Login</a>
+            <a href="free/dashboard.html" id="dashboard-btn" style="display: none;">Dashboard</a>
+            <button id="logout-btn" style="display: none;">Logout</button>
         </nav>
-</header>
+    </header>
+
     <!-- TRUCK BACKGROUND HERO SECTION -->
     <section class="hero">
         <div class="hero-container">
@@ -95,103 +87,47 @@
     </section>
 
     <!-- BEGINNER FREQUENTLY ASKED QUESTIONS -->
-    <section class="faq-section" style="max-width: 900px; margin: 80px auto 60px auto; padding: 0 20px;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <div style="font-size: 13px; font-weight: 800; color: #2563eb; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Got Questions?</div>
-            <h2 style="font-size: 32px; font-weight: 800; color: #0f172a; margin: 0;">Frequently Asked Questions</h2>
+    <section class="faq-section">
+        <div class="faq-header">
+            <div class="faq-eyebrow">Got Questions?</div>
+            <h2>Frequently Asked Questions</h2>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-            
+        <div class="faq-list">
             <!-- FAQ 1 -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Do I need prior logistics experience or a specific degree?</h3>
-                <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.6;">
-                    No prior experience or logistics degree is required! The Master Class is built from the ground up for total beginners. We cover US freight terminology, load board mechanics, and broker scripts step by step.
-                </p>
+            <div class="faq-card">
+                <h3>Do I need prior logistics experience or a specific degree?</h3>
+                <p>No prior experience or logistics degree is required! The Master Class is built from the ground up for total beginners. We cover US freight terminology, load board mechanics, and broker scripts step by step.</p>
             </div>
-
             <!-- FAQ 2 -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">What hardware and equipment do I need to start?</h3>
-                <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.6;">
-                    All you need is a basic computer or laptop, a reliable internet connection, and a smartphone or VoIP phone service (such as Google Voice or OpenPhone) to communicate with freight brokers.
-                </p>
+            <div class="faq-card">
+                <h3>What hardware and equipment do I need to start?</h3>
+                <p>All you need is a basic computer or laptop, a reliable internet connection, and a smartphone or VoIP phone service (such as Google Voice or OpenPhone) to communicate with freight brokers.</p>
             </div>
-
             <!-- FAQ 3 -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Can I work as a US freight dispatcher remotely from outside the US?</h3>
-                <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.6;">
-                    Yes! US freight dispatching is a thriving global remote career. As long as you can speak English clearly and operate during US business hours (EST/CST/PST), you can dispatch trucks remotely from anywhere.
-                </p>
+            <div class="faq-card">
+                <h3>Can I work as a US freight dispatcher remotely from outside the US?</h3>
+                <p>Yes! US freight dispatching is a thriving global remote career. As long as you can speak English clearly and operate during US business hours (EST/CST/PST), you can dispatch trucks remotely from anywhere.</p>
             </div>
-
             <!-- FAQ 4 -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">How does the Certificate Verification work?</h3>
-                <p style="font-size: 14.5px; color: #64748b; margin: 0; line-height: 1.6;">
-                    Every graduate receives an official Certificate issued under RouteCraft Logistics Corp. with a unique ID format (<code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px;">RC-TDMC-XXXXXX</code>). Anyone can verify your credentials on our live <a href="certificate-verify.html" style="color: #2563eb; font-weight: 700; text-decoration: none;">Verification Portal</a>.
-                </p>
+            <div class="faq-card">
+                <h3>How does the Certificate Verification work?</h3>
+                <p>Every graduate receives an official Certificate issued under RouteCraft Logistics Corp. with a unique ID format (<code>RC-TDMC-XXXXXX</code>). Anyone can verify your credentials on our live <a href="certificate-verify.html">Verification Portal</a>.</p>
             </div>
-
         </div>
     </section>
 
     <!-- STANDARD WEBSITE FOOTER -->
-    <footer style="text-align: center; padding: 24px 20px; margin-top: 40px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 13px;">
-        <p style="margin: 0;">&copy; 2026 RouteCraft / Truck Dispatch Masterclass. All rights reserved. 
-            <span style="margin: 0 8px;">•</span> 
-            <a href="privacy-policy.html" style="color: #2563eb; text-decoration: none; font-weight: 600;">Privacy Policy</a>
+    <footer>
+        <p>&copy; 2026 RouteCraft / Truck Dispatch Masterclass. All rights reserved. 
+            <span>•</span> 
+            <a href="privacy-policy.html">Privacy Policy</a>
         </p>
     </footer>
-<!-- Supabase CDN & Config (Verify the second src matches your exact file path) -->
-   <!-- SUPABASE SDK & CONFIG -->
+
+    <!-- SUPABASE & SEPARATE JS FILE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>
-
-    <!-- UNIFIED SESSION CHECK & NAVBAR HANDLER -->
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            if (typeof supabaseClient === 'undefined') return;
-
-            const { data: { session } } = await supabaseClient.auth.getSession();
-
-            const loginBtn = document.getElementById("login-btn");
-            const dashboardBtn = document.getElementById("dashboard-btn");
-            const logoutBtn = document.getElementById("logout-btn");
-            const freeCourseBtn = document.getElementById("free-course-btn");
-
-            if (session) {
-                // User IS logged in: hide Login, show Dashboard & Logout
-                if (loginBtn) loginBtn.style.display = "none";
-                if (dashboardBtn) dashboardBtn.style.display = "inline-block";
-                if (logoutBtn) logoutBtn.style.display = "inline-block";
-                
-                // Redirect "Free Course" button straight to dashboard when logged in
-                if (freeCourseBtn) {
-                    freeCourseBtn.href = "free/dashboard.html";
-                }
-            } else {
-                // User is NOT logged in: show Login, hide Dashboard & Logout
-                if (loginBtn) loginBtn.style.display = "inline-block";
-                if (dashboardBtn) dashboardBtn.style.display = "none";
-                if (logoutBtn) logoutBtn.style.display = "none";
-                
-                // Keep default link for non-logged-in users
-                if (freeCourseBtn) {
-                    freeCourseBtn.href = "signup.html";
-                }
-            }
-
-            // Handle Logout click cleanly
-            if (logoutBtn) {
-                logoutBtn.addEventListener("click", async () => {
-                    await supabaseClient.auth.signOut();
-                    window.location.href = "index.html";
-                });
-            }
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
