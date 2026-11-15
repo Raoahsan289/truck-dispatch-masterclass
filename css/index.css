@@ -1,0 +1,146 @@
+/* Logo & Navigation Styling */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none !important;
+}
+
+.logo-area:hover {
+    text-decoration: none !important;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-links a:not(#login-btn):not(#dashboard-btn) {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 14.5px;
+    transition: color 0.2s;
+}
+
+.nav-links a:not(#login-btn):not(#dashboard-btn):hover,
+.nav-links a.active {
+    color: #ffffff;
+}
+
+/* Modern Auth Buttons Styling */
+#login-btn, #dashboard-btn {
+    background: #2563eb;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+#login-btn:hover, #dashboard-btn:hover {
+    background: #1d4ed8;
+}
+
+#logout-btn {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#logout-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* --- UPGRADED FAQ SECTION STYLING --- */
+.faq-section {
+    max-width: 900px;
+    margin: 80px auto 60px auto;
+    padding: 0 20px;
+    font-family: inherit;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-eyebrow {
+    font-size: 13px;
+    font-weight: 800;
+    color: #2563eb;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.faq-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+}
+
+.faq-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.faq-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.faq-card p {
+    font-size: 15px;
+    color: #475569;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.faq-card code {
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    font-family: monospace;
+}
+
+.faq-card a {
+    color: #2563eb;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.faq-card a:hover {
+    text-decoration: underline;
+}
