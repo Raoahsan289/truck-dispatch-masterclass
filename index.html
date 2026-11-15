@@ -146,6 +146,40 @@
             <a href="privacy-policy.html" style="color: #2563eb; text-decoration: none; font-weight: 600;">Privacy Policy</a>
         </p>
     </footer>
+<!-- Supabase CDN & Config (Verify the second src matches your exact file path) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
 
+    <!-- Check Active Session & Update Navbar Buttons -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Note: Change 'client' below if your config file names it 'supabaseClient' or 'supabase'
+            const { data: { session } } = await client.auth.getSession();
+
+            const loginBtn = document.getElementById("login-btn");
+            const dashboardBtn = document.getElementById("dashboard-btn");
+            const logoutBtn = document.getElementById("logout-btn");
+
+            if (session) {
+                // User IS logged in: hide Login, show Dashboard & Logout
+                if (loginBtn) loginBtn.style.display = "none";
+                if (dashboardBtn) dashboardBtn.style.display = "inline-block";
+                if (logoutBtn) logoutBtn.style.display = "inline-block";
+            } else {
+                // User is NOT logged in: show Login, hide Dashboard & Logout
+                if (loginBtn) loginBtn.style.display = "inline-block";
+                if (dashboardBtn) dashboardBtn.style.display = "none";
+                if (logoutBtn) logoutBtn.style.display = "none";
+            }
+
+            // Handle Logout click cleanly
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", async () => {
+                    await client.auth.signOut();
+                    window.location.href = "index.html";
+                });
+            }
+        });
+    </script>
 </body>
 </html>
