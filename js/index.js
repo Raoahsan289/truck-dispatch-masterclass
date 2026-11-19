@@ -42,3 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Session check error:", err);
     }
 });
+if (dashboardBtn) {
+    dashboardBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = dashboardBtn.getAttribute("href") || "free/dashboard.html";
+    });
+}
